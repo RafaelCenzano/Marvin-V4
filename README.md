@@ -14,7 +14,7 @@ cd Marvin-V4
 
 ### Requirements
 
-Use pip to install needed libraries [Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/)
+Use pip to install needed libraries ([Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/))
 
 ```
 pip install -r requirements.txt
