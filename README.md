@@ -12,6 +12,10 @@ git clone https://github.com/Marvin-Virtual-Assistant/Marvin-V4.git
 cd Marvin-V4
 ```
 
+```
+make
+```
+
 ### Requirements
 
 Use pip to install needed libraries ([Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/))
