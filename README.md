@@ -18,6 +18,10 @@ make
 
 ### Requirements
 
+The command make handles installation of requirements
+
+[View the requirements!](requirements.txt)
+
 Use pip to install needed libraries ([Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/))
 
 ```
