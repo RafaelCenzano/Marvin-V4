@@ -12,13 +12,15 @@ git clone https://github.com/Marvin-Virtual-Assistant/Marvin-V4.git
 cd Marvin-V4
 ```
 
+Install and test the program
+
 ```
 make
 ```
 
 ### Requirements
 
-The command make handles installation of requirements
+The command `make` handles installation of requirements
 
 [View the requirements!](requirements.txt)
 
