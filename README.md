@@ -32,7 +32,11 @@ pip install -r requirements.txt
 
 ## Running the tests
 
-No tests yet
+Run tests
+
+```
+nose2 -v --pretty-assert
+```
 
 ### What are the tests checking
 
