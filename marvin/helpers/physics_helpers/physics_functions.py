@@ -24,6 +24,20 @@ class Kinematics:
         Solve for Final Velocity with initial velocity, acceleration, and time
         '''
 
+        if self.checkValue(self.initialVelocity) and self.checkValue(self.accelertaion) and self.checkValue(self.time):
+
+            answer = self.initialVelocity + (self.accelertaion * self.time)
+
+            self.finalVelocity = answer
+
+    def deltaDistanceOne():
+    	'''
+		Equation:
+
+        Δx = Vi * t + 0.5 * a + t^2
+
+        Solve for Delta Distance(Displacment) with initial velocity, acceleration, and time
+        '''
 
     def checkValue(self, value):
         '''
@@ -33,6 +47,9 @@ class Kinematics:
         typeOfValue = type(value)
 
         if typeOfValue == int or typeOfValue == float:
+
             return True
+
         else:
+
             return False
