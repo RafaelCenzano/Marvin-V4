@@ -1,4 +1,2 @@
 # Imports
-
-def func():
-	return "hello"
+import marvin.helpers
