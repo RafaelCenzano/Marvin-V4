@@ -18,7 +18,7 @@ def count_sig_figs(value):
             if fig != 0:
                 sig_fig_count += 1
 
-            elif self.check_zero_sig(index, num_list, sig_fig_count):
+            elif check_zero_sig(index, num_list, sig_fig_count):
                 sig_fig_count += 1
 
         except:
@@ -26,7 +26,7 @@ def count_sig_figs(value):
 
     return sig_fig_count
 
-def check_zero_sig(self, index, num_list, sig_fig_count):
+def check_zero_sig(index, num_list, sig_fig_count):
     '''
     Checks for significance in a zero from a list
     '''
@@ -59,7 +59,7 @@ def check_zero_sig(self, index, num_list, sig_fig_count):
                 return True
 
             else:
-                return self.check_zero_sig(new_index, num_list, sig_fig_count)
+                return check_zero_sig(new_index, num_list, sig_fig_count)
 
         elif num_list[new_index] != '.' and sig_fig_count == 0:
 
@@ -69,12 +69,12 @@ def check_zero_sig(self, index, num_list, sig_fig_count):
                 return True
 
             else:
-                return self.check_zero_sig(new_index, num_list, sig_fig_count)
+                return check_zero_sig(new_index, num_list, sig_fig_count)
 
         else:
             return False
 
-def convertToStringFromList(self, s): 
+def convertToStringFromList(s): 
     '''
     Convert list to string
     '''
@@ -85,14 +85,14 @@ def convertToStringFromList(self, s):
 
     return new
 
-def splitString(self, word): 
+def splitString(word): 
     return [char for char in word] 
 
-def properRounding(self, value, sigFigs):
+def properRounding(value, sigFigs):
 
     splitValue = str(value).split('.')
 
-    splitValueFirst = self.splitString(str(splitValue[0]))
+    splitValueFirst = splitString(str(splitValue[0]))
 
     print(splitValueFirst)
 
@@ -107,4 +107,4 @@ def properRounding(self, value, sigFigs):
 
     if count > sigFigs:
 
-        digitsToRemove = count - self.sigFigs
+        digitsToRemove = count - sigFigs
