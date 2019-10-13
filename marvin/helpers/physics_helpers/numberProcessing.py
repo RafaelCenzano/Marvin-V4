@@ -21,10 +21,11 @@ def count_sig_figs(value):
             elif checkZeroSig(index, num_list, sig_fig_count):
                 sig_fig_count += 1
 
-        except:
+        except BaseException:
             continue
 
     return sig_fig_count
+
 
 def checkZeroSig(index, num_list, sig_fig_count):
     '''
@@ -38,7 +39,7 @@ def checkZeroSig(index, num_list, sig_fig_count):
         if index > decimal and sig_fig_count > 0:
             return True
 
-    except:
+    except BaseException:
 
         if index == 0 or index == len(num_list):
             return False
@@ -74,19 +75,22 @@ def checkZeroSig(index, num_list, sig_fig_count):
         else:
             return False
 
-def convertToStringFromList(s): 
+
+def convertToStringFromList(s):
     '''
     Convert list to string
     '''
     new = ""
-   
+
     for x in s:
         new += x
 
     return new
 
-def splitString(word): 
-    return [char for char in word] 
+
+def splitString(word):
+    return [char for char in word]
+
 
 def properRounding(value, sigFigs):
 
