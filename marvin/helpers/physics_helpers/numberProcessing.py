@@ -18,7 +18,7 @@ def count_sig_figs(value):
             if fig != 0:
                 sig_fig_count += 1
 
-            elif check_zero_sig(index, num_list, sig_fig_count):
+            elif checkZeroSig(index, num_list, sig_fig_count):
                 sig_fig_count += 1
 
         except:
@@ -26,7 +26,7 @@ def count_sig_figs(value):
 
     return sig_fig_count
 
-def check_zero_sig(index, num_list, sig_fig_count):
+def checkZeroSig(index, num_list, sig_fig_count):
     '''
     Checks for significance in a zero from a list
     '''
@@ -59,7 +59,7 @@ def check_zero_sig(index, num_list, sig_fig_count):
                 return True
 
             else:
-                return check_zero_sig(new_index, num_list, sig_fig_count)
+                return checkZeroSig(new_index, num_list, sig_fig_count)
 
         elif num_list[new_index] != '.' and sig_fig_count == 0:
 
@@ -69,7 +69,7 @@ def check_zero_sig(index, num_list, sig_fig_count):
                 return True
 
             else:
-                return check_zero_sig(new_index, num_list, sig_fig_count)
+                return checkZeroSig(new_index, num_list, sig_fig_count)
 
         else:
             return False
