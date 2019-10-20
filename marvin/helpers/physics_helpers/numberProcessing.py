@@ -1,3 +1,6 @@
+'''
+Count significant figures fairly accurately
+'''
 def count_sig_figs(value):
     '''
     This fucntion will count the sigfigs of a value
@@ -75,7 +78,9 @@ def checkZeroSig(index, num_list, sig_fig_count):
         else:
             return False
 
-
+'''
+Round Values to sig fig count
+'''
 def convertToStringFromList(s):
     '''
     Convert list to string
@@ -98,16 +103,12 @@ def properRounding(value, sigFigs):
 
     splitValueFirst = splitString(str(splitValue[0]))
 
-    print(splitValueFirst)
-
     count = 0
 
     for nums in splitValueFirst:
 
         if nums != 0:
             count += 1
-
-    print(count)
 
     if count > sigFigs:
 
