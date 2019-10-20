@@ -1,5 +1,6 @@
 # Imports
 import math
+from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding
 
 '''
 Kinematics
@@ -11,12 +12,14 @@ Functions to solve time, velocity, accelertaion and distance with the other vari
 class Kinematics:
 
     def __init__(
-            self,
-            initialVelocity=None,
-            finalVelocity=None,
-            time=None,
-            accelertaion=None,
-            deltaDistance=None):
+                 self,
+                 initialVelocity=None,
+                 finalVelocity=None,
+                 time=None,
+                 accelertaion=None,
+                 deltaDistance=None
+                ):
+
         self.initialVelocity = initialVelocity
         self.finalVelocity = finalVelocity
         self.time = time
@@ -56,11 +59,29 @@ class Kinematics:
         if self.checkValue(
             self.initialVelocity) and self.checkValue(
             self.accelertaion) and self.checkValue(
-                self.time) and self.finalVelocity is None:
+            self.time) and self.finalVelocity is None:
 
             answer = self.initialVelocity + (self.accelertaion * self.time)
 
             self.finalVelocity = answer
+
+    def initialVelocityOne(self):
+        '''
+        Equation:
+
+        Vf = Vi + a * t
+
+        Solve for Initial Velocity with final velocity, acceleration, and time
+        '''
+
+        if self.checkValue(
+            self.finalVelocity) and self.checkValue(
+            self.accelertaion) and self.checkValue(
+            self.time) and self.initialVelocity is None:
+
+            answer = self.finalVelocity / (self.accelertaion * self.time)
+
+            self.initialVelocity = answer
 
     def deltaDistanceOne(self):
         '''
@@ -73,7 +94,7 @@ class Kinematics:
         if self.checkValue(
             self.initialVelocity) and self.checkValue(
             self.accelertaion) and self.checkValue(
-                self.time) and self.deltaDistance is None:
+            self.time) and self.deltaDistance is None:
 
             answer = (self.initialVelocity * self.time) + \
                 (0.5 * self.accelertaion * (self.time ** 2))
@@ -92,7 +113,7 @@ class Kinematics:
         if self.checkValue(
             self.initialVelocity) and self.checkValue(
             self.accelertaion) and self.checkValue(
-                self.deltaDistance) and self.finalVelocity is None:
+            self.deltaDistance) and self.finalVelocity is None:
 
             answer = (self.initialVelocity ^ 2) + \
                 (2 * self.accelertaion * self.deltaDistance)
