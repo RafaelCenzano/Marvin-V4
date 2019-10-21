@@ -47,7 +47,7 @@ nose2 -v --pretty-assert
 
 ### What happens when a test fails
 
-Report the issue [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
+Report the failed test [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
 
 ## Authors
 
