@@ -1,6 +1,8 @@
 '''
 Count significant figures fairly accurately
 '''
+
+
 def count_sig_figs(value):
     '''
     This fucntion will count the sigfigs of a value
@@ -78,9 +80,12 @@ def checkZeroSig(index, num_list, sig_fig_count):
         else:
             return False
 
+
 '''
 Round Values to sig fig count
 '''
+
+
 def convertToStringFromList(s):
     '''
     Convert list to string
@@ -96,9 +101,11 @@ def convertToStringFromList(s):
 def splitString(word):
     return [char for char in word]
 
+
 def properRounding(value, sigFigs):
 
-    if type(value) == int or int(value) == value:
+    # when num is int or float that ends in .0
+    if isinstance(value, int) or int(value) == value:
 
         stringValue = str(value)
         lengthValue = len(stringValue)
@@ -110,5 +117,9 @@ def properRounding(value, sigFigs):
         else:
             return int(value)
 
+    # when num is a decimal
+    elif int(value) == 0:
+
+        pass
 
     splitValue = str(value).split('.')
