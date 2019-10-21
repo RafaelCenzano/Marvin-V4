@@ -83,6 +83,24 @@ class Kinematics:
 
             self.initialVelocity = answer
 
+    def accelerationOne(self):
+        '''
+        Equation:
+
+        (Vf - Vi) / t = a
+
+        Solve for Acceleration with final velocity, initial velocity, and time
+        '''
+
+        if self.checkValue(
+            self.finalVelocity) and self.checkValue(
+            self.initialVelocity) and self.checkValue(
+            self.time) and self.accelertaion is None:
+
+            answer = (self.finalVelocity - self.initialVelocity) / self.time
+
+            self.accelertaion = answer
+
     def deltaDistanceOne(self):
         '''
         Equation:
