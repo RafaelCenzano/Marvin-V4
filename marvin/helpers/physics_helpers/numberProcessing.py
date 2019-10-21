@@ -96,20 +96,19 @@ def convertToStringFromList(s):
 def splitString(word):
     return [char for char in word]
 
-
 def properRounding(value, sigFigs):
 
+    if type(value) == int or int(value) == value:
+
+        stringValue = str(value)
+        lengthValue = len(stringValue)
+        valueSigFigs = count_sig_figs(value)
+
+        if valueSigFigs > sigFigs:
+            newValue = round(value, sigFigs - valueSigFigs)
+            return int(newValue)
+        else:
+            return int(value)
+
+
     splitValue = str(value).split('.')
-
-    splitValueFirst = splitString(str(splitValue[0]))
-
-    count = 0
-
-    for nums in splitValueFirst:
-
-        if nums != 0:
-            count += 1
-
-    if count > sigFigs:
-
-        digitsToRemove = count - sigFigs
