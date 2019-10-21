@@ -140,7 +140,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf^2 = Vi^2 + 2 * a * Δx^2
+        Vf^2 = Vi^2 + 2 * a * Δx
 
         Solve for Final Velocity with initial velocity, acceleration, and delta distance
         '''
@@ -192,7 +192,25 @@ class Kinematics:
 
             answer = (((self.finalVelocity ** 2) - (self.initialVelocity ** 2)) / 2) / self.deltaDistance
 
-            self.finalVelocity = answer
+            self.accelertaion = answer
+
+    def deltaDistanceTwo(self):
+        '''
+        Equation:
+
+        ((Vf^2 - Vi^2) / 2) / a = Δx
+
+        Solve for Delta Distance(Displacment) with initial velocity, acceleration, and final velocity
+        '''
+
+        if self.checkValue(
+            self.initialVelocity) and self.checkValue(
+            self.accelertaion) and self.checkValue(
+            self.finalVelocity) and self.deltaDistance is None:
+
+            answer = (((self.finalVelocity ** 2) - (self.initialVelocity ** 2)) / 2) / self.accelertaion
+
+            self.deltaDistance = answer
 
     def checkValue(self, value):
         '''
