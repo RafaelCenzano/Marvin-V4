@@ -69,7 +69,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf = Vi + a * t
+        Vf - (a * t) = Vi
 
         Solve for Initial Velocity with final velocity, acceleration, and time
         '''
@@ -79,7 +79,7 @@ class Kinematics:
             self.accelertaion) and self.checkValue(
             self.time) and self.initialVelocity is None:
 
-            answer = self.finalVelocity / (self.accelertaion * self.time)
+            answer = self.finalVelocity - (self.accelertaion * self.time)
 
             self.initialVelocity = answer
 
