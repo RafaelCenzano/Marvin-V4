@@ -84,22 +84,9 @@ def checkZeroSig(index, num_list, sig_fig_count):
 '''
 Round Values to sig fig count
 '''
-
-
-def convertToStringFromList(s):
-    '''
-    Convert list to string
-    '''
-    new = ""
-
-    for x in s:
-        new += x
-
-    return new
-
-
-def splitString(word):
-    return [char for char in word]
+def num_of_zeros(num):
+  s = '{:.16f}'.format(num).split('.')[1]
+  return len(s) - len(s.lstrip('0'))
 
 
 def properRounding(value, sigFigs):
