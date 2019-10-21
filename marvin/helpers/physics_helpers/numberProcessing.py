@@ -120,6 +120,6 @@ def properRounding(value, sigFigs):
     # when num is a decimal
     elif int(value) == 0:
 
-        pass
+        valueSigFigs = count_sig_figs(value)
 
     splitValue = str(value).split('.')
