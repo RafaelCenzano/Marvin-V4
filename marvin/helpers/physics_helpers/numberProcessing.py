@@ -1,3 +1,8 @@
+'''
+Count significant figures fairly accurately
+'''
+
+
 def count_sig_figs(value):
     '''
     This fucntion will count the sigfigs of a value
@@ -18,15 +23,16 @@ def count_sig_figs(value):
             if fig != 0:
                 sig_fig_count += 1
 
-            elif check_zero_sig(index, num_list, sig_fig_count):
+            elif checkZeroSig(index, num_list, sig_fig_count):
                 sig_fig_count += 1
 
-        except:
+        except BaseException:
             continue
 
     return sig_fig_count
 
-def check_zero_sig(index, num_list, sig_fig_count):
+
+def checkZeroSig(index, num_list, sig_fig_count):
     '''
     Checks for significance in a zero from a list
     '''
@@ -38,7 +44,7 @@ def check_zero_sig(index, num_list, sig_fig_count):
         if index > decimal and sig_fig_count > 0:
             return True
 
-    except:
+    except BaseException:
 
         if index == 0 or index == len(num_list):
             return False
@@ -59,7 +65,7 @@ def check_zero_sig(index, num_list, sig_fig_count):
                 return True
 
             else:
-                return check_zero_sig(new_index, num_list, sig_fig_count)
+                return checkZeroSig(new_index, num_list, sig_fig_count)
 
         elif num_list[new_index] != '.' and sig_fig_count == 0:
 
@@ -69,42 +75,57 @@ def check_zero_sig(index, num_list, sig_fig_count):
                 return True
 
             else:
-                return check_zero_sig(new_index, num_list, sig_fig_count)
+                return checkZeroSig(new_index, num_list, sig_fig_count)
 
         else:
             return False
 
-def convertToStringFromList(s): 
-    '''
-    Convert list to string
-    '''
-    new = ""
-   
-    for x in s:
-        new += x
 
-    return new
+'''
+Round Values to sig fig count
+'''
+def num_of_zeros(num):
+  s = '{:.16f}'.format(num).split('.')[1]
+  return len(s) - len(s.lstrip('0'))
 
-def splitString(word): 
-    return [char for char in word] 
 
 def properRounding(value, sigFigs):
 
-    splitValue = str(value).split('.')
+    valueSigFigs = count_sig_figs(value)
 
-    splitValueFirst = splitString(str(splitValue[0]))
+    # when num is int or float that ends in .0
+    if isinstance(value, int) or int(value) == value:
 
-    print(splitValueFirst)
+        if valueSigFigs > sigFigs:
+            newValue = round(value, sigFigs - valueSigFigs)
+            return int(newValue)
+        else:
+            return int(value)
 
-    count = 0
+    # when num is only a decimal
+    elif int(value) == 0:
 
-    for nums in splitValueFirst:
+        numOfZeros = num_of_zeros(value)
 
-        if nums != 0:
-            count += 1
+        if valueSigFigs > sigFigs:
+            newValue = round(value, sigFigs + numOfZeros)
+            return newValue
+        else:
+            return value
 
-    print(count)
+    # when num is a float
+    else:
 
-    if count > sigFigs:
+        if valueSigFigs > sigFigs:
+            newRounded = round(value, 0)
 
-        digitsToRemove = count - sigFigs
+            if newRounded > sigFigs:
+                newValue = round(newRounded, sigFigs - valueSigFigs)
+                return int(newValue)
+            else:
+                newDecimal = value - int(value)
+                numOfZeros = num_of_zeros(newDecimal)
+                newValue = round(newDecimal, sigFigs + numOfZeros)
+                return newValue
+        else:
+            return value
