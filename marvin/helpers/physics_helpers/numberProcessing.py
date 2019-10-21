@@ -91,12 +91,10 @@ def num_of_zeros(num):
 
 def properRounding(value, sigFigs):
 
+    valueSigFigs = count_sig_figs(value)
+
     # when num is int or float that ends in .0
     if isinstance(value, int) or int(value) == value:
-
-        stringValue = str(value)
-        lengthValue = len(stringValue)
-        valueSigFigs = count_sig_figs(value)
 
         if valueSigFigs > sigFigs:
             newValue = round(value, sigFigs - valueSigFigs)
@@ -107,7 +105,6 @@ def properRounding(value, sigFigs):
     # when num is only a decimal
     elif int(value) == 0:
 
-        valueSigFigs = count_sig_figs(value)
         numOfZeros = num_of_zeros(value)
 
         if valueSigFigs > sigFigs:
@@ -119,5 +116,16 @@ def properRounding(value, sigFigs):
     # when num is a float
     else:
 
+        if valueSigFigs > sigFigs:
+            newRounded = round(value, 0)
 
-    splitValue = str(value).split('.')
+            if newRounded > sigFigs:
+                newValue = round(newRounded, sigFigs - valueSigFigs)
+                return int(newValue)
+            else:
+                newDecimal = value - int(value)
+                numOfZeros = num_of_zeros(newDecimal)
+                newValue = round(newDecimal, sigFigs + numOfZeros)
+                return newValue
+        else:
+            return value
