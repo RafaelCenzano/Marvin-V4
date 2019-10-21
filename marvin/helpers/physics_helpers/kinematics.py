@@ -141,7 +141,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf^2 = Vi^2 + 2 * a * t^2
+        Vf^2 = Vi^2 + 2 * a * Δx^2
 
         Solve for Final Velocity with initial velocity, acceleration, and delta distance
         '''
@@ -151,12 +151,32 @@ class Kinematics:
             self.accelertaion) and self.checkValue(
             self.deltaDistance) and self.finalVelocity is None:
 
-            answer = (self.initialVelocity ^ 2) + \
+            answer = (self.initialVelocity ** 2) + \
                 (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = Math.sprt(answer)
 
             self.finalVelocity = answerSqrt
+
+    def initialVelocityTwo(self):
+        '''
+        Equation:
+
+        Vf^2 - (2 * a * Δx^2) = Vi^2
+
+        Solve for Initial Velocity with final velocity, acceleration, and delta distance
+        '''
+
+        if self.checkValue(
+            self.finalVelocity) and self.checkValue(
+            self.accelertaion) and self.checkValue(
+            self.deltaDistance) and self.initialVelocity is None:
+
+            answer = (self.finalVelocity ** 2) - (2 * self.accelertaion * self.deltaDistance)
+
+            answerSqrt = Math.sprt(answer)
+
+            self.initialVelocity = answerSqrt
 
     def checkValue(self, value):
         '''
