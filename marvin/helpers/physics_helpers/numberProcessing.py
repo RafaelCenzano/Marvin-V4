@@ -104,9 +104,20 @@ def properRounding(value, sigFigs):
         else:
             return int(value)
 
-    # when num is a decimal
+    # when num is only a decimal
     elif int(value) == 0:
 
         valueSigFigs = count_sig_figs(value)
+        numOfZeros = num_of_zeros(value)
+
+        if valueSigFigs > sigFigs:
+            newValue = round(value, sigFigs + numOfZeros)
+            return newValue
+        else:
+            return value
+
+    # when num is a float
+    else:
+
 
     splitValue = str(value).split('.')
