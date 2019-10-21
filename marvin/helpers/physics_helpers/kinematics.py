@@ -132,8 +132,7 @@ class Kinematics:
             self.accelertaion) and self.checkValue(
             self.time) and self.deltaDistance is None:
 
-            answer = (self.initialVelocity * self.time) + \
-                (0.5 * self.accelertaion * (self.time ** 2))
+            answer = (self.initialVelocity * self.time) + (0.5 * self.accelertaion * (self.time ** 2))
 
             self.deltaDistance = answer
 
@@ -151,8 +150,7 @@ class Kinematics:
             self.accelertaion) and self.checkValue(
             self.deltaDistance) and self.finalVelocity is None:
 
-            answer = (self.initialVelocity ** 2) + \
-                (2 * self.accelertaion * self.deltaDistance)
+            answer = (self.initialVelocity ** 2) + (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = Math.sprt(answer)
 
@@ -162,7 +160,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf^2 - (2 * a * Δx^2) = Vi^2
+        Vf^2 - (2 * a * Δx) = Vi^2
 
         Solve for Initial Velocity with final velocity, acceleration, and delta distance
         '''
@@ -177,6 +175,24 @@ class Kinematics:
             answerSqrt = Math.sprt(answer)
 
             self.initialVelocity = answerSqrt
+
+    def accelertaionTwo(self):
+        '''
+        Equation:
+
+        ((Vf^2 - Vi^2) / 2) / Δx = a
+
+        Solve for Acceleration with initial velocity, final velocity, and delta distance
+        '''
+
+        if self.checkValue(
+            self.initialVelocity) and self.checkValue(
+            self.finalVelocity) and self.checkValue(
+            self.deltaDistance) and self.accelertaion is None:
+
+            answer = (((self.finalVelocity ** 2) - (self.initialVelocity ** 2)) / 2) / self.deltaDistance
+
+            self.finalVelocity = answer
 
     def checkValue(self, value):
         '''
