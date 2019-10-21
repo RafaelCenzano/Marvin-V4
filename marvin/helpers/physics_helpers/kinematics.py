@@ -12,13 +12,13 @@ Functions to solve time, velocity, accelertaion and distance with the other vari
 class Kinematics:
 
     def __init__(
-                 self,
-                 initialVelocity=None,
-                 finalVelocity=None,
-                 time=None,
-                 accelertaion=None,
-                 deltaDistance=None
-                ):
+        self,
+        initialVelocity=None,
+        finalVelocity=None,
+        time=None,
+        accelertaion=None,
+        deltaDistance=None
+    ):
 
         self.initialVelocity = initialVelocity
         self.finalVelocity = finalVelocity
@@ -47,6 +47,17 @@ class Kinematics:
 
         self.sigFigs = tempCount
 
+        while(!self.checkValue(self.initialVelocity) and !self.checkValue(self.deltaDistance) and !self.checkValue(self.finalVelocity) and !self.checkValue(self.time)):
+            self.finalVelocityOne()
+            self.finalVelocityTwo()
+            self.initialVelocityOne()
+            self.initialVelocityTwo()
+            self.accelertaionOne()
+            self.accelertaionOne()
+            self.deltaDistanceOne()
+            self.deltaDistanceTwo()
+            self.timeOne()
+
     def finalVelocityOne(self):
         '''
         Equation:
@@ -57,9 +68,9 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.time) and self.finalVelocity is None:
+                self.initialVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.time) and self.finalVelocity is None:
 
             answer = self.initialVelocity + (self.accelertaion * self.time)
 
@@ -75,9 +86,9 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.finalVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.time) and self.initialVelocity is None:
+                self.finalVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.time) and self.initialVelocity is None:
 
             answer = self.finalVelocity - (self.accelertaion * self.time)
 
@@ -93,9 +104,9 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.finalVelocity) and self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.time) and self.accelertaion is None:
+                self.finalVelocity) and self.checkValue(
+                self.initialVelocity) and self.checkValue(
+                self.time) and self.accelertaion is None:
 
             answer = (self.finalVelocity - self.initialVelocity) / self.time
 
@@ -111,11 +122,12 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.finalVelocity) and self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.accelertaion) and self.time is None:
+                self.finalVelocity) and self.checkValue(
+                self.initialVelocity) and self.checkValue(
+                self.accelertaion) and self.time is None:
 
-            answer = (self.finalVelocity - self.initialVelocity) / self.accelertaion
+            answer = (self.finalVelocity - self.initialVelocity) / \
+                self.accelertaion
 
             self.time = answer
 
@@ -128,11 +140,12 @@ class Kinematics:
         Solve for Delta Distance(Displacment) with initial velocity, acceleration, and time
         '''
         if self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.time) and self.deltaDistance is None:
+                self.initialVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.time) and self.deltaDistance is None:
 
-            answer = (self.initialVelocity * self.time) + (0.5 * self.accelertaion * (self.time ** 2))
+            answer = (self.initialVelocity * self.time) + \
+                (0.5 * self.accelertaion * (self.time ** 2))
 
             self.deltaDistance = answer
 
@@ -146,11 +159,12 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.deltaDistance) and self.finalVelocity is None:
+                self.initialVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.deltaDistance) and self.finalVelocity is None:
 
-            answer = (self.initialVelocity ** 2) + (2 * self.accelertaion * self.deltaDistance)
+            answer = (self.initialVelocity ** 2) + \
+                (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = Math.sprt(answer)
 
@@ -166,11 +180,12 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.finalVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.deltaDistance) and self.initialVelocity is None:
+                self.finalVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.deltaDistance) and self.initialVelocity is None:
 
-            answer = (self.finalVelocity ** 2) - (2 * self.accelertaion * self.deltaDistance)
+            answer = (self.finalVelocity ** 2) - \
+                (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = Math.sprt(answer)
 
@@ -186,11 +201,12 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.finalVelocity) and self.checkValue(
-            self.deltaDistance) and self.accelertaion is None:
+                self.initialVelocity) and self.checkValue(
+                self.finalVelocity) and self.checkValue(
+                self.deltaDistance) and self.accelertaion is None:
 
-            answer = (((self.finalVelocity ** 2) - (self.initialVelocity ** 2)) / 2) / self.deltaDistance
+            answer = (((self.finalVelocity ** 2) -
+                       (self.initialVelocity ** 2)) / 2) / self.deltaDistance
 
             self.accelertaion = answer
 
@@ -204,11 +220,12 @@ class Kinematics:
         '''
 
         if self.checkValue(
-            self.initialVelocity) and self.checkValue(
-            self.accelertaion) and self.checkValue(
-            self.finalVelocity) and self.deltaDistance is None:
+                self.initialVelocity) and self.checkValue(
+                self.accelertaion) and self.checkValue(
+                self.finalVelocity) and self.deltaDistance is None:
 
-            answer = (((self.finalVelocity ** 2) - (self.initialVelocity ** 2)) / 2) / self.accelertaion
+            answer = (((self.finalVelocity ** 2) -
+                       (self.initialVelocity ** 2)) / 2) / self.accelertaion
 
             self.deltaDistance = answer
 
