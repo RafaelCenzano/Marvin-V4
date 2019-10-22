@@ -5,5 +5,6 @@ import unittest
 
 class BasicTestSuite(unittest.TestCase):
 
+	classObjecttoTest = physics_helpers.kinematics.Kinematics()
 if __name__ == '__main__':
     unittest.main()
