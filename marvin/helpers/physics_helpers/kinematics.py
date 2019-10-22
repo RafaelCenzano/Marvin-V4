@@ -47,7 +47,7 @@ class Kinematics:
 
         self.sigFigs = tempCount
 
-        while(self.checkValue(self.initialVelocity) == False and self.checkValue(self.deltaDistance) == False and self.checkValue(self.finalVelocity) == False and self.checkValue(self.time) == False):
+        while(checkValue(self.initialVelocity) == False and checkValue(self.deltaDistance) == False and checkValue(self.finalVelocity) == False and checkValue(self.time) == False):
             self.finalVelocityOne()
             self.finalVelocityTwo()
             self.initialVelocityOne()
@@ -67,14 +67,14 @@ class Kinematics:
         Solve for Final Velocity with initial velocity, acceleration, and time
         '''
 
-        if self.checkValue(
-                self.initialVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
+        if checkValue(
+                self.initialVelocity) and checkValue(
+                self.accelertaion) and checkValue(
                 self.time) and self.finalVelocity is None:
 
             answer = self.initialVelocity + (self.accelertaion * self.time)
 
-            self.finalVelocity = answer
+            self.finalVelocity = properRounding(answer, self.sigFigs)
 
     def initialVelocityOne(self):
         '''
@@ -85,14 +85,14 @@ class Kinematics:
         Solve for Initial Velocity with final velocity, acceleration, and time
         '''
 
-        if self.checkValue(
-                self.finalVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
+        if checkValue(
+                self.finalVelocity) and checkValue(
+                self.accelertaion) and checkValue(
                 self.time) and self.initialVelocity is None:
 
             answer = self.finalVelocity - (self.accelertaion * self.time)
 
-            self.initialVelocity = answer
+            self.initialVelocity = properRounding(answer, self.sigFigs)
 
     def accelerationOne(self):
         '''
@@ -103,14 +103,14 @@ class Kinematics:
         Solve for Acceleration with final velocity, initial velocity, and time
         '''
 
-        if self.checkValue(
-                self.finalVelocity) and self.checkValue(
-                self.initialVelocity) and self.checkValue(
+        if checkValue(
+                self.finalVelocity) and checkValue(
+                self.initialVelocity) and checkValue(
                 self.time) and self.accelertaion is None:
 
             answer = (self.finalVelocity - self.initialVelocity) / self.time
 
-            self.accelertaion = answer
+            self.accelertaion = properRounding(answer, self.sigFigs)
 
     def timeOne(self):
         '''
@@ -121,15 +121,15 @@ class Kinematics:
         Solve for Time with final velocity, initial velocity, and acceleration
         '''
 
-        if self.checkValue(
-                self.finalVelocity) and self.checkValue(
-                self.initialVelocity) and self.checkValue(
+        if checkValue(
+                self.finalVelocity) and checkValue(
+                self.initialVelocity) and checkValue(
                 self.accelertaion) and self.time is None:
 
             answer = (self.finalVelocity - self.initialVelocity) / \
                 self.accelertaion
 
-            self.time = answer
+            self.time = properRounding(answer, self.sigFigs)
 
     def deltaDistanceOne(self):
         '''
@@ -139,15 +139,15 @@ class Kinematics:
 
         Solve for Delta Distance(Displacment) with initial velocity, acceleration, and time
         '''
-        if self.checkValue(
-                self.initialVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
+        if checkValue(
+                self.initialVelocity) and checkValue(
+                self.accelertaion) and checkValue(
                 self.time) and self.deltaDistance is None:
 
             answer = (self.initialVelocity * self.time) + \
                 (0.5 * self.accelertaion * (self.time ** 2))
 
-            self.deltaDistance = answer
+            self.deltaDistance = properRounding(answer, self.sigFigs)
 
     def finalVelocityTwo(self):
         '''
@@ -158,17 +158,17 @@ class Kinematics:
         Solve for Final Velocity with initial velocity, acceleration, and delta distance
         '''
 
-        if self.checkValue(
-                self.initialVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
-                self.deltaDistance) and self.finalVelocity is None:
+        if checkValue(
+                self.initialVelocity) and checkValue(
+                self.accelertaion) and checkValue(
+                self.deltaDistance) and finalVelocity is None:
 
             answer = (self.initialVelocity ** 2) + \
                 (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = Math.sprt(answer)
 
-            self.finalVelocity = answerSqrt
+            self.finalVelocity = properRounding(answerSqrt, self.sigFigs)
 
     def initialVelocityTwo(self):
         '''
@@ -179,9 +179,9 @@ class Kinematics:
         Solve for Initial Velocity with final velocity, acceleration, and delta distance
         '''
 
-        if self.checkValue(
-                self.finalVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
+        if checkValue(
+                self.finalVelocity) and checkValue(
+                self.accelertaion) and checkValue(
                 self.deltaDistance) and self.initialVelocity is None:
 
             answer = (self.finalVelocity ** 2) - \
@@ -189,7 +189,7 @@ class Kinematics:
 
             answerSqrt = Math.sprt(answer)
 
-            self.initialVelocity = answerSqrt
+            self.initialVelocity = properRounding(answerSqrt, self.sigFigs)
 
     def accelertaionTwo(self):
         '''
@@ -200,15 +200,15 @@ class Kinematics:
         Solve for Acceleration with initial velocity, final velocity, and delta distance
         '''
 
-        if self.checkValue(
-                self.initialVelocity) and self.checkValue(
-                self.finalVelocity) and self.checkValue(
+        if checkValue(
+                self.initialVelocity) and checkValue(
+                self.finalVelocity) and checkValue(
                 self.deltaDistance) and self.accelertaion is None:
 
             answer = (((self.finalVelocity ** 2) -
                        (self.initialVelocity ** 2)) / 2) / self.deltaDistance
 
-            self.accelertaion = answer
+            self.accelertaion = properRounding(answer, self.sigFigs)
 
     def deltaDistanceTwo(self):
         '''
@@ -219,28 +219,17 @@ class Kinematics:
         Solve for Delta Distance(Displacment) with initial velocity, acceleration, and final velocity
         '''
 
-        if self.checkValue(
-                self.initialVelocity) and self.checkValue(
-                self.accelertaion) and self.checkValue(
-                self.finalVelocity) and self.deltaDistance is None:
+        if checkValue(
+                self.initialVelocity) and checkValue(
+                self.accelertaion) and checkValue(
+                self.finalVelocity) and deltaDistance is None:
 
             answer = (((self.finalVelocity ** 2) -
                        (self.initialVelocity ** 2)) / 2) / self.accelertaion
 
-            self.deltaDistance = answer
+            self.deltaDistance = properRounding(answer, self.sigFigs)
 
-    def checkValue(self, value):
-        '''
-        Check value to make sure its an int or float
-        '''
-
-        typeOfValue = type(value)
-
-        if typeOfValue == int or typeOfValue == float:
-            return True
-
-        else:
-            return False
+    
 
 
 if __name__ == '__main__':
