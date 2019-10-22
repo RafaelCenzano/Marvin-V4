@@ -50,26 +50,51 @@ class BasicTestSuite(unittest.TestCase):
     '''
     Test Proper Rounding function
     '''
-    def test_proper_rounding_one(self):
+    def test_proper_rounding_one_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(345, 2), 340)
-    def test_proper_rounding_two(self):
-        self.assertEqual(physics_helpers.numberProcessing.properRounding(910, 1), 900)
-    def test_proper_rounding_three(self):
+    def test_proper_rounding_two_integer(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(910.0, 1), 900)
+    def test_proper_rounding_three_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(220, 3), 220)
-    def test_proper_rounding_four(self):
+    def test_proper_rounding_four_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(761, 4), 761)
-    def test_proper_rounding_five(self):
-        self.assertEqual(physics_helpers.numberProcessing.properRounding(836, 5), 836)
-    def test_proper_rounding_six(self):
+    def test_proper_rounding_five_integer(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(836.0, 5), 836)
+    def test_proper_rounding_six_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(562, 1), 600)
-    def test_proper_rounding_seven(self):
-        self.assertEqual(physics_helpers.numberProcessing.properRounding(300, 1), 300)
-    def test_proper_rounding_eight(self):
+    def test_proper_rounding_seven_integer(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(307, 2), 310)
+    def test_proper_rounding_eight_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(7683524777, 7), 7683525000)
-    def test_proper_rounding_nine(self):
+    def test_proper_rounding_nine_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(-345, 2), -340)
-    def test_proper_rounding_ten(self):
+    def test_proper_rounding_ten_integer(self):
         self.assertEqual(physics_helpers.numberProcessing.properRounding(-35385, 2), -35000)
+    def test_proper_rounding_eleven_integer(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(-8783745, 5), -8783700)
+
+    def test_proper_rounding_one_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.345, 2), 0.34)
+    def test_proper_rounding_two_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.005, 1), 0.005)
+    def test_proper_rounding_three_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.00706, 1), 0.007)
+    def test_proper_rounding_four_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.00232, 4), 0.00232)
+    def test_proper_rounding_five_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.5006, 3), 0.501)
+    def test_proper_rounding_six_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.562, 5), 0.562)
+    def test_proper_rounding_seven_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.03, 2), 0.03)
+    def test_proper_rounding_eight_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(0.07683524777, 7), 0.07683525)
+    def test_proper_rounding_nine_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(-0.0345, 2), -0.035)
+    def test_proper_rounding_ten_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(-0.35385, 2), -0.35000)
+    def test_proper_rounding_eleven_decimal(self):
+        self.assertEqual(physics_helpers.numberProcessing.properRounding(-0.0008783745, 5), -0.00087837)
 
 
 if __name__ == '__main__':
