@@ -228,9 +228,3 @@ class Kinematics:
                        (self.initialVelocity ** 2)) / 2) / self.accelertaion
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
-
-
-if __name__ == '__main__':
-    tester = Kinematics(initialVelocity=0, accelertaion=9.8, deltaDistance=5)
-    tester.finalVelocityTwo()
-    print(tester.finalVelocity)
