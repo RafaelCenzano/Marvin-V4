@@ -119,15 +119,19 @@ def properRounding(value, sigFigs):
     else:
 
         if valueSigFigs > sigFigs:
-            newRounded = round(value, 0)
 
-            if newRounded > sigFigs:
-                newValue = round(newRounded, sigFigs - (len(str(abs(value)))))
+            valueCompute = int(value)
+
+            if len(str(valueCompute)) > sigFigs:
+                newValue = round(valueCompute, sigFigs - (len(str(abs(valueCompute)))))
                 return int(newValue)
+
+            elif len(str(valueCompute)) == sigFigs:
+                return int(valueCompute)
+
             else:
                 newDecimal = value - int(value)
-                numOfZeros = num_of_zeros(newDecimal)
-                newValue = round(newDecimal, sigFigs + numOfZeros)
-                return newValue
+                newValue = round(newDecimal, sigFigs - (len(str(abs(valueCompute)))))
+                return valueCompute + newValue
         else:
             return value
