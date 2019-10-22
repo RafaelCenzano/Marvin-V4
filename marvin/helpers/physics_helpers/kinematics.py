@@ -229,8 +229,6 @@ class Kinematics:
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
 
-    
-
 
 if __name__ == '__main__':
     tester = Kinematics(initialVelocity=0, accelertaion=9.8, deltaDistance=5)
