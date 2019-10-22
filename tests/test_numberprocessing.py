@@ -25,8 +25,8 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(
             physics_helpers.numberProcessing.count_sig_figs(value), 3)
 
-    @params(1011, 4567, 56.71, 123.7, 1.348, 0.01234, 0.0004444, -
-            7729, -2787000, -0.8633, -0.2703, -0.002048)
+    @params(1011, 4567, 56.71, 123.7, 1.348, 0.01234, 0.0004444,
+            -7729, -2787000, -0.8633, -0.2703, -0.002048)
     def test_sig_fig_counter_for_four(self, value):
         self.assertEqual(
             physics_helpers.numberProcessing.count_sig_figs(value), 4)
