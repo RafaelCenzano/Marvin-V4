@@ -96,11 +96,13 @@ def properRounding(value, sigFigs):
     # when num is int or float that ends in .0
     if isinstance(value, int) or int(value) == value:
 
+        valueCompute = int(value)
+
         if valueSigFigs > sigFigs:
-            newValue = round(value, sigFigs - (len(str(value))))
+            newValue = round(valueCompute, sigFigs - (len(str(abs(valueCompute)))))
             return int(newValue)
         else:
-            return int(value)
+            return valueCompute
 
     # when num is only a decimal
     elif int(value) == 0:
@@ -120,7 +122,7 @@ def properRounding(value, sigFigs):
             newRounded = round(value, 0)
 
             if newRounded > sigFigs:
-                newValue = round(newRounded, sigFigs - (len(str(value))))
+                newValue = round(newRounded, sigFigs - (len(str(abs(value)))))
                 return int(newValue)
             else:
                 newDecimal = value - int(value)
