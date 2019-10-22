@@ -85,8 +85,8 @@ def checkZeroSig(index, num_list, sig_fig_count):
 Round Values to sig fig count
 '''
 def num_of_zeros(num):
-  s = '{:.16f}'.format(num).split('.')[1]
-  return len(s) - len(s.lstrip('0'))
+    s = '{:.16f}'.format(num).split('.')[1]
+    return len(s) - len(s.lstrip('0'))
 
 
 def properRounding(value, sigFigs):
@@ -96,11 +96,13 @@ def properRounding(value, sigFigs):
     # when num is int or float that ends in .0
     if isinstance(value, int) or int(value) == value:
 
+        valueCompute = int(value)
+
         if valueSigFigs > sigFigs:
-            newValue = round(value, sigFigs - valueSigFigs)
+            newValue = round(valueCompute, sigFigs - (len(str(abs(valueCompute)))))
             return int(newValue)
         else:
-            return int(value)
+            return valueCompute
 
     # when num is only a decimal
     elif int(value) == 0:
@@ -117,15 +119,19 @@ def properRounding(value, sigFigs):
     else:
 
         if valueSigFigs > sigFigs:
-            newRounded = round(value, 0)
 
-            if newRounded > sigFigs:
-                newValue = round(newRounded, sigFigs - valueSigFigs)
+            valueCompute = int(value)
+
+            if len(str(valueCompute)) > sigFigs:
+                newValue = round(valueCompute, sigFigs - (len(str(abs(valueCompute)))))
                 return int(newValue)
+
+            elif len(str(valueCompute)) == sigFigs:
+                return int(valueCompute)
+
             else:
                 newDecimal = value - int(value)
-                numOfZeros = num_of_zeros(newDecimal)
-                newValue = round(newDecimal, sigFigs + numOfZeros)
-                return newValue
+                newValue = round(newDecimal, sigFigs - (len(str(abs(valueCompute)))))
+                return valueCompute + newValue
         else:
             return value

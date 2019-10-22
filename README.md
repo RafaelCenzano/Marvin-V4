@@ -40,11 +40,14 @@ nose2 -v --pretty-assert
 
 ### What are the tests checking
 
-No tests yet
+#### Physics tests
+
+- Kinematic calculations
+- Number Processing (sig figs and rounding)
 
 ### What happens when a test fails
 
-No tests yet
+Report the failed test [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
 
 ## Authors
 

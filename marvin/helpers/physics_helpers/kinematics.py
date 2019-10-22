@@ -47,7 +47,7 @@ class Kinematics:
 
         self.sigFigs = tempCount
 
-        while(!self.checkValue(self.initialVelocity) and !self.checkValue(self.deltaDistance) and !self.checkValue(self.finalVelocity) and !self.checkValue(self.time)):
+        while(self.checkValue(self.initialVelocity) == False and self.checkValue(self.deltaDistance) == False and self.checkValue(self.finalVelocity) == False and self.checkValue(self.time) == False):
             self.finalVelocityOne()
             self.finalVelocityTwo()
             self.initialVelocityOne()
