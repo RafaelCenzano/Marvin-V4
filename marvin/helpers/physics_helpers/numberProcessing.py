@@ -135,3 +135,12 @@ def properRounding(value, sigFigs):
                 return valueCompute + newValue
         else:
             return value
+
+def checkValue(value):
+    '''
+    Check value to make sure its an int or float
+    '''
+
+    typeOfValue = type(value)
+
+    return typeOfValue == int or typeOfValue == float:
