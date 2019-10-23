@@ -48,6 +48,8 @@ class Kinematics:
 
         self.sigFigs = tempCount
 
+        self.record = []
+
     def calculations(self):
         count = 0
 
