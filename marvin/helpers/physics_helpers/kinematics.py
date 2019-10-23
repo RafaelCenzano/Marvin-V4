@@ -84,6 +84,8 @@ class Kinematics:
             answer = self.initialVelocity + (self.accelertaion * self.time)
 
             self.finalVelocity = properRounding(answer, self.sigFigs)
+
+            self.record.append(1)
             
 
     def initialVelocityOne(self):
@@ -104,6 +106,8 @@ class Kinematics:
 
             self.initialVelocity = properRounding(answer, self.sigFigs)
 
+            self.record.append(2)
+
     def accelerationOne(self):
         '''
         Equation:
@@ -121,6 +125,8 @@ class Kinematics:
             answer = (self.finalVelocity - self.initialVelocity) / self.time
 
             self.accelertaion = properRounding(answer, self.sigFigs)
+
+            self.record.append(3)
 
     def timeOne(self):
         '''
@@ -141,6 +147,8 @@ class Kinematics:
 
             self.time = properRounding(answer, self.sigFigs)
 
+            self.record.append(4)
+
     def deltaDistanceOne(self):
         '''
         Equation:
@@ -158,6 +166,8 @@ class Kinematics:
                 (0.5 * self.accelertaion * (self.time ** 2))
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
+
+            self.record.append(5)
 
     def finalVelocityTwo(self):
         '''
@@ -180,6 +190,8 @@ class Kinematics:
 
             self.finalVelocity = properRounding(answerSqrt, self.sigFigs)
 
+            self.record.append(6)
+
     def initialVelocityTwo(self):
         '''
         Equation:
@@ -201,6 +213,8 @@ class Kinematics:
 
             self.initialVelocity = properRounding(answerSqrt, self.sigFigs)
 
+            self.record.append(7)
+
     def accelerationTwo(self):
         '''
         Equation:
@@ -220,6 +234,8 @@ class Kinematics:
 
             self.accelertaion = properRounding(answer, self.sigFigs)
 
+            self.record.append(8)
+
     def deltaDistanceTwo(self):
         '''
         Equation:
@@ -238,3 +254,5 @@ class Kinematics:
                        (self.initialVelocity ** 2)) / 2) / self.accelertaion
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
+
+            self.record.append(9)
