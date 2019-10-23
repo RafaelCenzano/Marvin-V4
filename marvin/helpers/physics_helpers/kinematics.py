@@ -25,6 +25,7 @@ class Kinematics:
         self.time = time
         self.accelertaion = accelertaion
         self.deltaDistance = deltaDistance
+        self.test = False
 
         sigFigsList = []
 
@@ -50,13 +51,15 @@ class Kinematics:
     def calculations(self):
         count = 0
 
-        while(checkValue(self.initialVelocity) == False and checkValue(self.deltaDistance) == False and checkValue(self.finalVelocity) == False and checkValue(self.time) == False and count < 10):
+        while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False):
+            if count > 9:
+                break
             self.finalVelocityOne()
             self.finalVelocityTwo()
             self.initialVelocityOne()
             self.initialVelocityTwo()
-            self.accelertaionOne()
-            self.accelertaionOne()
+            self.accelerationOne()
+            self.accelerationTwo()
             self.deltaDistanceOne()
             self.deltaDistanceTwo()
             self.timeOne()
@@ -79,6 +82,7 @@ class Kinematics:
             answer = self.initialVelocity + (self.accelertaion * self.time)
 
             self.finalVelocity = properRounding(answer, self.sigFigs)
+            
 
     def initialVelocityOne(self):
         '''
@@ -195,7 +199,7 @@ class Kinematics:
 
             self.initialVelocity = properRounding(answerSqrt, self.sigFigs)
 
-    def accelertaionTwo(self):
+    def accelerationTwo(self):
         '''
         Equation:
 
@@ -226,7 +230,7 @@ class Kinematics:
         if checkValue(
                 self.initialVelocity) and checkValue(
                 self.accelertaion) and checkValue(
-                self.finalVelocity) and deltaDistance is None:
+                self.finalVelocity) and self.deltaDistance is None:
 
             answer = (((self.finalVelocity ** 2) -
                        (self.initialVelocity ** 2)) / 2) / self.accelertaion
