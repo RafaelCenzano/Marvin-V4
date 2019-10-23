@@ -19,6 +19,8 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTest.time, 20)
     def test_kinematics_one_d(self):
         self.assertEqual(self.classObjecttoTest.deltaDistance, 500)
+    def test_kinematics_one_record(self):
+        self.assertEqual(self.classObjecttoTest.record, [1, 5])
 
 
 if __name__ == '__main__':
