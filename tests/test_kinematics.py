@@ -10,6 +10,8 @@ class BasicTestSuite(unittest.TestCase):
     classObjecttoTest.calculations()
     classObjecttoTestTwo = physics_helpers.kinematics.Kinematics(accelertaion=-1, deltaDistance=2, finalVelocity=0)
     classObjecttoTestTwo.calculations()
+    classObjecttoTestThree = physics_helpers.kinematics.Kinematics(finalVelocity=135, accelertaion=-41, initialVelocity=372)
+    classObjecttoTestThree.calculations()
 
     def test_kinematics_one_vi(self):
         self.assertEqual(self.classObjecttoTest.initialVelocity, 3)
@@ -36,6 +38,19 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTestTwo.deltaDistance, 2)
     def test_kinematics_two_record(self):
         self.assertEqual(self.classObjecttoTestTwo.record, [7, 4])
+
+    def test_kinematics_three_vi(self):
+        self.assertEqual(self.classObjecttoTestThree.initialVelocity, 372)
+    def test_kinematics_three_vf(self):
+        self.assertEqual(self.classObjecttoTestThree.finalVelocity, 135)
+    def test_kinematics_three_a(self):
+        self.assertEqual(self.classObjecttoTestThree.accelertaion, -41)
+    def test_kinematics_three_t(self):
+        self.assertEqual(self.classObjecttoTestThree.time, )
+    def test_kinematics_three_d(self):
+        self.assertEqual(self.classObjecttoTestThree.deltaDistance, )
+    def test_kinematics_three_record(self):
+        self.assertEqual(self.classObjecttoTestThree.record, [7, 4])
 
 if __name__ == '__main__':
     unittest.main()
