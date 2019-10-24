@@ -6,8 +6,10 @@ import unittest
 
 class BasicTestSuite(unittest.TestCase):
 
-    classObjecttoTest = physics_helpers.kinematics.Kinematics(initialVelocity=3,accelertaion=2,time=20)
+    classObjecttoTest = physics_helpers.kinematics.Kinematics(initialVelocity=3, accelertaion=2, time=20)
     classObjecttoTest.calculations()
+    classObjecttoTestTwo = physics_helpers.kinematics.Kinematics(accelertaion=-1, deltaDistance=2, finalVelocity=0)
+    classObjecttoTestTwo.calculations()
 
     def test_kinematics_one_vi(self):
         self.assertEqual(self.classObjecttoTest.initialVelocity, 3)
@@ -22,6 +24,18 @@ class BasicTestSuite(unittest.TestCase):
     def test_kinematics_one_record(self):
         self.assertEqual(self.classObjecttoTest.record, [1, 5])
 
+    def test_kinematics_two_vi(self):
+        self.assertEqual(self.classObjecttoTestTwo.initialVelocity, 3)
+    def test_kinematics_two_vf(self):
+        self.assertEqual(self.classObjecttoTestTwo.finalVelocity, 40)
+    def test_kinematics_two_a(self):
+        self.assertEqual(self.classObjecttoTestTwo.accelertaion, 2)
+    def test_kinematics_two_t(self):
+        self.assertEqual(self.classObjecttoTestTwo.time, 20)
+    def test_kinematics_two_d(self):
+        self.assertEqual(self.classObjecttoTestTwo.deltaDistance, 500)
+    def test_kinematics_two_record(self):
+        self.assertEqual(self.classObjecttoTestTwo.record, [1, 5])    
 
 if __name__ == '__main__':
     unittest.main()
