@@ -1,5 +1,3 @@
-from marvin import core
-
 # Flask imports
 from flask import Flask
 
@@ -10,4 +8,4 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py', silent=True)
 
 # Import all views
-import personal_site.views
+import marvin.core
