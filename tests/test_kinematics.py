@@ -25,17 +25,17 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTest.record, [1, 5])
 
     def test_kinematics_two_vi(self):
-        self.assertEqual(self.classObjecttoTestTwo.initialVelocity, 3)
+        self.assertEqual(self.classObjecttoTestTwo.initialVelocity, 2)
     def test_kinematics_two_vf(self):
-        self.assertEqual(self.classObjecttoTestTwo.finalVelocity, 40)
+        self.assertEqual(self.classObjecttoTestTwo.finalVelocity, 0)
     def test_kinematics_two_a(self):
-        self.assertEqual(self.classObjecttoTestTwo.accelertaion, 2)
+        self.assertEqual(self.classObjecttoTestTwo.accelertaion, -1)
     def test_kinematics_two_t(self):
-        self.assertEqual(self.classObjecttoTestTwo.time, 20)
+        self.assertEqual(self.classObjecttoTestTwo.time, 2)
     def test_kinematics_two_d(self):
-        self.assertEqual(self.classObjecttoTestTwo.deltaDistance, 500)
+        self.assertEqual(self.classObjecttoTestTwo.deltaDistance, 2)
     def test_kinematics_two_record(self):
-        self.assertEqual(self.classObjecttoTestTwo.record, [1, 5])    
+        self.assertEqual(self.classObjecttoTestTwo.record, [7, 4])
 
 if __name__ == '__main__':
     unittest.main()
