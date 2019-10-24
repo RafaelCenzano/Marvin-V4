@@ -39,7 +39,7 @@ pip install -r requirements.txt
 Run tests
 
 ```
-nose2 -v --pretty-assert
+make test
 ```
 
 ### What are the tests checking
