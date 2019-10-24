@@ -36,12 +36,18 @@
 
     {% block head_css %}
     {% endblock %}
+
     {% block head_js %}
     {% endblock %}
 </head>
 <body>
+    {% include "navbar.html" %}
+
     {% block content %}
     {% endblock %}
+
+    {% include "footer.html" %}
+
     {% block trailing_js %}
     {% endblock %}
 </body>
