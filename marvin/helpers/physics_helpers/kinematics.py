@@ -186,7 +186,7 @@ class Kinematics:
             answer = (self.initialVelocity ** 2) + \
                 (2 * self.accelertaion * self.deltaDistance)
 
-            answerSqrt = Math.sprt(answer)
+            answerSqrt = math.sprt(answer)
 
             self.finalVelocity = properRounding(answerSqrt, self.sigFigs)
 
@@ -209,7 +209,7 @@ class Kinematics:
             answer = (self.finalVelocity ** 2) - \
                 (2 * self.accelertaion * self.deltaDistance)
 
-            answerSqrt = Math.sprt(answer)
+            answerSqrt = math.sprt(answer)
 
             self.initialVelocity = properRounding(answerSqrt, self.sigFigs)
 
