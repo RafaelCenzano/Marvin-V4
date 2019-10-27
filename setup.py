@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 # Run setup
 setup(
     name='Marvin-V4',
-    version='0.0.0',
+    version='4.0.0',
     description='Virtual Assistant using Python',
     long_description=readme,
     author='Rafael Cenzano',
