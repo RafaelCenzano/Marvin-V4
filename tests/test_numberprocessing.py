@@ -225,18 +225,31 @@ class BasicTestSuite(unittest.TestCase):
     @params(23, 24242, 4242, 929329, -2323, -77433, -1, 9)
     def test_check_value_int(self, value):
         self.assertTrue(physics_helpers.numberProcessing.checkValue(value))
+
     @params(0.2324, 0.0025757, 0.000000575, 0.5, -0.57, -0.0005757, -0.006)
     def test_check_value_decimal(self, value):
         self.assertTrue(physics_helpers.numberProcessing.checkValue(value))
-    @params(343.23, 340305.34, 5.1, 343.0023, -232.34343, -3435.232 -2.2424)
+
+    @params(343.23, 340305.34, 5.1, 343.0023, -232.34343, -3435.232 - 2.2424)
     def test_check_value_float(self, value):
         self.assertTrue(physics_helpers.numberProcessing.checkValue(value))
-    @params('hello', 'world', 'marvin', 'this is a string', 'C', 'B', 'This should return false')
+
+    @params(
+        'hello',
+        'world',
+        'marvin',
+        'this is a string',
+        'C',
+        'B',
+        'This should return false')
     def test_check_value_strings(self, value):
         self.assertFalse(physics_helpers.numberProcessing.checkValue(value))
+
     def test_check_value_none(self):
         self.assertFalse(physics_helpers.numberProcessing.checkValue(None))
-    @params([5,343],[],[23232,23,23,232], ['hello','world'], ['Hello', 'tests'])
+
+    @params([5, 343], [], [23232, 23, 23, 232], [
+            'hello', 'world'], ['Hello', 'tests'])
     def test_check_value_lists(self, value):
         self.assertFalse(physics_helpers.numberProcessing.checkValue(value))
 
