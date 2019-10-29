@@ -149,4 +149,4 @@ def checkValue(value):
 
     typeOfValue = type(value)
 
-    return typeOfValue == int or typeOfValue == float:
+    return typeOfValue == int or typeOfValue == float

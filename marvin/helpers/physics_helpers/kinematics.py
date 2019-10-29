@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding
+from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding, checkValue
 
 '''
 Kinematics
@@ -25,6 +25,7 @@ class Kinematics:
         self.time = time
         self.accelertaion = accelertaion
         self.deltaDistance = deltaDistance
+        self.test = False
 
         sigFigsList = []
 
@@ -47,16 +48,24 @@ class Kinematics:
 
         self.sigFigs = tempCount
 
-        while(checkValue(self.initialVelocity) == False and checkValue(self.deltaDistance) == False and checkValue(self.finalVelocity) == False and checkValue(self.time) == False):
+        self.record = []
+
+    def calculations(self):
+        count = 0
+
+        while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False):
+            if count > 9:
+                break
             self.finalVelocityOne()
             self.finalVelocityTwo()
             self.initialVelocityOne()
             self.initialVelocityTwo()
-            self.accelertaionOne()
-            self.accelertaionOne()
+            self.accelerationOne()
+            self.accelerationTwo()
             self.deltaDistanceOne()
             self.deltaDistanceTwo()
             self.timeOne()
+            count += 1
 
     def finalVelocityOne(self):
         '''
@@ -76,6 +85,8 @@ class Kinematics:
 
             self.finalVelocity = properRounding(answer, self.sigFigs)
 
+            self.record.append(1)
+
     def initialVelocityOne(self):
         '''
         Equation:
@@ -94,6 +105,8 @@ class Kinematics:
 
             self.initialVelocity = properRounding(answer, self.sigFigs)
 
+            self.record.append(2)
+
     def accelerationOne(self):
         '''
         Equation:
@@ -111,6 +124,8 @@ class Kinematics:
             answer = (self.finalVelocity - self.initialVelocity) / self.time
 
             self.accelertaion = properRounding(answer, self.sigFigs)
+
+            self.record.append(3)
 
     def timeOne(self):
         '''
@@ -131,6 +146,8 @@ class Kinematics:
 
             self.time = properRounding(answer, self.sigFigs)
 
+            self.record.append(4)
+
     def deltaDistanceOne(self):
         '''
         Equation:
@@ -149,6 +166,8 @@ class Kinematics:
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
 
+            self.record.append(5)
+
     def finalVelocityTwo(self):
         '''
         Equation:
@@ -166,9 +185,13 @@ class Kinematics:
             answer = (self.initialVelocity ** 2) + \
                 (2 * self.accelertaion * self.deltaDistance)
 
-            answerSqrt = Math.sprt(answer)
+            answerSqrt = math.sqrt(abs(answer))
 
-            self.finalVelocity = properRounding(answerSqrt, self.sigFigs)
+            answerCorrected = answerSqrt * (answer / abs(answer))
+
+            self.finalVelocity = properRounding(answerCorrected, self.sigFigs)
+
+            self.record.append(6)
 
     def initialVelocityTwo(self):
         '''
@@ -187,11 +210,16 @@ class Kinematics:
             answer = (self.finalVelocity ** 2) - \
                 (2 * self.accelertaion * self.deltaDistance)
 
-            answerSqrt = Math.sprt(answer)
+            answerSqrt = math.sqrt(abs(answer))
 
-            self.initialVelocity = properRounding(answerSqrt, self.sigFigs)
+            answerCorrected = answerSqrt * (answer / abs(answer))
 
-    def accelertaionTwo(self):
+            self.initialVelocity = properRounding(
+                answerCorrected, self.sigFigs)
+
+            self.record.append(7)
+
+    def accelerationTwo(self):
         '''
         Equation:
 
@@ -210,6 +238,8 @@ class Kinematics:
 
             self.accelertaion = properRounding(answer, self.sigFigs)
 
+            self.record.append(8)
+
     def deltaDistanceTwo(self):
         '''
         Equation:
@@ -222,9 +252,11 @@ class Kinematics:
         if checkValue(
                 self.initialVelocity) and checkValue(
                 self.accelertaion) and checkValue(
-                self.finalVelocity) and deltaDistance is None:
+                self.finalVelocity) and self.deltaDistance is None:
 
             answer = (((self.finalVelocity ** 2) -
                        (self.initialVelocity ** 2)) / 2) / self.accelertaion
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
+
+            self.record.append(9)
