@@ -1,1 +1,2 @@
-from marvin.helpers.physics_helpers import physics_functions
+from marvin.helpers.physics_helpers import kinematics
+from marvin.helpers.physics_helpers import numberProcessing

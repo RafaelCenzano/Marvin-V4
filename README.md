@@ -1,7 +1,11 @@
-# Marvin Version 4
+# Marvin Version 4.0.0
 
-Python virtual assistant. Version 4.
+Python virtual assistant. Version 4.0.0
 
+![alt text](https://img.shields.io/github/license/Marvin-Virtual-Assistant/Marvin-V4.svg)
+![alt text](https://img.shields.io/github/stars/Marvin-Virtual-Assistant/Marvin-V4.svg)
+![alt text](https://img.shields.io/github/forks/Marvin-Virtual-Assistant/Marvin-V4.svg)
+![alt text](https://img.shields.io/github/issues/Marvin-Virtual-Assistant/Marvin-V4.svg)
 
 ## Setup
 
@@ -35,16 +39,19 @@ pip install -r requirements.txt
 Run tests
 
 ```
-nose2 -v --pretty-assert
+make test
 ```
 
 ### What are the tests checking
 
-No tests yet
+#### Physics tests
+
+- Kinematic calculations
+- Number Processing (sig figs and rounding)
 
 ### What happens when a test fails
 
-No tests yet
+Report the failed test [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
 
 ## Authors
 
