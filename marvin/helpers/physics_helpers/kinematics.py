@@ -86,7 +86,6 @@ class Kinematics:
             self.finalVelocity = properRounding(answer, self.sigFigs)
 
             self.record.append(1)
-            
 
     def initialVelocityOne(self):
         '''
@@ -187,8 +186,8 @@ class Kinematics:
                 (2 * self.accelertaion * self.deltaDistance)
 
             answerSqrt = math.sqrt(abs(answer))
-            
-            answerCorrected = answerSqrt * (answer/abs(answer))
+
+            answerCorrected = answerSqrt * (answer / abs(answer))
 
             self.finalVelocity = properRounding(answerCorrected, self.sigFigs)
 
@@ -213,9 +212,10 @@ class Kinematics:
 
             answerSqrt = math.sqrt(abs(answer))
 
-            answerCorrected = answerSqrt * (answer/abs(answer))
+            answerCorrected = answerSqrt * (answer / abs(answer))
 
-            self.initialVelocity = properRounding(answerCorrected, self.sigFigs)
+            self.initialVelocity = properRounding(
+                answerCorrected, self.sigFigs)
 
             self.record.append(7)
 
