@@ -16,22 +16,35 @@ git clone https://github.com/Marvin-Virtual-Assistant/Marvin-V4.git
 cd Marvin-V4
 ```
 
-Install and test the program
+#### Requirements
+
+[Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/)
+
+Run the make command to install requirements
 
 ```
 make
 ```
 
-### Requirements
+or with pip manually
 
-The command `make` handles installation of requirements
-
-[View the requirements!](requirements.txt)
-
-Use pip to install needed libraries ([Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/))
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
+```
+
+## Running the program
+
+Marvin virtual assistant runs a flask frontend and once you run the firsy command it will open and run any needed proccess for you and let you get started immediately.
+
+```
+make run
+```
+
+or with python manually
+
+```
+python3 run.py
 ```
 
 ## Running the tests
@@ -42,14 +55,16 @@ Run tests
 make test
 ```
 
-### What are the tests checking
+#### What are the tests checking
 
-#### Physics tests
+Checked tests have been passed.
 
-- Kinematic calculations
-- Number Processing (sig figs and rounding)
+###### Physics tests
 
-### What happens when a test fails
+- [X] Kinematic calculations
+- [X] Number Processing
+
+#### What happens when a test fails
 
 Report the failed test [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
 
