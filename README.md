@@ -55,6 +55,12 @@ Run tests
 make test
 ```
 
+or manually with nose2
+
+```
+nose2 -v --pretty-assert
+```
+
 #### What are the tests checking
 
 Checked tests have been passed.
