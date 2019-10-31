@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head_css %}
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/kinematics.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+<h1 class="center-align">Marvin | Home</h1>
+</div>
+{% endblock %}
