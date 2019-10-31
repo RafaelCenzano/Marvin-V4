@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   height: 100%;
   margin: 0;
   background-repeat: no-repeat;
@@ -18,4 +19,8 @@ body {
   height: 80%;
   border-radius: 10px;
   background-color: #fcfcfc;
+}
+
+.center-align {
+  text-align: center;
 }
