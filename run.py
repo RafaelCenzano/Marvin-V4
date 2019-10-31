@@ -16,5 +16,5 @@ if __name__ == '__main__':
     thread_start.start()
 
     app.run(
-        port=9090, # assign to port 5000
+        port=9090
     )
