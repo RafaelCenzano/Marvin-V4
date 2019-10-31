@@ -1,5 +1,5 @@
 init:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 test:
 	nose2 -v --pretty-assert
