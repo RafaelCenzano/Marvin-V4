@@ -10,3 +10,12 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(170, 255, 170)), to(rgb(200, 200, 255)));
   background-image: linear-gradient(rgb(170, 255, 170), rgb(200, 200, 255));
 }
+
+.body-wrapper {
+  padding: 1em;
+  margin: 0 auto;
+  width: 900px;
+  height: 80%;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+}
