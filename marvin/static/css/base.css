@@ -1,0 +1,27 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(170, 255, 170)), to(rgb(200, 200, 255)));
+  background-image: linear-gradient(rgb(170, 255, 170), rgb(200, 200, 255));
+}
+
+.body-wrapper {
+  padding: 1em;
+  margin: 0 auto;
+  width: 900px;
+  height: 80%;
+  margin-top: 30px;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+}
+
+.center-align {
+  text-align: center;
+}
