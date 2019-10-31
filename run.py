@@ -9,7 +9,7 @@ Run Flask App for Marvin GUI
 
 def startGUI():
     delay(2)
-    webopen('http://127.0.0.1:9090/')
+    webopen('http://127.0.0.1:9090/home')
 
 if __name__ == '__main__':
     thread_start = Thread(target=startGUI)
