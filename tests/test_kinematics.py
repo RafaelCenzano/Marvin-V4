@@ -7,13 +7,13 @@ import unittest
 class BasicTestSuite(unittest.TestCase):
 
     classObjecttoTest = physics_helpers.kinematics.Kinematics(
-        initialVelocity=3, accelertaion=2, time=20)
+        initialVelocity=3, acceleration=2, time=20)
     classObjecttoTest.calculations()
     classObjecttoTestTwo = physics_helpers.kinematics.Kinematics(
-        accelertaion=-1, deltaDistance=2, finalVelocity=0)
+        acceleration=-1, deltaDistance=2, finalVelocity=0)
     classObjecttoTestTwo.calculations()
     classObjecttoTestThree = physics_helpers.kinematics.Kinematics(
-        finalVelocity=135, accelertaion=-41, initialVelocity=372)
+        finalVelocity=135, acceleration=-41, initialVelocity=372)
     classObjecttoTestThree.calculations()
 
     def test_kinematics_one_vi(self):
@@ -23,7 +23,7 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTest.finalVelocity, 40)
 
     def test_kinematics_one_a(self):
-        self.assertEqual(self.classObjecttoTest.accelertaion, 2)
+        self.assertEqual(self.classObjecttoTest.acceleration, 2)
 
     def test_kinematics_one_t(self):
         self.assertEqual(self.classObjecttoTest.time, 20)
@@ -41,7 +41,7 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTestTwo.finalVelocity, 0)
 
     def test_kinematics_two_a(self):
-        self.assertEqual(self.classObjecttoTestTwo.accelertaion, -1)
+        self.assertEqual(self.classObjecttoTestTwo.acceleration, -1)
 
     def test_kinematics_two_t(self):
         self.assertEqual(self.classObjecttoTestTwo.time, 2)
@@ -59,7 +59,7 @@ class BasicTestSuite(unittest.TestCase):
         self.assertEqual(self.classObjecttoTestThree.finalVelocity, 135)
 
     def test_kinematics_three_a(self):
-        self.assertEqual(self.classObjecttoTestThree.accelertaion, -41)
+        self.assertEqual(self.classObjecttoTestThree.acceleration, -41)
 
     def test_kinematics_three_t(self):
         self.assertEqual(self.classObjecttoTestThree.time, 5.8)
