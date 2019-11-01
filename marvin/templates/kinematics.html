@@ -9,5 +9,28 @@
 {% block content %}
 <div class="body-wrapper">
 <h1 class="center-align">Marvin | Kinematics</h1>
+<form action="" method="POST">
+  <p>
+      {{ form.vi.label }}<br>
+      {{ form.vi(size=32) }}
+    </p>
+    <p>
+      {{ form.vf.label }}<br>
+      {{ form.vf(size=32) }}
+    </p>
+    <p>
+      {{ form.a.label }}<br>
+      {{ form.a(size=32) }}
+    </p>
+    <p>
+      {{ form.t.label }}<br>
+      {{ form.t(size=32) }}
+    </p>
+    <p>
+      {{ form.d.label }}<br>
+      {{ form.d(size=32) }}
+    </p>
+  <p>{{ form.submit() }}</p>
+</form>
 </div>
 {% endblock %}
