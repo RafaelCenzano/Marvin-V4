@@ -15,9 +15,22 @@ def index():
 def kinematics():
     form = forms.KinematicsForm()
     if request.method == 'POST':
-        physicsdata = physics_helpers.kinematics.Kinematics(form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
-        physicsdata.calculations()
-        return render_template('kinematicsSuccess.html', physicsdata=physicsdata)
+    	count = 0
+    	if form.vi.data != None:
+            count += 1
+        if form.vf.data != None:
+            count += 1
+        if form.t.data != None:
+            count += 1
+        if form.a.data != None:
+            count += 1
+        if form.d.data != None:
+            count += 1
+        if count >= 3:
+            physicsdata = physics_helpers.kinematics.Kinematics(form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
+            physicsdata.calculations()
+            return render_template('kinematicsSuccess.html', physicsdata=physicsdata)
+        flash('You need to input at least 3 givens')
     return render_template('kinematics.html', form=form)
 
 
