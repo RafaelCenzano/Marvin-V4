@@ -53,7 +53,7 @@ class Kinematics:
     def calculations(self):
         count = 0
 
-        while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False):
+        while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False or checkValue(self.acceleration) == False):
             if count > 9:
                 break
             self.finalVelocityOne()
@@ -231,12 +231,12 @@ class Kinematics:
         if checkValue(
                 self.initialVelocity) and checkValue(
                 self.finalVelocity) and checkValue(
-                self.deltaDistance) and self.accelertaion is None:
+                self.deltaDistance) and self.acceleration is None:
 
             answer = (((self.finalVelocity ** 2) -
                        (self.initialVelocity ** 2)) / 2) / self.deltaDistance
 
-            self.accelertaion = properRounding(answer, self.sigFigs)
+            self.acceleration = properRounding(answer, self.sigFigs)
 
             self.record.append(8)
 
@@ -251,11 +251,11 @@ class Kinematics:
 
         if checkValue(
                 self.initialVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.finalVelocity) and self.deltaDistance is None:
 
             answer = (((self.finalVelocity ** 2) -
-                       (self.initialVelocity ** 2)) / 2) / self.accelertaion
+                       (self.initialVelocity ** 2)) / 2) / self.acceleration
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
 
