@@ -34,7 +34,7 @@ def kinematics():
             return render_template(
                 'kinematicsSuccess.html',
                 physicsdata=physicsdata)
-        flash(u'You need to input at least 3 givens', 'error')
+        flash('You need to input at least 3 givens', 'error')
     return render_template('kinematics.html', form=form)
 
 
