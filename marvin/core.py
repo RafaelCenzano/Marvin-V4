@@ -1,6 +1,6 @@
 from marvin import app, forms
 from marvin.helpers import physics_helpers
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
 
 '''
 Views
@@ -34,7 +34,7 @@ def kinematics():
             return render_template(
                 'kinematicsSuccess.html',
                 physicsdata=physicsdata)
-        flash('You need to input at least 3 givens')
+        flash(u'You need to input at least 3 givens', 'error')
     return render_template('kinematics.html', form=form)
 
 
