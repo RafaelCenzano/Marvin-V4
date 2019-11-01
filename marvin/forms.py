@@ -1,0 +1,10 @@
+from flask_wtf import FlaskForm
+from wtforms import SubmitField, FloatField
+
+class KinematicsForm(FlaskForm):
+    vi = FloatField('Initial Velocity')
+    vf = FloatField('Final Velocity')
+    a = FloatField('Acceleration')
+    t = FloatField('Time')
+    d = FloatField('Delta Distance')
+    submit = SubmitField('Calculate')
