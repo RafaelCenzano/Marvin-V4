@@ -105,7 +105,7 @@ def properRounding(value, sigFigs):
                              sigFigs - (len(str(abs(valueCompute)))))
             return int(newValue)
         else:
-            return valueCompute
+            return int(valueCompute)
 
     # when num is only a decimal
     elif int(value) == 0:
