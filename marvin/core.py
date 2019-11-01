@@ -1,5 +1,6 @@
-from marvin import app, helpers, forms
-from flask import render_template, redirect, url_for
+from marvin import app, forms
+from marvin.helpers import physics_helpers
+from flask import render_template, redirect, url_for, request
 
 '''
 Views
@@ -13,8 +14,10 @@ def index():
 @app.route("/kinematics", methods=['GET', 'POST'])
 def kinematics():
     form = forms.KinematicsForm(csrf_enabled=False)
-    if form.validate_on_submit():
-        return redirect('/success')
+    if request.method == 'POST':
+        physicsdata = physics_helpers.kinematics.Kinematics(form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
+        physicsdata.calculations()
+        return render_template('kinematicsSuccess.html', physicsdata=physicsdata)
     return render_template('kinematics.html', form=form)
 
 
