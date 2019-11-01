@@ -10,15 +10,31 @@
 <div class="body-wrapper">
 {% include "flash.html" %}
 <h1 class="center-align">Marvin | Kinematics</h1>
-<p>{{ physicsdata.initialVelocity }} m/s</p>
-<p>Initial Velocity</p>
-<p>{{ physicsdata.finalVelocity }} m/s</p>
-<p>Final Velocity</p>
-<p>{{ physicsdata.acceleration }} m/s^2</p>
-<p>Acceleration</p>
-<p>{{ physicsdata.time }} s</p>
-<p>Time</p>
-<p>{{ physicsdata.deltaDistance }} m</p>
-<p>Delta Distance</p>
+<div class="grid-container">
+  <div>
+    <p>{{ physicsdata.initialVelocity }} m/s</p>
+    <p>Initial Velocity</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.finalVelocity }} m/s</p>
+    <p>Final Velocity</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.acceleration }} m/s^2</p>
+    <p>Acceleration</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.time }} s</p>
+    <p>Time</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.calcTime }} s</p>
+    <p>Calculation Time</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.deltaDistance }} m</p>
+    <p>Delta Distance</p>
+  </div>
+</div>
 </div>
 {% endblock %}
