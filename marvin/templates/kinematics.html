@@ -11,27 +11,41 @@
 {% include "flash.html" %}
 <h1 class="center-align">Marvin | Kinematics</h1>
 <form action="" method="POST">
+  <div class="grid-container">
+  <div>
   <p>
+    {{ form.vi }}<br>
     {{ form.vi.label }}<br>
-    {{ form.vi }}
   </p>
+  </div>
+  <div>
   <p>
-    {{ form.vf.label }}<br>
-    {{ form.vf }}
+    {{ form.vf }}<br>
+    {{ form.vf.label }}
   </p>
+  </div>
+  <div>
   <p>
-    {{ form.a.label }}<br>
-    {{ form.a }}
+    {{ form.a }}<br>
+    {{ form.a.label }}
   </p>
+  </div>
+  <div>
   <p>
-    {{ form.t.label }}<br>
-    {{ form.t }}
+    {{ form.t }}<br>
+    {{ form.t.label }}
   </p>
-  <p>
-    {{ form.d.label }}<br>
-    {{ form.d }}
-  </p>
+  </div>
+  <div>
   <p>{{ form.submit() }}</p>
+  </div>
+  <div>
+  <p>
+    {{ form.d }}<br>
+    {{ form.d.label }}
+  </p>
+  </div>
+</div>
 </form>
 </div>
 {% endblock %}
