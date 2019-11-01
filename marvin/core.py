@@ -11,25 +11,29 @@ Views
 def index():
     return render_template('index.html')
 
+
 @app.route("/kinematics", methods=['GET', 'POST'])
 def kinematics():
     form = forms.KinematicsForm()
     if request.method == 'POST':
         count = 0
-        if form.vi.data != None:
+        if form.vi.data is not None:
             count += 1
-        if form.vf.data != None:
+        if form.vf.data is not None:
             count += 1
-        if form.t.data != None:
+        if form.t.data is not None:
             count += 1
-        if form.a.data != None:
+        if form.a.data is not None:
             count += 1
-        if form.d.data != None:
+        if form.d.data is not None:
             count += 1
         if count >= 3:
-            physicsdata = physics_helpers.kinematics.Kinematics(form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
+            physicsdata = physics_helpers.kinematics.Kinematics(
+                form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
             physicsdata.calculations()
-            return render_template('kinematicsSuccess.html', physicsdata=physicsdata)
+            return render_template(
+                'kinematicsSuccess.html',
+                physicsdata=physicsdata)
         flash('You need to input at least 3 givens')
     return render_template('kinematics.html', form=form)
 
