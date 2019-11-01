@@ -15,8 +15,8 @@ def index():
 def kinematics():
     form = forms.KinematicsForm()
     if request.method == 'POST':
-    	count = 0
-    	if form.vi.data != None:
+        count = 0
+        if form.vi.data != None:
             count += 1
         if form.vf.data != None:
             count += 1
