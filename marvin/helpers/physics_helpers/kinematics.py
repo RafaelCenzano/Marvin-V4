@@ -16,14 +16,14 @@ class Kinematics:
         initialVelocity=None,
         finalVelocity=None,
         time=None,
-        accelertaion=None,
+        acceleration=None,
         deltaDistance=None
     ):
 
         self.initialVelocity = initialVelocity
         self.finalVelocity = finalVelocity
         self.time = time
-        self.accelertaion = accelertaion
+        self.acceleration = acceleration
         self.deltaDistance = deltaDistance
         self.test = False
 
@@ -35,8 +35,8 @@ class Kinematics:
             sigFigsList.append(count_sig_figs(self.finalVelocity))
         if self.time is not None:
             sigFigsList.append(count_sig_figs(self.time))
-        if self.accelertaion is not None:
-            sigFigsList.append(count_sig_figs(self.accelertaion))
+        if self.acceleration is not None:
+            sigFigsList.append(count_sig_figs(self.acceleration))
         if self.deltaDistance is not None:
             sigFigsList.append(count_sig_figs(self.deltaDistance))
 
@@ -78,10 +78,10 @@ class Kinematics:
 
         if checkValue(
                 self.initialVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.time) and self.finalVelocity is None:
 
-            answer = self.initialVelocity + (self.accelertaion * self.time)
+            answer = self.initialVelocity + (self.acceleration * self.time)
 
             self.finalVelocity = properRounding(answer, self.sigFigs)
 
@@ -98,10 +98,10 @@ class Kinematics:
 
         if checkValue(
                 self.finalVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.time) and self.initialVelocity is None:
 
-            answer = self.finalVelocity - (self.accelertaion * self.time)
+            answer = self.finalVelocity - (self.acceleration * self.time)
 
             self.initialVelocity = properRounding(answer, self.sigFigs)
 
@@ -119,11 +119,11 @@ class Kinematics:
         if checkValue(
                 self.finalVelocity) and checkValue(
                 self.initialVelocity) and checkValue(
-                self.time) and self.accelertaion is None:
+                self.time) and self.acceleration is None:
 
             answer = (self.finalVelocity - self.initialVelocity) / self.time
 
-            self.accelertaion = properRounding(answer, self.sigFigs)
+            self.acceleration = properRounding(answer, self.sigFigs)
 
             self.record.append(3)
 
@@ -139,10 +139,10 @@ class Kinematics:
         if checkValue(
                 self.finalVelocity) and checkValue(
                 self.initialVelocity) and checkValue(
-                self.accelertaion) and self.time is None:
+                self.acceleration) and self.time is None:
 
             answer = (self.finalVelocity - self.initialVelocity) / \
-                self.accelertaion
+                self.acceleration
 
             self.time = properRounding(answer, self.sigFigs)
 
@@ -158,11 +158,11 @@ class Kinematics:
         '''
         if checkValue(
                 self.initialVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.time) and self.deltaDistance is None:
 
             answer = (self.initialVelocity * self.time) + \
-                (0.5 * self.accelertaion * (self.time ** 2))
+                (0.5 * self.acceleration * (self.time ** 2))
 
             self.deltaDistance = properRounding(answer, self.sigFigs)
 
@@ -179,11 +179,11 @@ class Kinematics:
 
         if checkValue(
                 self.initialVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.deltaDistance) and finalVelocity is None:
 
             answer = (self.initialVelocity ** 2) + \
-                (2 * self.accelertaion * self.deltaDistance)
+                (2 * self.acceleration * self.deltaDistance)
 
             answerSqrt = math.sqrt(abs(answer))
 
@@ -204,11 +204,11 @@ class Kinematics:
 
         if checkValue(
                 self.finalVelocity) and checkValue(
-                self.accelertaion) and checkValue(
+                self.acceleration) and checkValue(
                 self.deltaDistance) and self.initialVelocity is None:
 
             answer = (self.finalVelocity ** 2) - \
-                (2 * self.accelertaion * self.deltaDistance)
+                (2 * self.acceleration * self.deltaDistance)
 
             answerSqrt = math.sqrt(abs(answer))
 
