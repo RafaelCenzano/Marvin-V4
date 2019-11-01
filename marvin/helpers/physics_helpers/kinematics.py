@@ -180,7 +180,7 @@ class Kinematics:
         if checkValue(
                 self.initialVelocity) and checkValue(
                 self.acceleration) and checkValue(
-                self.deltaDistance) and finalVelocity is None:
+                self.deltaDistance) and self.finalVelocity is None:
 
             answer = (self.initialVelocity ** 2) + \
                 (2 * self.acceleration * self.deltaDistance)
