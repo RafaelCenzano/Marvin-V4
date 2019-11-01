@@ -13,7 +13,7 @@ def index():
 
 @app.route("/kinematics", methods=['GET', 'POST'])
 def kinematics():
-    form = forms.KinematicsForm(csrf_enabled=False)
+    form = forms.KinematicsForm()
     if request.method == 'POST':
         physicsdata = physics_helpers.kinematics.Kinematics(form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
         physicsdata.calculations()
