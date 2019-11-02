@@ -31,6 +31,7 @@ def kinematics():
             physicsdata = physics_helpers.kinematics.Kinematics(
                 form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
             physicsdata.calculations()
+            flash('Successfully calculated', 'success')
             return render_template(
                 'kinematicsSuccess.html',
                 physicsdata=physicsdata)
