@@ -103,9 +103,9 @@ def properRounding(value, sigFigs):
         if valueSigFigs > sigFigs:
             newValue = round(valueCompute,
                              sigFigs - (len(str(abs(valueCompute)))))
-            return int(newValue)
+            return newValue
         else:
-            return int(valueCompute)
+            return valueCompute
 
     # when num is only a decimal
     elif int(value) == 0:
