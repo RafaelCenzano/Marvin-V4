@@ -253,6 +253,14 @@ class BasicTestSuite(unittest.TestCase):
     def test_check_value_lists(self, value):
         self.assertFalse(physics_helpers.numberProcessing.checkValue(value))
 
+    '''
+    Test cleanup value function
+    '''
+    @params(5.0, 6.0, 100.0, 30.0, 20, 54, 343.00, -35.0, -466, -250.0)
+    def test_cleanup_num(self, value):
+        self.assertEqual(
+            physics_helpers.numberProcessing.cleanValue(value), int(value))
+
 
 if __name__ == '__main__':
     unittest.main()
