@@ -96,7 +96,7 @@ def properRounding(value, sigFigs):
     valueSigFigs = count_sig_figs(value)
 
     # when num is int or float that ends in .0
-    if isinstance(value, int) or int(value) == value:
+    if isinstance(value, int) or value.is_integer():
 
         valueCompute = int(value)
 
@@ -150,3 +150,11 @@ def checkValue(value):
     typeOfValue = type(value)
 
     return typeOfValue == int or typeOfValue == float
+
+def cleanValue(value):
+    '''
+    Clean up integers that end in .0
+    '''
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    return value
