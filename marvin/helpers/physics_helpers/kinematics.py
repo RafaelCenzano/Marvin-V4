@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding, checkValue
+from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
 
 '''
 Kinematics
@@ -26,6 +26,17 @@ class Kinematics:
         self.acceleration = acceleration
         self.deltaDistance = deltaDistance
         self.test = False
+
+        if checkValue(self.initialVelocity):
+            self.initialVelocity = cleanValue(self.initialVelocity)
+        if checkValue(self.initialVelocity):
+            self.finalVelocity = cleanValue(self.finalVelocity)
+        if checkValue(self.time):
+            self.time = cleanValue(self.time)
+        if checkValue(self.acceleration):
+            self.acceleration = cleanValue(self.acceleration)
+        if checkValue(self.deltaDistance):
+            self.deltaDistance = cleanValue(self.deltaDistance)
 
         sigFigsList = []
 
@@ -66,6 +77,12 @@ class Kinematics:
             self.deltaDistanceTwo()
             self.timeOne()
             count += 1
+
+        self.initialVelocity = cleanValue(self.initialVelocity)
+        self.finalVelocity = cleanValue(self.finalVelocity)
+        self.time = cleanValue(self.time)
+        self.acceleration = cleanValue(self.acceleration)
+        self.deltaDistance = cleanValue(self.deltaDistance)
 
     def finalVelocityOne(self):
         '''
