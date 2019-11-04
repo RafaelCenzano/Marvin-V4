@@ -27,17 +27,6 @@ class Kinematics:
         self.deltaDistance = deltaDistance
         self.test = False
 
-        if checkValue(self.initialVelocity):
-            self.initialVelocity = cleanValue(self.initialVelocity)
-        if checkValue(self.initialVelocity):
-            self.finalVelocity = cleanValue(self.finalVelocity)
-        if checkValue(self.time):
-            self.time = cleanValue(self.time)
-        if checkValue(self.acceleration):
-            self.acceleration = cleanValue(self.acceleration)
-        if checkValue(self.deltaDistance):
-            self.deltaDistance = cleanValue(self.deltaDistance)
-
         sigFigsList = []
 
         if self.initialVelocity is not None:
