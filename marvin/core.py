@@ -7,11 +7,14 @@ Views
 '''
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
+@app.route('/home/', methods=['GET'])
 @app.route('/index', methods=['GET'])
+@app.route('/index/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 @app.route('/calculators', methods=['GET'])
+@app.route('/calculators/', methods=['GET'])
 def calculators():
     return render_template('calculators.html')
 
