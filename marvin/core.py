@@ -19,6 +19,7 @@ def calculators():
     return render_template('calculators.html')
 
 @app.route('/calculators/kinematics', methods=['GET', 'POST'])
+@app.route('/calculators/kinematics/', methods=['GET', 'POST'])
 def kinematics():
     form = forms.KinematicsForm()
     if request.method == 'POST':
