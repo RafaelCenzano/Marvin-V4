@@ -29,7 +29,7 @@
   </div>
   <div>
     <p>{{ physicsdata.sigFigs }}</p>
-    <p>Significant Figures</p>
+    <p>Significant Figure{% if physicsdata.sigFigs > 1 %}s{% endif %}</p>
   </div>
   <div>
     <p>{{ physicsdata.deltaDistance }} m</p>
