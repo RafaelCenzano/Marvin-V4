@@ -3,12 +3,17 @@
 {% block title %}Calculators{% endblock %}
 
 {% block head_css %}
-<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/calculators.css') }}">
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/apps.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="body-wrapper">
 {% include "flash.html" %}
 <h1 class="center-align">Marvin | Calculators</h1>
+<div class="app-container">
+  <div class="app"></div>
+  <div class="app"></div>
+  <div class="app"></div>
+</div>
 </div>
 {% endblock %}
