@@ -5,14 +5,17 @@ from flask import render_template, redirect, url_for, request, flash
 '''
 Views
 '''
-@app.route("/", methods=['GET'])
-@app.route("/home", methods=['GET'])
-@app.route("/index", methods=['GET'])
+@app.route('/', methods=['GET'])
+@app.route('/home', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def index():
     return render_template('index.html')
 
+@app.route('/calculators', methods=['GET'])
+def calculators():
+    return render_template('calculators.html')
 
-@app.route("/kinematics", methods=['GET', 'POST'])
+@app.route('/calculators/kinematics', methods=['GET', 'POST'])
 def kinematics():
     form = forms.KinematicsForm()
     if request.method == 'POST':
