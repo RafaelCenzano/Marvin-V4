@@ -254,12 +254,36 @@ class BasicTestSuite(unittest.TestCase):
         self.assertFalse(physics_helpers.numberProcessing.checkValue(value))
 
     '''
-    Test cleanup value function
+    Test cleanup functions
     '''
     @params(5.0, 6.0, 100.0, 30.0, 20, 54, 343.00, -35.0, -466, -250.0)
     def test_cleanup_num(self, value):
         self.assertEqual(
             physics_helpers.numberProcessing.cleanValue(value), int(value))
+
+    def test_cleanup_num_none(self, value):
+        self.assertEqual(
+            physics_helpers.numberProcessing.cleanValue(None), None)
+
+    @params('5.0', '-6.0', '2424.0', '239239293.0', '238.0', '-2323232.0', '-7565353.0')
+    def test_cleanup_form_float_with_zero(self, value):
+        self.assertEqual(
+            type(physics_helpers.numberProcessing.formCleanup(value)), 'float')
+
+    @params('87402.2342343243', '32432432.343243243', '-34344.434', '34343.2')
+    def test_cleanup_form_float(self, value):
+        self.assertEqual(
+            type(physics_helpers.numberProcessing.formCleanup(value)), 'float')
+
+    @params('3434', '34', '99877574890000', '304983874839798', '-3434', '-756646464')
+    def test_cleanup_form_integer(self, value):
+        self.assertEqual(
+            type(physics_helpers.numberProcessing.formCleanup(value)), 'int')
+
+    @params('hello world', '5.6.5', 'ashdjs', '984876fasfas', '897haoiudh782gbaj', '-378tgybuhfjk', '353535.353535353.533', '-3343.4343.34', '-3434.dsfhdf.4343')
+    def test_cleanup_form_none(self, value):
+        self.assertEqual(
+            physics_helpers.numberProcessing.formCleanup(value), None)
 
 
 if __name__ == '__main__':
