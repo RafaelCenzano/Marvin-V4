@@ -8,6 +8,8 @@
 }
 
 .app-container.app {
+	background-color: rgb(235, 235, 235);
+	border-radius: 7px;
 	text-align: center;
 	padding: 20px 0;
 	font-size: 30px;
