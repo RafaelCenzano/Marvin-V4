@@ -25,26 +25,63 @@ def kinematics():
     if request.method == 'POST':
         count = 0
         if form.vi.data is not None:
-            count += 1
+            try:
+                temp = float(form.vi.data)
+                count += 1
+            except:
+                flash('Initial Velocity must be a number', 'warning')
         if form.vf.data is not None:
-            count += 1
+            try:
+                temp = float(form.vf.data)
+                count += 1
+            except:
+                flash('Final Velocity must be a number', 'warning')
         if form.t.data is not None:
-            count += 1
+            try:
+                temp = float(form.t.data)
+                count += 1
+            except:
+                flash('Time must be a number', 'warning')
         if form.a.data is not None:
-            count += 1
+            try:
+                temp = float(form.a.data)
+                count += 1
+            except:
+                flash('Acceleration must be a number', 'warning')
         if form.d.data is not None:
-            count += 1
+            try:
+                temp = float(form.d.data)
+                count += 1
+            except:
+                flash('Delta Distance must be a number', 'warning')
         if count >= 3:
             physicsdata = physics_helpers.kinematics.Kinematics(
-                form.vi.data, form.vf.data, form.t.data, form.a.data, form.d.data)
+                physics_helpers.numberProcessing.formCleanup(form.vi.data),
+                physics_helpers.numberProcessing.formCleanup(form.vf.data),
+                physics_helpers.numberProcessing.formCleanup(form.t.data),
+                physics_helpers.numberProcessing.formCleanup(form.a.data), 
+                physics_helpers.numberProcessing.formCleanup(form.d.data))
             physicsdata.calculations()
-            flash('Successfully calculated', 'success')
+            flash('Successfully calculated!', 'success')
             return render_template(
                 'kinematicsSuccess.html',
                 physicsdata=physicsdata)
         flash('You need to input at least 3 givens', 'error')
     return render_template('kinematics.html', form=form)
 
+@app.route('/calculators/sigfigs', methods=['GET', 'POST'])
+@app.route('/calculators/sigfigs/', methods=['GET', 'POST'])
+def sigfigs():
+    form = forms.SigFigForm()
+    if request.method == 'POST':
+        if form.validate():
+            sigFigCount = physics_helpers.numberProcessing.count_sig_figs(form.num.data)
+            flash('Successfully counted!', 'success')
+            return render_template(
+                'sigfigsSuccess.html',
+                sigFigCount=sigFigCount)
+        flash('You need to input a value', 'error')
+    return render_template('sigfigs.html', form=form)
 
 '''
 Error Handlers
