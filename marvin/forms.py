@@ -16,6 +16,7 @@ class KinematicsForm(FlaskForm):
     d = StringField('Delta Distance')
     submit = SubmitField('Calculate')
 
+
 class SigFigForm(FlaskForm):
     class Meta:
         csrf = False
