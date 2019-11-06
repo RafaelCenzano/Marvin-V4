@@ -1,6 +1,6 @@
 from marvin import app, forms
 from marvin.helpers import physics_helpers
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, make_response
 
 '''
 Views
@@ -11,13 +11,17 @@ Views
 @app.route('/index', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    page = make_response(render_template('index.html'))
+    page.resp.set_cookie('page', 'index', max_age=60 * 60 * 24 * 365)
+    return page
 
 
 @app.route('/calculators', methods=['GET'])
 @app.route('/calculators/', methods=['GET'])
 def calculators():
-    return render_template('calculators.html')
+    page = make_response(render_template('calculators.html'))
+    page.resp.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    return page
 
 
 @app.route('/calculators/kinematics', methods=['GET', 'POST'])
@@ -65,11 +69,17 @@ def kinematics():
                 physics_helpers.numberProcessing.formCleanup(form.d.data))
             physicsdata.calculations()
             flash('Successfully calculated!', 'success')
-            return render_template(
-                'kinematicsSuccess.html',
-                physicsdata=physicsdata)
+            page = make_response(
+                render_template(
+                    'kinematicsSuccess.html',
+                    physicsdata=physicsdata))
+            page.resp.set_cookie(
+                'page', 'kinematics', max_age=60 * 60 * 24 * 365)
+            return page
         flash('You need to input at least 3 givens', 'error')
-    return render_template('kinematics.html', form=form)
+    page = make_response(render_template('kinematics.html', form=form))
+    page.resp.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+    return page
 
 
 @app.route('/calculators/sigfigs', methods=['GET', 'POST'])
@@ -77,15 +87,30 @@ def kinematics():
 def sigfigs():
     form = forms.SigFigForm()
     if request.method == 'POST':
-        if form.validate():
+        if form.num.data is not None:
             sigFigCount = physics_helpers.numberProcessing.count_sig_figs(
-                form.num.data)
+                physics_helpers.numberProcessing.formCleanup(form.num.data))
             flash('Successfully counted!', 'success')
-            return render_template(
-                'sigfigsSuccess.html',
-                sigFigCount=sigFigCount)
+            page = make_response(
+                render_template(
+                    'sigfigsSuccess.html',
+                    sigFigCount=sigFigCount))
+            page.resp.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+            return page
         flash('You need to input a value', 'error')
-    return render_template('sigfigs.html', form=form)
+    page = make_response(render_template('sigfigs.html', form=form))
+    page.resp.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/back')
+@app.route('/back/')
+def back():
+    if 'page' in request.cookies:
+        page = request.cookies['page']
+        return redirect(url_for(page))
+    else:
+        return redirect(url_for('index'))
 
 
 '''
