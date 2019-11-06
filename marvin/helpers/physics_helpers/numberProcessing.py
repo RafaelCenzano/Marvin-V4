@@ -155,6 +155,29 @@ def cleanValue(value):
     '''
     Clean up integers that end in .0
     '''
+    if value == None:
+        return value
     if isinstance(value, float) and value.is_integer():
         return int(value)
     return value
+
+def formCleanup(value):
+    '''
+    Cleanup inputs from form
+    '''
+    split = value.split()
+    if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
+        return float(value)
+    check = False
+    for items in split:
+        if items == '.' and check == False:
+            check = True
+        elif items == '.' and check == True:
+            return None
+    if check:
+        return float(value)
+    try:
+        temp = int(value)
+        return temp
+    except:
+        return None
