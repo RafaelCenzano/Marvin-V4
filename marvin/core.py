@@ -94,7 +94,7 @@ def sigfigs():
             page = make_response(
                 render_template(
                     'sigfigsSuccess.html',
-                    sigFigCount=sigFigCount))
+                    sigFigCount=sigFigCount, num=form.num.data))
             page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
             return page
         flash('You need to input a value', 'error')
