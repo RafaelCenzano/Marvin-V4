@@ -32,32 +32,37 @@ def kinematics():
         count = 0
         if form.vi.data is not None:
             try:
-                temp = float(form.vi.data)
-                count += 1
+                if form.vi.data is not None:
+                    temp = float(form.vi.data)
+                    count += 1
             except BaseException:
                 flash('Initial Velocity must be a number', 'warning')
         if form.vf.data is not None:
             try:
-                temp = float(form.vf.data)
-                count += 1
+                if form.vf.data is not None:
+                    temp = float(form.vf.data)
+                    count += 1
             except BaseException:
                 flash('Final Velocity must be a number', 'warning')
         if form.t.data is not None:
             try:
-                temp = float(form.t.data)
-                count += 1
+                if form.t.data is not None:
+                    temp = float(form.t.data)
+                    count += 1
             except BaseException:
                 flash('Time must be a number', 'warning')
         if form.a.data is not None:
             try:
-                temp = float(form.a.data)
-                count += 1
+                if form.a.data is not None:
+                    temp = float(form.a.data)
+                    count += 1
             except BaseException:
                 flash('Acceleration must be a number', 'warning')
         if form.d.data is not None:
             try:
-                temp = float(form.d.data)
-                count += 1
+                if form.d.data is not None:
+                    temp = float(form.d.data)
+                    count += 1
             except BaseException:
                 flash('Delta Distance must be a number', 'warning')
         if count >= 3:
