@@ -170,8 +170,11 @@ def formCleanup(value):
     if value is None:
         return None
     split = [ch for ch in value]
-    if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
-        return float(value)
+    try:
+        if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
+            return float(value)
+    except BaseException:
+        pass
     check = False
     for items in split:
         if items == '.' and check == False:
