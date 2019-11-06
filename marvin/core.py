@@ -12,7 +12,7 @@ Views
 @app.route('/index/', methods=['GET'])
 def index():
     page = make_response(render_template('index.html'))
-    page.resp.set_cookie('page', 'index', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('page', 'index', max_age=60 * 60 * 24 * 365)
     return page
 
 
@@ -20,7 +20,7 @@ def index():
 @app.route('/calculators/', methods=['GET'])
 def calculators():
     page = make_response(render_template('calculators.html'))
-    page.resp.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
     return page
 
 
@@ -73,12 +73,12 @@ def kinematics():
                 render_template(
                     'kinematicsSuccess.html',
                     physicsdata=physicsdata))
-            page.resp.set_cookie(
+            page.set_cookie(
                 'page', 'kinematics', max_age=60 * 60 * 24 * 365)
             return page
         flash('You need to input at least 3 givens', 'error')
     page = make_response(render_template('kinematics.html', form=form))
-    page.resp.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
     return page
 
 
@@ -95,11 +95,11 @@ def sigfigs():
                 render_template(
                     'sigfigsSuccess.html',
                     sigFigCount=sigFigCount))
-            page.resp.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+            page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
             return page
         flash('You need to input a value', 'error')
     page = make_response(render_template('sigfigs.html', form=form))
-    page.resp.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
     return page
 
 
