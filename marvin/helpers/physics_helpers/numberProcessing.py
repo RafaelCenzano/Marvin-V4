@@ -165,7 +165,9 @@ def formCleanup(value):
     '''
     Cleanup inputs from form
     '''
-    split = value.split()
+    if value == None:
+        return None
+    split = [ch for ch in value]
     if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
         return float(value)
     check = False
