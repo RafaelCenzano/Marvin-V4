@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, FloatField
+from wtforms import SubmitField, StringField
 
 '''
 Kinematics Form for Kinematics computation
@@ -9,9 +9,15 @@ Kinematics Form for Kinematics computation
 class KinematicsForm(FlaskForm):
     class Meta:
         csrf = False
-    vi = FloatField('Initial Velocity')
-    vf = FloatField('Final Velocity')
-    a = FloatField('Acceleration')
-    t = FloatField('Time')
-    d = FloatField('Delta Distance')
+    vi = StringField('Initial Velocity')
+    vf = StringField('Final Velocity')
+    a = StringField('Acceleration')
+    t = StringField('Time')
+    d = StringField('Delta Distance')
     submit = SubmitField('Calculate')
+
+class SigFigForm(FlaskForm):
+    class Meta:
+        csrf = False
+    num = StringField('Number to count')
+    submit = SubmitField('Count')
