@@ -11,13 +11,33 @@
 {% include "flash.html" %}
 <h1 class="center-align">Marvin | Sig Figs</h1>
 <div class="grid-container">
-  <div></div>
+  <div><a id="submit" onclick="showSigFigCounting()">How do you count sigfigs?<a></div>
   <div>
     <h5>{{ num }} has:</h5>
     <p>{{ sigFigCount }}</p>
     <p>Significant Figure{% if sigFigCount > 1 %}{% endif %}</p>
   </div>
-  <div></div>
+  <div><a id="submit" href="{{ url_for('sigfigs') }}">Calculate again!<a></div>
+</div>
+<div id="sigfigstuff" hidden>
+  <div class="grid-container">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
 </div>
+{% endblock %}
+
+{% block trailing_js %}
+<script>
+function showSigFigCounting() {
+  var x = document.getElementById("sigfigstyff");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
 {% endblock %}
