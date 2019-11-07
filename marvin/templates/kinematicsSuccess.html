@@ -35,9 +35,28 @@
     <p>{{ physicsdata.deltaDistance }} m</p>
     <p>Delta Distance</p>
   </div>
-  <div></div>
+  <div><a id="submit" onclick="showMath()">View the math<a></div>
   <div><a id="submit" href="{{ url_for('kinematics') }}">Run another calculation!<a></div>
-  <div></div>
+</div>
+<div id="mathstuff" hidden>
+  <div class="grid-container">
+    <div></div>
+    <div>{{ physicsdata.record }}</div>
+    <div></div>
+  </div>
 </div>
 </div>
+{% endblock %}
+
+{% block trailing_js %}
+<script>
+function showMath() {
+  var x = document.getElementById("mathstuff");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
 {% endblock %}
