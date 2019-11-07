@@ -35,31 +35,40 @@ def kinematics():
                 temp = float(form.vi.data)
                 count += 1
             except BaseException:
-                flash('Initial Velocity must be a number', 'warning')
+                form.vi.data = ''
+                flash('Initial Velocity must be a number, input number for initial velocity removed', 'warning')
         if form.vf.data != '':
             try:
                 temp = float(form.vf.data)
                 count += 1
             except BaseException:
-                flash('Final Velocity must be a number', 'warning')
+                form.vf.data = ''
+                flash('Final Velocity must be a number, input number for final velocity removed', 'warning')
         if form.t.data  != '':
             try:
                 temp = float(form.t.data)
+                if abs(temp) != temp:
+                    raise BaseException
                 count += 1
             except BaseException:
-                flash('Time must be a number', 'warning')
+                form.t.data = ''
+                flash('Time must be a non negative number, input number for time removed', 'warning')
         if form.a.data  != '':
             try:
                 temp = float(form.a.data)
                 count += 1
             except BaseException:
-                flash('Acceleration must be a number', 'warning')
+                form.a.data = ''
+                flash('Acceleration must be a number, input number for acceleration removed', 'warning')
         if form.d.data  != '':
             try:
                 temp = float(form.d.data)
+                if abs(temp) != temp:
+                    raise BaseException
                 count += 1
             except BaseException:
-                flash('Delta Distance must be a number', 'warning')
+                form.d.data = ''
+                flash('Delta Distance must be a non negative number, input number for delta distance removed', 'warning')
         if count >= 3:
             physicsdata = physics_helpers.kinematics.Kinematics(
                 physics_helpers.numberProcessing.formCleanup(form.vi.data),
@@ -68,6 +77,11 @@ def kinematics():
                 physics_helpers.numberProcessing.formCleanup(form.a.data),
                 physics_helpers.numberProcessing.formCleanup(form.d.data))
             physicsdata.calculations()
+            if physicsdata.initialVelocity == None or physicsdata.finalVelocity == None or physicsdata.time == None or physicsdata.acceleration == None or physicsdata.deltaDistance == None or abs(physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
+                flash('Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative', 'error')
+                page = make_response(render_template('kinematics.html', form=form))
+                page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+                return page
             flash('Successfully calculated!', 'success')
             page = make_response(
                 render_template(
