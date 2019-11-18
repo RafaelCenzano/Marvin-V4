@@ -35,6 +35,7 @@ body {
 }
 
 .grid-container > div {
+  max-width: 270px;
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
