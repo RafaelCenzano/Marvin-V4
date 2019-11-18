@@ -11,8 +11,8 @@
 {% include "flash.html" %}
 <h1 class="center-align">Marvin | Calculators</h1>
 <div class="app-container">
-  <div class="app"><a href="{{ url_for('kinematics') }}"><p>Kinematics</p></a></div>
-  <div class="app"><a href="{{ url_for('sigfigs') }}"><p>Significant</p><br><p>Figures</p></a></div>
+  <a href="{{ url_for('kinematics') }}" class="app"><p>Kinematics</p></a>
+  <a href="{{ url_for('sigfigs') }}" class="app"><p>Significant Figures</p></a>
 </div>
 </div>
 {% endblock %}
