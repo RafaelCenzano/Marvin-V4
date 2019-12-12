@@ -23,4 +23,12 @@ def cacheCleaner():
             os.rmdir(paths)
 
 if __name__ == '__main__':
-    cacheCleaner()
+    while True:
+        print('What do you want to clean?')
+        print('1. Cache')
+        print('2. Exit')
+        WhattoDO = input('>')
+        if WhattoDO == '1' or WhattoDO.lower() == 'cache':
+            cacheCleaner()
+        elif WhattoDO == '2' or WhattoDO.lower() == 'exit':
+            break
