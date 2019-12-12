@@ -1,4 +1,5 @@
 import os
+import shutil
 
 def cacheCleaner():
     pathsToRemoveFiles = []
@@ -20,7 +21,7 @@ def cacheCleaner():
             os.remove(paths)
     for paths in pathsToRemoveDirs:
         if os.path.exists(paths):
-            os.rmdir(paths)
+            shutil.rmtree(paths)
 
 if __name__ == '__main__':
     while True:
