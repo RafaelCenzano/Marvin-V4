@@ -6,3 +6,6 @@ test:
 
 run:
 	python3 run.py
+
+clean:
+	python3 cleaner.py
