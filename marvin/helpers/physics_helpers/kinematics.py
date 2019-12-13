@@ -97,7 +97,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf - (a * t) = Vi
+        Vi = Vf - (a * t)
 
         Solve for Initial Velocity with final velocity, acceleration, and time
         '''
@@ -117,7 +117,7 @@ class Kinematics:
         '''
         Equation:
 
-        (Vf - Vi) / t = a
+        a = (Vf - Vi) / t
 
         Solve for Acceleration with final velocity, initial velocity, and time
         '''
@@ -137,7 +137,7 @@ class Kinematics:
         '''
         Equation:
 
-        (Vf - Vi) / a = t
+        t = (Vf - Vi) / a
 
         Solve for Time with final velocity, initial velocity, and acceleration
         '''
@@ -203,7 +203,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf^2 - (2 * a * Δx) = Vi^2
+        Vi^2 = Vf^2 - (2 * a * Δx)
 
         Solve for Initial Velocity with final velocity, acceleration, and delta distance
         '''
@@ -229,7 +229,7 @@ class Kinematics:
         '''
         Equation:
 
-        ((Vf^2 - Vi^2) / 2) / Δx = a
+        a = ((Vf^2 - Vi^2) / 2) / Δx
 
         Solve for Acceleration with initial velocity, final velocity, and delta distance
         '''
@@ -250,7 +250,7 @@ class Kinematics:
         '''
         Equation:
 
-        ((Vf^2 - Vi^2) / 2) / a = Δx
+        Δx = ((Vf^2 - Vi^2) / 2) / a
 
         Solve for Delta Distance(Displacment) with initial velocity, acceleration, and final velocity
         '''
