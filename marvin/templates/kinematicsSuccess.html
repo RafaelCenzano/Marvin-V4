@@ -39,11 +39,17 @@
   <div><a id="submit" href="{{ url_for('kinematics') }}">Run another calculation!<a></div>
 </div>
 <div id="mathstuff" hidden>
-  <div class="grid-container">
-    <div></div>
-    <div>{{ physicsdata.record }}</div>
-    <div></div>
-  </div>
+  {% for equations in physicsdata.record %}
+    {% if equations == 1 %}
+      <div>Equation:<br>Vf = Vi + a * t</div><br>
+      <div>Vf = {{ physicsdata.initialVelocity }} + {{ physicsdata.acceleration }} * {{ physicsdata.time }}</div>
+      <div>Vf = {{ physicsdata.initialVelocity }} + {{ physicsdata.acceleration * physicsdata.time }}</div>
+      <div>Vf = {{ physicsdata.finalVelocity }} 
+        {% if ((physicsdata.acceleration * physicsdata.time) + physicsdata.initialVelocity) != physicsdata.finalVelocity %}
+          ({{ (physicsdata.acceleration * physicsdata.time) + physicsdata.initialVelocity }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
+        {% endif %}
+    {% endif %}
+  {% endfor %}
 </div>
 </div>
 {% endblock %}
