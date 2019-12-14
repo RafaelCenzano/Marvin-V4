@@ -58,14 +58,23 @@
         {% if ((physicsdata.acceleration * physicsdata.time) - physicsdata.finalVelocity) != physicsdata.initialVelocity %}
           ({{ (physicsdata.acceleration * physicsdata.time) - physicsdata.finalVelocity }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
         {% endif %}
-    {% elif equations == 2 %}
+    {% elif equations == 3 %}
       <div>Original equation: Vf = Vi + (a * t)</div>
       <div>Derived equation: a = (Vf - Vi) / t</div>
       <div>a = ({{ physicsdata.finalVelocity }} - {{ physicsdata.initialVelocity }}) / {{ physicsdata.time }})</div>
       <div>a = ({{ physicsdata.finalVelocity - physicsdata.initialVelocity}}) / physicsdata.time }}</div>
       <div>a = {{ physicsdata.acceleration }}
         {% if ((physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.time) != physicsdata.acceleration %}
-          ({{ (physicsdata.finalVelocity - physicsdata.initialVelocity) / a }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
+          ({{ (physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.time }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
+        {% endif %}
+    {% elif equations == 4 %}
+      <div>Original equation: Vf = Vi + (a * t)</div>
+      <div>Derived equation: t = (Vf - Vi) / a</div>
+      <div>t = ({{ physicsdata.finalVelocity }} - {{ physicsdata.initialVelocity }}) / {{ physicsdata.acceleration }})</div>
+      <div>t = ({{ physicsdata.finalVelocity - physicsdata.initialVelocity}}) / physicsdata.acceleration }}</div>
+      <div>t = {{ physicsdata.time }}
+        {% if ((physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.acceleration) != physicsdata.time %}
+          ({{ (physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.acceleration }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
         {% endif %}
     {% endif %}
   {% endfor %}
