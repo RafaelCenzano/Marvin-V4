@@ -28,7 +28,6 @@ make
 
 or with pip manually
 
-
 ```
 pip3 install -r requirements.txt
 ```
