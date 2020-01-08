@@ -1,16 +1,10 @@
-from webbrowser import open as webopen
-from time import sleep as delay
+from marvin.helpers.starting import startGUI
 from threading import Thread
 from marvin import app
 
 '''
 Run Flask App for Marvin GUI
 '''
-
-
-def startGUI():
-    delay(2)
-    webopen('http://127.0.0.1:9090/home')
 
 
 if __name__ == '__main__':

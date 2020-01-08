@@ -16,10 +16,9 @@ body {
   padding: 1em;
   margin: 0 auto;
   width: 900px;
-  height: 80%;
   margin-top: 30px;
   border-radius: 10px;
-  background-color: #fcfcfc;
+  background-color: rgb(252, 252, 252);
 }
 
 .center-align {
@@ -36,6 +35,7 @@ body {
 }
 
 .grid-container > div {
+  max-width: 270px;
   text-align: center;
   padding: 20px 0;
   font-size: 30px;

@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
+from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
 
 '''
 Kinematics
@@ -26,17 +26,6 @@ class Kinematics:
         self.acceleration = acceleration
         self.deltaDistance = deltaDistance
         self.test = False
-
-        if checkValue(self.initialVelocity):
-            self.initialVelocity = cleanValue(self.initialVelocity)
-        if checkValue(self.initialVelocity):
-            self.finalVelocity = cleanValue(self.finalVelocity)
-        if checkValue(self.time):
-            self.time = cleanValue(self.time)
-        if checkValue(self.acceleration):
-            self.acceleration = cleanValue(self.acceleration)
-        if checkValue(self.deltaDistance):
-            self.deltaDistance = cleanValue(self.deltaDistance)
 
         sigFigsList = []
 
@@ -108,7 +97,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf - (a * t) = Vi
+        Vi = Vf - (a * t)
 
         Solve for Initial Velocity with final velocity, acceleration, and time
         '''
@@ -128,7 +117,7 @@ class Kinematics:
         '''
         Equation:
 
-        (Vf - Vi) / t = a
+        a = (Vf - Vi) / t
 
         Solve for Acceleration with final velocity, initial velocity, and time
         '''
@@ -148,7 +137,7 @@ class Kinematics:
         '''
         Equation:
 
-        (Vf - Vi) / a = t
+        t = (Vf - Vi) / a
 
         Solve for Time with final velocity, initial velocity, and acceleration
         '''
@@ -214,7 +203,7 @@ class Kinematics:
         '''
         Equation:
 
-        Vf^2 - (2 * a * Δx) = Vi^2
+        Vi^2 = Vf^2 - (2 * a * Δx)
 
         Solve for Initial Velocity with final velocity, acceleration, and delta distance
         '''
@@ -240,7 +229,7 @@ class Kinematics:
         '''
         Equation:
 
-        ((Vf^2 - Vi^2) / 2) / Δx = a
+        a = ((Vf^2 - Vi^2) / 2) / Δx
 
         Solve for Acceleration with initial velocity, final velocity, and delta distance
         '''
@@ -261,7 +250,7 @@ class Kinematics:
         '''
         Equation:
 
-        ((Vf^2 - Vi^2) / 2) / a = Δx
+        Δx = ((Vf^2 - Vi^2) / 2) / a
 
         Solve for Delta Distance(Displacment) with initial velocity, acceleration, and final velocity
         '''

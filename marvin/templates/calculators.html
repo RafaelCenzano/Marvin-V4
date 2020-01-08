@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Calculators{% endblock %}
+
+{% block head_css %}
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/apps.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+{% include "flash.html" %}
+<h1 class="center-align">Marvin | Calculators</h1>
+<div class="app-container">
+  <a href="{{ url_for('kinematics') }}" class="app"><p>Kinematics</p></a>
+  <a href="{{ url_for('sigfigs') }}" class="app"><p>Significant Figures</p></a>
+</div>
+</div>
+{% endblock %}
