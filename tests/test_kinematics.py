@@ -1,4 +1,4 @@
-from . import physics_helpers
+from . import physics
 
 from nose2.tools import params
 import unittest
