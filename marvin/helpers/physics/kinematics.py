@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics_helpers.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
+from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
 
 '''
 Kinematics
