@@ -6,13 +6,13 @@ import unittest
 
 class BasicTestSuite(unittest.TestCase):
 
-    classObjecttoTest = physics_helpers.kinematics.Kinematics(
+    classObjecttoTest = physics.kinematics.Kinematics(
         initialVelocity=3, acceleration=2, time=20)
     classObjecttoTest.calculations()
-    classObjecttoTestTwo = physics_helpers.kinematics.Kinematics(
+    classObjecttoTestTwo = physics.kinematics.Kinematics(
         acceleration=-1, deltaDistance=2, finalVelocity=0)
     classObjecttoTestTwo.calculations()
-    classObjecttoTestThree = physics_helpers.kinematics.Kinematics(
+    classObjecttoTestThree = physics.kinematics.Kinematics(
         finalVelocity=135, acceleration=-41, initialVelocity=372)
     classObjecttoTestThree.calculations()
 
