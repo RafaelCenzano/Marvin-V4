@@ -70,12 +70,12 @@ def kinematics():
                 form.d.data = ''
                 flash('Delta Distance must be a non negative number, input number for delta distance removed', 'warning')
         if count >= 3:
-            physicsdata = physics_helpers.kinematics.Kinematics(
-                physics_helpers.numberProcessing.formCleanup(form.vi.data),
-                physics_helpers.numberProcessing.formCleanup(form.vf.data),
-                physics_helpers.numberProcessing.formCleanup(form.t.data),
-                physics_helpers.numberProcessing.formCleanup(form.a.data),
-                physics_helpers.numberProcessing.formCleanup(form.d.data))
+            physicsdata = physics.kinematics.Kinematics(
+                physics.numberProcessing.formCleanup(form.vi.data),
+                physics.numberProcessing.formCleanup(form.vf.data),
+                physics.numberProcessing.formCleanup(form.t.data),
+                physics.numberProcessing.formCleanup(form.a.data),
+                physics.numberProcessing.formCleanup(form.d.data))
             physicsdata.calculations()
             if physicsdata.initialVelocity == None or physicsdata.finalVelocity == None or physicsdata.time == None or physicsdata.acceleration == None or physicsdata.deltaDistance == None or abs(physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
                 flash('Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative', 'error')
