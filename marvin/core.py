@@ -1,13 +1,130 @@
-from marvin import app, helpers
-from flask import render_template, redirect, url_for
+from marvin import app, forms
+from marvin.helpers import physics
+from flask import render_template, redirect, url_for, request, flash, make_response
 
 '''
 Views
 '''
-@app.route("/", methods=['GET'])
-@app.route("/home", methods=['GET'])
+@app.route('/', methods=['GET'])
+@app.route('/home', methods=['GET'])
+@app.route('/home/', methods=['GET'])
+@app.route('/index', methods=['GET'])
+@app.route('/index/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    page = make_response(render_template('index.html'))
+    page.set_cookie('page', 'index', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/calculators', methods=['GET'])
+@app.route('/calculators/', methods=['GET'])
+def calculators():
+    page = make_response(render_template('calculators.html'))
+    page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/calculators/kinematics', methods=['GET', 'POST'])
+@app.route('/calculators/kinematics/', methods=['GET', 'POST'])
+def kinematics():
+    form = forms.KinematicsForm()
+    if request.method == 'POST':
+        count = 0
+        if form.vi.data != '':
+            try:
+                temp = float(form.vi.data)
+                count += 1
+            except BaseException:
+                form.vi.data = ''
+                flash('Initial Velocity must be a number, input number for initial velocity removed', 'warning')
+        if form.vf.data != '':
+            try:
+                temp = float(form.vf.data)
+                count += 1
+            except BaseException:
+                form.vf.data = ''
+                flash('Final Velocity must be a number, input number for final velocity removed', 'warning')
+        if form.t.data  != '':
+            try:
+                temp = float(form.t.data)
+                if abs(temp) != temp:
+                    raise BaseException
+                count += 1
+            except BaseException:
+                form.t.data = ''
+                flash('Time must be a non negative number, input number for time removed', 'warning')
+        if form.a.data  != '':
+            try:
+                temp = float(form.a.data)
+                count += 1
+            except BaseException:
+                form.a.data = ''
+                flash('Acceleration must be a number, input number for acceleration removed', 'warning')
+        if form.d.data  != '':
+            try:
+                temp = float(form.d.data)
+                if abs(temp) != temp:
+                    raise BaseException
+                count += 1
+            except BaseException:
+                form.d.data = ''
+                flash('Delta Distance must be a non negative number, input number for delta distance removed', 'warning')
+        if count >= 3:
+            physicsdata = physics.kinematics.Kinematics(
+                physics.numberProcessing.formCleanup(form.vi.data),
+                physics.numberProcessing.formCleanup(form.vf.data),
+                physics.numberProcessing.formCleanup(form.t.data),
+                physics.numberProcessing.formCleanup(form.a.data),
+                physics.numberProcessing.formCleanup(form.d.data))
+            physicsdata.calculations()
+            if physicsdata.initialVelocity == None or physicsdata.finalVelocity == None or physicsdata.time == None or physicsdata.acceleration == None or physicsdata.deltaDistance == None or abs(physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
+                flash('Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative', 'error')
+                page = make_response(render_template('kinematics.html', form=form))
+                page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+                return page
+            flash('Successfully calculated!', 'success')
+            page = make_response(
+                render_template(
+                    'kinematicsSuccess.html',
+                    physicsdata=physicsdata))
+            page.set_cookie(
+                'page', 'kinematics', max_age=60 * 60 * 24 * 365)
+            return page
+        flash('You need to input at least 3 givens', 'error')
+    page = make_response(render_template('kinematics.html', form=form))
+    page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/calculators/sigfigs', methods=['GET', 'POST'])
+@app.route('/calculators/sigfigs/', methods=['GET', 'POST'])
+def sigfigs():
+    form = forms.SigFigForm()
+    if request.method == 'POST':
+        if form.num.data is not None:
+            sigFigCount = physics_helpers.numberProcessing.count_sig_figs(
+                physics_helpers.numberProcessing.formCleanup(form.num.data))
+            flash('Successfully counted!', 'success')
+            page = make_response(
+                render_template(
+                    'sigfigsSuccess.html',
+                    sigFigCount=sigFigCount, num=form.num.data))
+            page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+            return page
+        flash('You need to input a value', 'error')
+    page = make_response(render_template('sigfigs.html', form=form))
+    page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/back')
+@app.route('/back/')
+def back():
+    if 'page' in request.cookies:
+        page = request.cookies['page']
+        return redirect(url_for(page))
+    else:
+        return redirect(url_for('index'))
 
 
 '''

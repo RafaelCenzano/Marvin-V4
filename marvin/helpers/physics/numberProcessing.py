@@ -96,14 +96,14 @@ def properRounding(value, sigFigs):
     valueSigFigs = count_sig_figs(value)
 
     # when num is int or float that ends in .0
-    if isinstance(value, int) or int(value) == value:
+    if isinstance(value, int) or value.is_integer():
 
         valueCompute = int(value)
 
         if valueSigFigs > sigFigs:
             newValue = round(valueCompute,
                              sigFigs - (len(str(abs(valueCompute)))))
-            return int(newValue)
+            return newValue
         else:
             return valueCompute
 
@@ -150,3 +150,41 @@ def checkValue(value):
     typeOfValue = type(value)
 
     return typeOfValue == int or typeOfValue == float
+
+
+def cleanValue(value):
+    '''
+    Clean up integers that end in .0
+    '''
+    if value is None:
+        return value
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    return value
+
+
+def formCleanup(value):
+    '''
+    Cleanup inputs from form
+    '''
+    if value is None:
+        return None
+    split = [ch for ch in value]
+    try:
+        if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
+            return float(value)
+    except BaseException:
+        pass
+    check = False
+    for items in split:
+        if items == '.' and check == False:
+            check = True
+        elif items == '.' and check:
+            return None
+    if check:
+        return float(value)
+    try:
+        temp = int(value)
+        return temp
+    except BaseException:
+        return None
