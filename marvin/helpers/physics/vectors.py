@@ -98,14 +98,13 @@ class Vectors:
         self.resultingMagnitude = cleanValue(self.resultingMagnitude)
 
     def componentsOfOne():
-
         '''
         Equation:
 
         x1 = H * cos(Ѳ)
 
         y1 = H * sin(Ѳ)
-        
+
         Solve for x and y components of vector using vector magnitude and vector angle
         '''
 
@@ -126,14 +125,13 @@ class Vectors:
             self.y1 = properRounding(answer, self.sigFigs)
 
     def componentsOfTwo():
-
         '''
         Equation:
 
         x2 = H * cos(Ѳ)
 
         y2 = H * sin(Ѳ)
-        
+
         Solve for x and y components of vector using vector magnitude and vector angle
         '''
 
@@ -154,14 +152,13 @@ class Vectors:
             self.y2 = properRounding(answer, self.sigFigs)
 
     def componentsOfResult():
-
         '''
         Equation:
 
         xR = H * cos(Ѳ)
 
         yR = H * sin(Ѳ)
-        
+
         Solve for x and y components of vector using vector magnitude and vector angle
         '''
 
@@ -169,7 +166,8 @@ class Vectors:
                 self.resultingMagnitude) and checkValue(
                 self.resultingTheta) and self.resultingX is None:
 
-            answer = self.resultingMagnitude * (math.degrees(math.cos(self.resultingTheta)))
+            answer = self.resultingMagnitude * \
+                (math.degrees(math.cos(self.resultingTheta)))
 
             self.resultingX = properRounding(answer, self.sigFigs)
 
@@ -177,8 +175,7 @@ class Vectors:
                 self.magnitude2) and checkValue(
                 self.theta2) and self.resultingY is None:
 
-            answer = self.resultingMagnitude * (math.degrees(math.sin(self.resultingTheta)))
+            answer = self.resultingMagnitude * \
+                (math.degrees(math.sin(self.resultingTheta)))
 
             self.resultingY = properRounding(answer, self.sigFigs)
-
-
