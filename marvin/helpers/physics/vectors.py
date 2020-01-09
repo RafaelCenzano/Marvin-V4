@@ -97,7 +97,7 @@ class Vectors:
         self.resultingTheta = cleanValue(self.resultingTheta)
         self.resultingMagnitude = cleanValue(self.resultingMagnitude)
 
-    def xComponent(theta):
+    def xComponent(magnitude, theta):
         '''
         Equation:
 
@@ -110,20 +110,20 @@ class Vectors:
 
         return properRounding(answer, self.sigFigs)
 
-    def yComponent(theta):
+    def yComponent(magnitude, theta):
         '''
         Equation:
 
         y = H * sin(Ѳ)
 
-        Solve for x component of vector using vector magnitude and vector angle
+        Solve for y component of vector using vector magnitude and vector angle
         '''
 
         answer = magnitude * (math.degrees(math.sin(theta)))
 
         return properRounding(answer, self.sigFigs)
 
-    def magnitudeOfOne():
+    def vectorMagnitude(x, y):
         '''
         Equation:
 
@@ -131,3 +131,7 @@ class Vectors:
 
         Solve for x and y components of vector using vector magnitude and vector angle
         '''
+
+        answer = math.sqrt(math.pow(x, 2) + math.pow(y, 2))
+
+        return properRounding(answer, self.sigFigs)
