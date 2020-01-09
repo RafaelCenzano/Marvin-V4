@@ -12,4 +12,7 @@ Functions to solve time, velocity, accelertaion and distance with the other vari
 class Vectors:
 
     def __init__(self, theta=None, x=None, y=None):
-        pass
+        
+        self.theta = theta
+        self.x = x
+        self.y = y
