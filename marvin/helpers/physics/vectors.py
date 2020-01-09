@@ -97,85 +97,37 @@ class Vectors:
         self.resultingTheta = cleanValue(self.resultingTheta)
         self.resultingMagnitude = cleanValue(self.resultingMagnitude)
 
-    def componentsOfOne():
+    def xComponent(theta):
         '''
         Equation:
 
-        x1 = H * cos(Ѳ)
+        x = H * cos(Ѳ)
 
-        y1 = H * sin(Ѳ)
-
-        Solve for x and y components of vector using vector magnitude and vector angle
+        Solve for x component of vector using vector magnitude and vector angle
         '''
 
-        if checkValue(
-                self.magnitude1) and checkValue(
-                self.theta1) and self.x1 is None:
+        answer = magnitude * (math.degrees(math.cos(theta)))
 
-            answer = self.magnitude1 * (math.degrees(math.cos(self.theta1)))
+        return properRounding(answer, self.sigFigs)
 
-            self.x1 = properRounding(answer, self.sigFigs)
-
-        if checkValue(
-                self.magnitude1) and checkValue(
-                self.theta1) and self.y1 is None:
-
-            answer = self.magnitude1 * (math.degrees(math.sin(self.theta1)))
-
-            self.y1 = properRounding(answer, self.sigFigs)
-
-    def componentsOfTwo():
+    def yComponent(theta):
         '''
         Equation:
 
-        x2 = H * cos(Ѳ)
+        y = H * sin(Ѳ)
 
-        y2 = H * sin(Ѳ)
-
-        Solve for x and y components of vector using vector magnitude and vector angle
+        Solve for x component of vector using vector magnitude and vector angle
         '''
 
-        if checkValue(
-                self.magnitude2) and checkValue(
-                self.theta2) and self.x2 is None:
+        answer = magnitude * (math.degrees(math.sin(theta)))
 
-            answer = self.magnitude2 * (math.degrees(math.cos(self.theta2)))
+        return properRounding(answer, self.sigFigs)
 
-            self.x2 = properRounding(answer, self.sigFigs)
-
-        if checkValue(
-                self.magnitude2) and checkValue(
-                self.theta2) and self.y2 is None:
-
-            answer = self.magnitude2 * (math.degrees(math.sin(self.theta2)))
-
-            self.y2 = properRounding(answer, self.sigFigs)
-
-    def componentsOfResult():
+    def magnitudeOfOne():
         '''
         Equation:
 
-        xR = H * cos(Ѳ)
-
-        yR = H * sin(Ѳ)
+        H = (x^2 + y^2)^(1/2)
 
         Solve for x and y components of vector using vector magnitude and vector angle
         '''
-
-        if checkValue(
-                self.resultingMagnitude) and checkValue(
-                self.resultingTheta) and self.resultingX is None:
-
-            answer = self.resultingMagnitude * \
-                (math.degrees(math.cos(self.resultingTheta)))
-
-            self.resultingX = properRounding(answer, self.sigFigs)
-
-        if checkValue(
-                self.magnitude2) and checkValue(
-                self.theta2) and self.resultingY is None:
-
-            answer = self.resultingMagnitude * \
-                (math.degrees(math.sin(self.resultingTheta)))
-
-            self.resultingY = properRounding(answer, self.sigFigs)
