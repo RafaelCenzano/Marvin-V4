@@ -8,7 +8,8 @@ Kinematics
 Functions to solve time, velocity, accelertaion and distance with the other variables stated.
 '''
 
+
 class Vectors:
 
-	def __init__(self, theta=None, x=None, y=None):
-		pass
+    def __init__(self, theta=None, x=None, y=None):
+        pass
