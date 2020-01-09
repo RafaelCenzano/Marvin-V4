@@ -29,15 +29,15 @@ class Vectors:
         self.theta1 = theta1
         self.x1 = x1
         self.y1 = y1
-        self.magnitude1
+        self.magnitude1 = magnitude1
         self.theta2 = theta2
         self.x2 = x2
         self.y2 = y2
-        self.magnitude2
-        self.resultingX
-        self.resultingY
-        self.resultingTheta
-        self.resultingMagnitude
+        self.magnitude2 = magnitude2
+        self.resultingX = resultingX
+        self.resultingY = resultingY
+        self.resultingTheta = resultingTheta
+        self.resultingMagnitude = resultingMagnitude
 
         sigFigsList = []
 
@@ -75,3 +75,24 @@ class Vectors:
         self.sigFigs = tempCount
 
         self.record = []
+
+    def calculations(self):
+        count = 0
+
+        while(checkValue(self.theta1) == False or checkValue(self.x1) == False or checkValue(self.y1) == False or checkValue(self.magnitude1) == False or checkValue(self.theta2) == False or checkValue(self.x2) == False or checkValue(self.y2) == False or checkValue(self.magnitude2) == False or checkValue(self.resultingTheta) == False or checkValue(self.resultingX) == False or checkValue(self.resultingY) == False or checkValue(self.resultingMagnitude) == False):
+            if count > 20:
+                break
+            count += 1
+
+        self.theta1 = cleanValue(self.theta1)
+        self.x1 = cleanValue(self.x1)
+        self.y1 = cleanValue(self.y1)
+        self.magnitude1 = cleanValue(self.magnitude1)
+        self.theta2 = cleanValue(self.theta2)
+        self.x2 = cleanValue(self.x2)
+        self.y2 = cleanValue(self.y2)
+        self.magnitude2 = cleanValue(self.magnitude2)
+        self.resultingX = cleanValue(self.resultingX)
+        self.resultingY = cleanValue(self.resultingY)
+        self.resultingTheta = cleanValue(self.resultingTheta)
+        self.resultingMagnitude = cleanValue(self.resultingMagnitude)
