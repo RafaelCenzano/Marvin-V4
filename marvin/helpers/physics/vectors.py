@@ -129,9 +129,22 @@ class Vectors:
 
         H = (x^2 + y^2)^(1/2)
 
-        Solve for x and y components of vector using vector magnitude and vector angle
+        Solve for magnitude of vector using vector x and y components
         '''
 
         answer = math.sqrt(math.pow(x, 2) + math.pow(y, 2))
+
+        return properRounding(answer, self.sigFigs)
+
+    def vectorAngle(x, y):
+        '''
+        Equation:
+
+        Ѳ = tan^-1(x/y)
+
+        Solve for theta of vector using vector x and y components
+        '''
+
+        answer = math.degrees(math.atan(x / y))
 
         return properRounding(answer, self.sigFigs)
