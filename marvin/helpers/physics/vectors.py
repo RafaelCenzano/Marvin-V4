@@ -96,3 +96,89 @@ class Vectors:
         self.resultingY = cleanValue(self.resultingY)
         self.resultingTheta = cleanValue(self.resultingTheta)
         self.resultingMagnitude = cleanValue(self.resultingMagnitude)
+
+    def componentsOfOne():
+
+        '''
+        Equation:
+
+        x1 = H * cos(Ѳ)
+
+        y1 = H * sin(Ѳ)
+        
+        Solve for x and y components of vector using vector magnitude and vector angle
+        '''
+
+        if checkValue(
+                self.magnitude1) and checkValue(
+                self.theta1) and self.x1 is None:
+
+            answer = self.magnitude1 * (math.degrees(math.cos(self.theta1)))
+
+            self.x1 = properRounding(answer, self.sigFigs)
+
+        if checkValue(
+                self.magnitude1) and checkValue(
+                self.theta1) and self.y1 is None:
+
+            answer = self.magnitude1 * (math.degrees(math.sin(self.theta1)))
+
+            self.y1 = properRounding(answer, self.sigFigs)
+
+    def componentsOfTwo():
+
+        '''
+        Equation:
+
+        x2 = H * cos(Ѳ)
+
+        y2 = H * sin(Ѳ)
+        
+        Solve for x and y components of vector using vector magnitude and vector angle
+        '''
+
+        if checkValue(
+                self.magnitude2) and checkValue(
+                self.theta2) and self.x2 is None:
+
+            answer = self.magnitude2 * (math.degrees(math.cos(self.theta2)))
+
+            self.x2 = properRounding(answer, self.sigFigs)
+
+        if checkValue(
+                self.magnitude2) and checkValue(
+                self.theta2) and self.y2 is None:
+
+            answer = self.magnitude2 * (math.degrees(math.sin(self.theta2)))
+
+            self.y2 = properRounding(answer, self.sigFigs)
+
+    def componentsOfResult():
+
+        '''
+        Equation:
+
+        xR = H * cos(Ѳ)
+
+        yR = H * sin(Ѳ)
+        
+        Solve for x and y components of vector using vector magnitude and vector angle
+        '''
+
+        if checkValue(
+                self.resultingMagnitude) and checkValue(
+                self.resultingTheta) and self.resultingX is None:
+
+            answer = self.resultingMagnitude * (math.degrees(math.cos(self.resultingTheta)))
+
+            self.resultingX = properRounding(answer, self.sigFigs)
+
+        if checkValue(
+                self.magnitude2) and checkValue(
+                self.theta2) and self.resultingY is None:
+
+            answer = self.resultingMagnitude * (math.degrees(math.sin(self.resultingTheta)))
+
+            self.resultingY = properRounding(answer, self.sigFigs)
+
+
