@@ -1,6 +1,6 @@
-from marvin.helpers.starting import startGUI
+from marvin.helpers.starting import startUpTasks
 from threading import Thread
-from marvin import app
+from marvin import core
 
 '''
 Run Flask App for Marvin GUI
@@ -8,9 +8,7 @@ Run Flask App for Marvin GUI
 
 
 if __name__ == '__main__':
-    thread_start = Thread(target=startGUI)
+    thread_start = Thread(target=startUpTasks)
     thread_start.start()
 
-    app.run(
-        port=9090
-    )
+    core.marvinGui().run()
