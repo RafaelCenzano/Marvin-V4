@@ -1,8 +1,9 @@
 from marvin.helpers import physics
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.button import Button
 
-class marvinGui(App):
+class MarvinApp(App):
  
     def build(self):
  
