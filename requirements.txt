@@ -1,4 +1,14 @@
+certifi==2019.11.28
+chardet==3.0.4
 coverage==5.0.2
+docutils==0.15.2
+ffpyplayer==4.3.0
+idna==2.8
+Kivy==1.11.1
+Kivy-Garden==0.1.4
 nose2==0.9.1
+Pygments==2.5.2
 PyStarter==1.4.0
+requests==2.22.0
 six==1.13.0
+urllib3==1.25.7
