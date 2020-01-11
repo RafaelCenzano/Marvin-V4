@@ -14,4 +14,3 @@ sys.path.insert(
             '../marvin/helpers')))
 
 import physics
-import marvin
