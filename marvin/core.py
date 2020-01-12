@@ -8,7 +8,7 @@ Config.set('graphics', 'resizable', 1)
 
 kivy.require('1.11.1')
 
-class MarvinApp(App): 
+class MarvinApp(App):
    
-    def build(self): 
+    def build(self):
         return Label(text='Child')
