@@ -1,11 +1,15 @@
 init:
 	pip3 install -r requirements.txt
 
-test:
-	nose2 -v --pretty-assert
+upgrade:
+	pip3 install --upgrade -r requirements.txt
 
-run:
-	python3 run.py
+test:
+	pytest
 
 clean:
 	pystarter clean
+
+run: clean test
+	python3 run.py
+	$(MAKE) clean
