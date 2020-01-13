@@ -10,6 +10,7 @@ Kivy==1.11.1
 Kivy-Garden==0.1.4
 more-itertools==8.0.2
 packaging==20.0
+pafy==0.5.5
 pluggy==0.13.1
 py==1.8.1
 Pygments==2.5.2
@@ -21,4 +22,5 @@ six==1.13.0
 soupsieve==1.9.5
 urllib3==1.25.7
 wcwidth==0.1.8
+youtube-dl==2020.1.1
 zipp==0.6.0
