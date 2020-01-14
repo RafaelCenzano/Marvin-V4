@@ -8,3 +8,5 @@ Music:
         Contains all songs
         Data:
             Contains files with data about each song in library
+        Temp:
+            Temporary files that may appear and dissapear
