@@ -6,5 +6,5 @@ Music:
         Contains files with data for paths to songs in playlist and all data related to playlists
     Library:
         Contains all songs
-    Library Data:
-        Contains files with data about each song in library
+        Data:
+            Contains files with data about each song in library
