@@ -11,9 +11,11 @@ class PlaylistProcessor():
         pass
 
     def playlistScraper(self):
+        # Request and proccess webpage
         requestedPlaylist = requests.get('https://www.youtube.com/playlist?list=PL96cyyGcpt5Xk4WEq0tTG109lQC41bJD3')
         bsoup = bs(requestedPlaylist.text, 'lxml')
 
+        # Search and find all video links
         for link in bsoup.find_all('a'):
             linkFound = link.get('href')
             if('watch' in linkFound and 'https://www.youtube.com' + linkFound not in self.links and 'index' in linkFound):
@@ -26,13 +28,23 @@ class PlaylistDownloader():
 
     def download(self, videoLinks):
         for links in videoLinks:
+            # New video name
+            newVideoName = hash(video.title)
+
+            # Paths for files
+            tempPath = os.path.join('marvin', 'static', 'music', 'library', 'temp') + newVideoName + '.mp4'
+            finalPath = os.path.join('marvin', 'static', 'music', 'library') + newVideoName + '.mp3'
+
+            # Proccess and download videos
             video = pafy.new(links)
             bestMp4 = video.getbest(preftype='mp4')
-            bestMp4.download(video.title + '.mp4')
-            vid = moviepy.editor.VideoFileClip(video.title + '.mp4')
+            bestMp4.download(tempPath)
+
+            vid = moviepy.editor.VideoFileClip(tempPath)
             audio = vid.audio
-            audio.write_audiofile(video.title + '.mp3')
-            os.remove(video.title + '.mp4')
+            audio.write_audiofile(finalPath)
+
+            os.remove(tempPath)
 
 if __name__ == '__main__':
 
