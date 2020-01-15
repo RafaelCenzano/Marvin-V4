@@ -30,7 +30,7 @@ class PlaylistDownloader():
     def download(self, videoLinks):
         for links in videoLinks:
             # New video name
-            newVideoName = hashlib.sha512(video.title).hexdigest()
+            newVideoName = hashlib.sha512(video.title.encode('utf-8')).hexdigest()
 
             # Paths for files
             tempPath = os.path.join('marvin', 'static', 'music', 'library', 'temp') + newVideoName + '.mp4'
