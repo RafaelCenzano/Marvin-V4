@@ -57,7 +57,7 @@ make test
 or manually with nose2
 
 ```
-nose2 -v --pretty-assert
+pytest
 ```
 
 #### What are the tests checking

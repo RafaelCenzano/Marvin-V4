@@ -1,12 +1,4 @@
-# Flask imports
-from flask import Flask
-from config import Config
+from marvin.core import MarvinApp
 
-# Create Flask app
-app = Flask(__name__)
-
-# Add Configurations to app
-app.config.from_object(Config)
-
-# Import all views
-import marvin.core
+# Create kivy gui object
+gui = MarvinApp()
