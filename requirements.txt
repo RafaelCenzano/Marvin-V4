@@ -3,13 +3,18 @@ beautifulsoup4==4.8.2
 bs4==0.0.1
 certifi==2019.11.28
 chardet==3.0.4
+Click==7.0
 decorator==4.4.1
 docutils==0.15.2
+Flask==1.1.1
 idna==2.8
 imageio==2.6.1
 imageio-ffmpeg==0.3.0
 importlib-metadata==1.4.0
+itsdangerous==1.1.0
+Jinja2==2.10.3
 lxml==4.4.2
+MarkupSafe==1.1.1
 more-itertools==8.0.2
 moviepy==1.0.1
 numpy==1.18.1
@@ -27,5 +32,6 @@ six==1.13.0
 soupsieve==1.9.5
 urllib3==1.25.7
 wcwidth==0.1.8
+Werkzeug==0.16.0
 youtube-dl==2020.1.1
 zipp==0.6.0
