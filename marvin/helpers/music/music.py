@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 import pafy
 import moviepy.editor
 import os
+import hashlib
 
 class PlaylistProcessor():
     links = []
@@ -29,10 +30,11 @@ class PlaylistDownloader():
     def download(self, videoLinks):
         for links in videoLinks:
             # New video name
-            newVideoName = hash(video.title)
+            newVideoName = hashlib.sha512(video.title).hexdigest()
 
             # Paths for files
             tempPath = os.path.join('marvin', 'static', 'music', 'library', 'temp') + newVideoName + '.mp4'
+            dataPath = os.path.join('marvin', 'static', 'music', 'library', 'data') + newVideoName + '.txt'
             finalPath = os.path.join('marvin', 'static', 'music', 'library') + newVideoName + '.mp3'
 
             # Proccess and download videos
