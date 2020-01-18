@@ -4,6 +4,9 @@ init:
 test:
 	pytest
 
+update:
+	pip install --upgrade attrs beautifulsoup4 bs4 certifi chardet Click decorator docutils flask flask-wtf idna imageio imageio-ffmpeg importlib-metadata itsdangerous jinja2 lxml markupsafe more-itertools moviepy numpy packaging pafy pillow pip pluggy proglog py pyparsing pystarter pytest requests setuptools six soupsieve urllib3 wcwidth werkzeug wheel wtforms youtube-dl zipp
+
 clean:
 	pystarter clean
 
