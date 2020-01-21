@@ -27,13 +27,14 @@ proglog==0.1.9
 py==1.8.1
 pyparsing==2.4.6
 PyStarter==1.4.0
-pytest==5.3.3
+pytest==5.3.4
 requests==2.22.0
 six==1.14.0
 soupsieve==1.9.5
-urllib3==1.25.7
+tqdm==4.41.1
+urllib3==1.25.8
 wcwidth==0.1.8
 Werkzeug==0.16.0
 WTForms==2.2.1
 youtube-dl==2020.1.15
-zipp==1.0.0
+zipp==2.0.0
