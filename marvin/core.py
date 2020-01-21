@@ -8,8 +8,6 @@ Views
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
 @app.route('/home/', methods=['GET'])
-@app.route('/index', methods=['GET'])
-@app.route('/index/', methods=['GET'])
 def index():
     page = make_response(render_template('index.html'))
     page.set_cookie('page', 'index', max_age=60 * 60 * 24 * 365)
