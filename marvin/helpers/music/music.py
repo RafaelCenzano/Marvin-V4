@@ -5,15 +5,45 @@ import moviepy.editor
 import os
 import hashlib
 
-class PlaylistProcessor():
-    links = []
+class MusicProccessor:
 
     def __init__(self):
         pass
 
-    def playlistScraper(self):
+    def download(self, videoLink):
+        # New video name using shortest hashing method.
+        newVideoName = hashlib.sha224(video.title.encode('utf-8')).hexdigest()
+
+        # Paths for files
+        tempPath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'library', 'temp') + newVideoName + '.mp4'
+        finalPath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'library') + newVideoName + '.mp3'
+
+        # Proccess and download videos
+        video = pafy.new(links)
+        bestMp4 = video.getbest(preftype='mp4')
+        bestMp4.download(tempPath)
+
+        vid = moviepy.editor.VideoFileClip(tempPath)
+        audio = vid.audio
+        audio.write_audiofile(finalPath)
+
+        os.remove(tempPath)
+
+    def writeDataFile(self, link, bestlink, videoName):
+        dataPath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'library', 'data') + videoName + '.marvin'
+
+    def readDataFile(self, videoName):
+        dataPath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'library', 'data') + videoName + '.marvin'
+
+class PlaylistProcessor(MusicProccessor):
+
+    def __init__(self):
+        self.links = []
+
+    def playlistScraper(self, url):
+
         # Request and proccess webpage
-        requestedPlaylist = requests.get('https://www.youtube.com/playlist?list=PL96cyyGcpt5Xk4WEq0tTG109lQC41bJD3')
+        requestedPlaylist = requests.get(url)
         bsoup = bs(requestedPlaylist.text, 'lxml')
 
         # Search and find all video links
@@ -22,37 +52,29 @@ class PlaylistProcessor():
             if('watch' in linkFound and 'https://www.youtube.com' + linkFound not in self.links and 'index' in linkFound):
                 self.links.append('https://www.youtube.com' + linkFound)
 
-class PlaylistDownloader():
+    def writePlaylistFile(self, playlistName):
+        playlistName = self.cleanName(playlistName)
+        os.path.isfile(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'playlist', playlistName + '.marvin'))
 
-    def __init__(self):
-        pass
+    def readPlaylistFile(self, playlistName):
+        playlistName = self.cleanName(playlistName)
+        os.path.isfile(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'marvin', 'static', 'music', 'playlist', playlistName + '.marvin'))
 
-    def download(self, videoLinks):
-        for links in videoLinks:
-            # New video name
-            newVideoName = hashlib.sha512(video.title.encode('utf-8')).hexdigest()
+    def cleanName(self, name):
+        # Add marvin in front to make sure all file names start with something consistent that won't mess with things
+        cleanedName = 'marvin'
 
-            # Paths for files
-            tempPath = os.path.join('marvin', 'static', 'music', 'library', 'temp') + newVideoName + '.mp4'
-            dataPath = os.path.join('marvin', 'static', 'music', 'library', 'data') + newVideoName + '.txt'
-            finalPath = os.path.join('marvin', 'static', 'music', 'library') + newVideoName + '.mp3'
+        # loop through and replace spaces with '_'
+        count = 0
+        while count < len(name):
 
-            # Proccess and download videos
-            video = pafy.new(links)
-            bestMp4 = video.getbest(preftype='mp4')
-            bestMp4.download(tempPath)
+            if name[count:count + 1] == ' ':
+                cleanedName += '_'
+            else:
+                cleanedName += name[count:count + 1]
+            count += 1
 
-            vid = moviepy.editor.VideoFileClip(tempPath)
-            audio = vid.audio
-            audio.write_audiofile(finalPath)
-
-            os.remove(tempPath)
+        return cleanedName
 
 if __name__ == '__main__':
-
-    testOBJ = PlaylistProcessor()
-    testOBJ.playlistScraper()
-    #for items in testOBJ.links:
-    #    print(items)
-    testOBJ1 = PlaylistDownloader()
-    testOBJ1.download(testOBJ.links)
+    pass
