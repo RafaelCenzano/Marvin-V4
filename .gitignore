@@ -1,4 +1,9 @@
+# DS Store
 *.DS_Store
 
+# Python files and vitualenv
 *.pyc
 venv/
+
+# Marvin ignores
+marvin/static/music/library/data/*
