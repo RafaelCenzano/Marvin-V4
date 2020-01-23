@@ -13,7 +13,7 @@ class MusicProccessor:
 
     def download(self, videoLink):
         # New video name using shortest hashing method.
-        newVideoName = hashlib.sha224(video.title.encode('utf-8')).hexdigest()
+        newVideoName = nameFile(video.title)
 
         # Paths for files
         tempPath = os.path.join(
@@ -62,6 +62,11 @@ class MusicProccessor:
             'music',
             'library',
             'data') + videoName + '.marvin'
+
+    def nameFile(self, videoName):
+        hashed = hashlib.sha224(videoName.encode('utf-8'))
+        return hashed.hexdigest()
+
 
 
 class PlaylistProcessor(MusicProccessor):
@@ -126,4 +131,5 @@ class PlaylistProcessor(MusicProccessor):
 
 
 if __name__ == '__main__':
-    pass
+    testOBJ = MusicProccessor()
+    print(testOBJ.test('bob'))
