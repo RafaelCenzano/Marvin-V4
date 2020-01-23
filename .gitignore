@@ -6,4 +6,7 @@
 venv/
 
 # Marvin ignores
-marvin/static/music/library/data/*
+*.marvin
+
+# Include Marvin templates
+!*example.marvin
