@@ -4,12 +4,13 @@ import pafy
 import moviepy.editor
 import os
 import hashlib
+import pathlib
 
 
 class MusicProccessor:
 
     def __init__(self):
-        pass
+        self.basePath = (pathlib.Path(os.path.dirname(__file__))).resolve().parents[1]
 
     def download(self, videoLink):
         # New video name using shortest hashing method.
@@ -73,6 +74,7 @@ class PlaylistProcessor(MusicProccessor):
 
     def __init__(self):
         self.links = []
+        self.basePath = (pathlib.Path(os.path.dirname(__file__))).resolve().parents[1]
 
     def playlistScraper(self, url):
 
@@ -132,4 +134,6 @@ class PlaylistProcessor(MusicProccessor):
 
 if __name__ == '__main__':
     testOBJ = MusicProccessor()
-    print(testOBJ.test('bob'))
+    testOBJ.test()
+    testOBJ1 = PlaylistProcessor()
+    testOBJ1.test()
