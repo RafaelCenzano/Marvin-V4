@@ -17,21 +17,8 @@ class MusicProccessor:
         newVideoName = nameFile(video.title)
 
         # Paths for files
-        tempPath = os.path.join(
-            os.path.abspath(
-                os.path.dirname(__file__)),
-            'marvin',
-            'static',
-            'music',
-            'library',
-            'temp') + newVideoName + '.mp4'
-        finalPath = os.path.join(
-            os.path.abspath(
-                os.path.dirname(__file__)),
-            'marvin',
-            'static',
-            'music',
-            'library') + newVideoName + '.mp3'
+        tempPath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'temp', newVideoName + '.mp4')
+        tempPath = self.basePath.joinpath('marvin', 'static', 'music', 'library', newVideoName + '.mp3')
 
         # Proccess and download videos
         video = pafy.new(links)
@@ -45,24 +32,10 @@ class MusicProccessor:
         os.remove(tempPath)
 
     def writeDataFile(self, link, bestlink, videoName):
-        dataPath = os.path.join(
-            os.path.abspath(
-                os.path.dirname(__file__)),
-            'marvin',
-            'static',
-            'music',
-            'library',
-            'data') + videoName + '.marvin'
+        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'data', videoName + '.marvin')
 
     def readDataFile(self, videoName):
-        dataPath = os.path.join(
-            os.path.abspath(
-                os.path.dirname(__file__)),
-            'marvin',
-            'static',
-            'music',
-            'library',
-            'data') + videoName + '.marvin'
+        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'data', videoName + '.marvin')
 
     def nameFile(self, videoName):
         hashed = hashlib.sha224(videoName.encode('utf-8'))
@@ -90,29 +63,11 @@ class PlaylistProcessor(MusicProccessor):
 
     def writePlaylistFile(self, playlistName):
         playlistName = self.cleanName(playlistName)
-        os.path.isfile(
-            os.path.join(
-                os.path.abspath(
-                    os.path.dirname(__file__)),
-                'marvin',
-                'static',
-                'music',
-                'playlist',
-                playlistName +
-                '.marvin'))
+        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'playlist', playlistName + '.marvin')
 
     def readPlaylistFile(self, playlistName):
         playlistName = self.cleanName(playlistName)
-        os.path.isfile(
-            os.path.join(
-                os.path.abspath(
-                    os.path.dirname(__file__)),
-                'marvin',
-                'static',
-                'music',
-                'playlist',
-                playlistName +
-                '.marvin'))
+        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'playlist', playlistName + '.marvin')
 
     def cleanName(self, name):
         # Add marvin in front to make sure all file names start with something
