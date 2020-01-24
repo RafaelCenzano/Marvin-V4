@@ -10,15 +10,25 @@ import pathlib
 class MusicProccessor:
 
     def __init__(self):
-        self.basePath = (pathlib.Path(os.path.dirname(__file__))).resolve().parents[1]
+        self.basePath = (
+            pathlib.Path(
+                os.path.dirname(__file__))).resolve().parents[1]
 
     def download(self, videoLink):
         # New video name using shortest hashing method.
         newVideoName = nameFile(video.title)
 
         # Paths for files
-        tempPath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'temp', newVideoName + '.mp4')
-        tempPath = self.basePath.joinpath('marvin', 'static', 'music', 'library', newVideoName + '.mp3')
+        tempPath = self.basePath.joinpath(
+            'marvin',
+            'static',
+            'music',
+            'library',
+            'temp',
+            newVideoName +
+            '.mp4')
+        tempPath = self.basePath.joinpath(
+            'marvin', 'static', 'music', 'library', newVideoName + '.mp3')
 
         # Proccess and download videos
         video = pafy.new(links)
@@ -32,22 +42,37 @@ class MusicProccessor:
         os.remove(tempPath)
 
     def writeDataFile(self, link, bestlink, videoName):
-        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'data', videoName + '.marvin')
+        filePath = self.basePath.joinpath(
+            'marvin',
+            'static',
+            'music',
+            'library',
+            'data',
+            videoName +
+            '.marvin')
 
     def readDataFile(self, videoName):
-        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'library', 'data', videoName + '.marvin')
+        filePath = self.basePath.joinpath(
+            'marvin',
+            'static',
+            'music',
+            'library',
+            'data',
+            videoName +
+            '.marvin')
 
     def nameFile(self, videoName):
         hashed = hashlib.sha224(videoName.encode('utf-8'))
         return hashed.hexdigest()
 
 
-
 class PlaylistProcessor(MusicProccessor):
 
     def __init__(self):
         self.links = []
-        self.basePath = (pathlib.Path(os.path.dirname(__file__))).resolve().parents[1]
+        self.basePath = (
+            pathlib.Path(
+                os.path.dirname(__file__))).resolve().parents[1]
 
     def playlistScraper(self, url):
 
@@ -63,11 +88,23 @@ class PlaylistProcessor(MusicProccessor):
 
     def writePlaylistFile(self, playlistName):
         playlistName = self.cleanName(playlistName)
-        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'playlist', playlistName + '.marvin')
+        filePath = self.basePath.joinpath(
+            'marvin',
+            'static',
+            'music',
+            'playlist',
+            playlistName +
+            '.marvin')
 
     def readPlaylistFile(self, playlistName):
         playlistName = self.cleanName(playlistName)
-        filePath = self.basePath.joinpath('marvin', 'static', 'music', 'playlist', playlistName + '.marvin')
+        filePath = self.basePath.joinpath(
+            'marvin',
+            'static',
+            'music',
+            'playlist',
+            playlistName +
+            '.marvin')
 
     def cleanName(self, name):
         # Add marvin in front to make sure all file names start with something
