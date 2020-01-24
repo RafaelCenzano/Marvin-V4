@@ -87,6 +87,8 @@ class PlaylistProcessor(MusicProccessor):
                 self.links.append('https://www.youtube.com' + linkFound)
 
     def writePlaylistFile(self, playlistName):
+
+        # Clean playlist name
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
@@ -97,6 +99,8 @@ class PlaylistProcessor(MusicProccessor):
             '.marvin')
 
     def readPlaylistFile(self, playlistName):
+
+        # Clean playlist name
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
