@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Not Found{% endblock %}
+
+{% block head_css %}
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/404.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+{% include "flash.html" %}
+<h1 class="center-align">404 | Not Found</h1>
+</div>
+{% endblock %}
