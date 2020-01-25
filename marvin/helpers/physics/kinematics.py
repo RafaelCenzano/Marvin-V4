@@ -25,7 +25,6 @@ class Kinematics:
         self.time = time
         self.acceleration = acceleration
         self.deltaDistance = deltaDistance
-        self.test = False
 
         sigFigsList = []
 
