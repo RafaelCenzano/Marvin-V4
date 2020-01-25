@@ -40,7 +40,9 @@ def kinematics():
                 count += 1
             except BaseException:
                 form.vi.data = ''
-                flash('Initial Velocity must be a number, input number for initial velocity removed', 'warning')
+                flash(
+                    'Initial Velocity must be a number, input number for initial velocity removed',
+                    'warning')
 
         if form.vf.data != '':
             try:
@@ -48,9 +50,11 @@ def kinematics():
                 count += 1
             except BaseException:
                 form.vf.data = ''
-                flash('Final Velocity must be a number, input number for final velocity removed', 'warning')
+                flash(
+                    'Final Velocity must be a number, input number for final velocity removed',
+                    'warning')
 
-        if form.t.data  != '':
+        if form.t.data != '':
             try:
                 temp = float(form.t.data)
                 if abs(temp) != temp:
@@ -58,17 +62,21 @@ def kinematics():
                 count += 1
             except BaseException:
                 form.t.data = ''
-                flash('Time must be a non negative number, input number for time removed', 'warning')
+                flash(
+                    'Time must be a non negative number, input number for time removed',
+                    'warning')
 
-        if form.a.data  != '':
+        if form.a.data != '':
             try:
                 temp = float(form.a.data)
                 count += 1
             except BaseException:
                 form.a.data = ''
-                flash('Acceleration must be a number, input number for acceleration removed', 'warning')
+                flash(
+                    'Acceleration must be a number, input number for acceleration removed',
+                    'warning')
 
-        if form.d.data  != '':
+        if form.d.data != '':
             try:
                 temp = float(form.d.data)
                 if abs(temp) != temp:
@@ -76,7 +84,9 @@ def kinematics():
                 count += 1
             except BaseException:
                 form.d.data = ''
-                flash('Delta Distance must be a non negative number, input number for delta distance removed', 'warning')
+                flash(
+                    'Delta Distance must be a non negative number, input number for delta distance removed',
+                    'warning')
 
         if count >= 3:
 
@@ -88,10 +98,19 @@ def kinematics():
                 physics.numberProcessing.formCleanup(form.d.data))
             physicsdata.calculations()
 
-            if physicsdata.initialVelocity == None or physicsdata.finalVelocity == None or physicsdata.time == None or physicsdata.acceleration == None or physicsdata.deltaDistance == None or abs(physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
-                flash('Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative', 'error')
-                page = make_response(render_template('kinematics.html', form=form))
-                page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+            if physicsdata.initialVelocity is None or physicsdata.finalVelocity is None or physicsdata.time is None or physicsdata.acceleration is None or physicsdata.deltaDistance is None or abs(
+                    physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
+                flash(
+                    'Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative',
+                    'error')
+                page = make_response(
+                    render_template(
+                        'kinematics.html',
+                        form=form))
+                page.set_cookie(
+                    'page',
+                    'kinematics',
+                    max_age=60 * 60 * 24 * 365)
                 return page
 
             flash('Successfully calculated!', 'success')
@@ -117,32 +136,42 @@ def sigfigs():
 
     form = forms.SigFigForm()
 
+    num = form.num.data
+
     if request.method == 'POST':
 
         if form.num.data is None:
             flash('You need to input a number', 'error')
 
-        else:
-            check = False
-            try:
-                temp = float(form.num.data)
-                check = True
-            except BaseException:
-                form.num.data = ''
-                flash('Input must be a number, input number removed', 'warning')
+    check = False
 
-            if check:
-                sigFigCount = physics.numberProcessing.count_sig_figs(
-                    physics.numberProcessing.formCleanup(form.num.data))
-                flash('Successfully counted!', 'success')
-                page = make_response(
-                    render_template(
-                        'sigfigsSuccess.html',
-                        sigFigCount=sigFigCount, num=form.num.data))
-                page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
-                return page
+    try:
+        temp = float(num)
+        check = True
 
-    page = make_response(render_template('sigfigs.html', form=form))
+    except BaseException:
+        form.num.data = ''
+        if request.method == 'POST':
+            flash('Input must be a number, input number removed', 'warning')
+
+    if check:
+        num = physics.numberProcessing.count_sig_figs(
+            physics.numberProcessing.formCleanup(form.num.data))
+
+        flash('Successfully counted!', 'success')
+
+    numCheck = False
+
+    if num is not None and not isinstance(num, type('asds')):
+        numCheck = True
+
+    page = make_response(
+        render_template(
+            'sigfigs.html',
+            form=form,
+            number=form.num.data,
+            num=num,
+            numCheck=numCheck))
     page.set_cookie('page', 'sigfigs', max_age=60 * 60 * 24 * 365)
     return page
 
@@ -150,9 +179,11 @@ def sigfigs():
 @app.route('/back')
 @app.route('/back/')
 def back():
+
     if 'page' in request.cookies:
         page = request.cookies['page']
         return redirect(url_for(page))
+
     else:
         return redirect(url_for('index'))
 
