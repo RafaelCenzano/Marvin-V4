@@ -13,4 +13,3 @@ clean:
 
 run: clean test
 	python3 run.py
-	$(MAKE) clean
