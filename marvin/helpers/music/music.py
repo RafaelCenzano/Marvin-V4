@@ -15,10 +15,12 @@ class MusicProccessor:
                 os.path.dirname(__file__))).resolve().parents[1]
 
     def download(self, videoLink):
-        # New video name using shortest hashing method.
+        '''
+        Download .mp4 file and split and write the audio 
+        '''
+
         newVideoName = self.nameFile(video.title)
 
-        # Paths for files
         tempPath = self.basePath.joinpath(
             'marvin',
             'static',
@@ -30,7 +32,6 @@ class MusicProccessor:
         finalPath = self.basePath.joinpath(
             'marvin', 'static', 'music', 'library', newVideoName + '.mp3')
 
-        # Proccess and download videos
         video = pafy.new(links)
         bestMp4 = video.getbest(preftype='mp4')
         bestMp4.download(tempPath)
@@ -42,8 +43,10 @@ class MusicProccessor:
         os.remove(tempPath)
 
     def writeDataFile(self, link, bestlink, videoName):
-
-        # Create path to file
+        '''
+        Write data files for music files
+        '''
+        
         filePath = self.basePath.joinpath(
             'marvin',
             'static',
@@ -54,8 +57,10 @@ class MusicProccessor:
             '.marvin')
 
     def readDataFile(self, videoName):
+        '''
+        Read data files for music files
+        '''
 
-        # Create path to file
         filePath = self.basePath.joinpath(
             'marvin',
             'static',
@@ -66,6 +71,10 @@ class MusicProccessor:
             '.marvin')
 
     def nameFile(self, videoName):
+        '''
+        Hash file names to make names more standard
+        '''
+
         hashed = hashlib.sha224(videoName.encode('utf-8'))
         return hashed.hexdigest()
 
@@ -79,20 +88,23 @@ class PlaylistProcessor(MusicProccessor):
                 os.path.dirname(__file__))).resolve().parents[1]
 
     def playlistScraper(self, url):
+        '''
+        Webscrape youtube playlist and save all video links in a self.links
+        '''
 
-        # Request and proccess webpage
         requestedPlaylist = requests.get(url)
         bsoup = bs(requestedPlaylist.text, 'lxml')
 
-        # Search and find all video links
         for link in bsoup.find_all('a'):
             linkFound = link.get('href')
             if('watch' in linkFound and 'https://www.youtube.com' + linkFound not in self.links and 'index' in linkFound):
                 self.links.append('https://www.youtube.com' + linkFound)
 
     def writePlaylistFile(self, playlistName):
+        '''
+        Write data files for playlist files
+        '''
 
-        # Clean playlist name and path to file
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
@@ -103,8 +115,10 @@ class PlaylistProcessor(MusicProccessor):
             '.marvin')
 
     def readPlaylistFile(self, playlistName):
+        '''
+        Read data files for playlist files
+        '''
 
-        # Clean playlist name and path to file
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
@@ -115,12 +129,12 @@ class PlaylistProcessor(MusicProccessor):
             '.marvin')
 
     def cleanName(self, name):
+        '''
+        Make more standardized/consistent playlist name files
+        '''
 
-        # Add marvin in front to make sure all file names start with something
-        # consistent that won't mess with things
         cleanedName = 'marvin'
 
-        # loop through and replace spaces with '_'
         count = 0
         while count < len(name):
 
