@@ -35,8 +35,8 @@
     <p>{{ physicsdata.deltaDistance }} m</p>
     <p>Delta Distance</p>
   </div>
-  <div><a id="submit" onclick="showMath()">View the math<a></div>
-  <div><a id="submit" href="{{ url_for('kinematics') }}">Run another calculation!<a></div>
+  <div><a id="submit" onclick="showMath()">View the math</a></div>
+  <div><a id="submit" href="{{ url_for('kinematics') }}">Run another calculation!</a></div>
 </div>
 <div id="mathstuff" hidden>
   {% for equations in physicsdata.record %}
