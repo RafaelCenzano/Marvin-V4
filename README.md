@@ -54,7 +54,7 @@ Run tests
 make test
 ```
 
-or manually with nose2
+or manually with pytest
 
 ```
 pytest
