@@ -58,7 +58,6 @@ def checkZeroSig(index, num_list, sig_fig_count):
             return False
 
         elif num_list[new_index] != '.' and sig_fig_count > 0:
-
             fig = int(num_list[new_index])
 
             if fig != 0:
@@ -68,7 +67,6 @@ def checkZeroSig(index, num_list, sig_fig_count):
                 return checkZeroSig(new_index, num_list, sig_fig_count)
 
         elif num_list[new_index] != '.' and sig_fig_count == 0:
-
             fig = int(num_list[new_index])
 
             if fig != 0:
@@ -81,17 +79,20 @@ def checkZeroSig(index, num_list, sig_fig_count):
             return False
 
 
-'''
-Round Values to sig fig count
-'''
-
-
 def num_of_zeros(num):
+    '''
+    Count number of zeros in a string
+    '''
+
     s = '{:.16f}'.format(num).split('.')[1]
+
     return len(s) - len(s.lstrip('0'))
 
 
 def properRounding(value, sigFigs):
+    '''
+    Round values to proper sigfigs including floats or long integers
+    '''
 
     valueSigFigs = count_sig_figs(value)
 
@@ -103,7 +104,9 @@ def properRounding(value, sigFigs):
         if valueSigFigs > sigFigs:
             newValue = round(valueCompute,
                              sigFigs - (len(str(abs(valueCompute)))))
+
             return newValue
+
         else:
             return valueCompute
 
@@ -114,7 +117,9 @@ def properRounding(value, sigFigs):
 
         if valueSigFigs > sigFigs:
             newValue = round(value, sigFigs + numOfZeros)
+
             return newValue
+
         else:
             return value
 
@@ -128,6 +133,7 @@ def properRounding(value, sigFigs):
             if len(str(valueCompute)) > sigFigs:
                 newValue = round(valueCompute,
                                  sigFigs - (len(str(abs(valueCompute)))))
+
                 return int(newValue)
 
             elif len(str(valueCompute)) == sigFigs:
@@ -137,7 +143,9 @@ def properRounding(value, sigFigs):
                 newDecimal = value - int(value)
                 newValue = round(newDecimal,
                                  sigFigs - (len(str(abs(valueCompute)))))
+
                 return valueCompute + newValue
+
         else:
             return value
 
@@ -156,10 +164,13 @@ def cleanValue(value):
     '''
     Clean up integers that end in .0
     '''
+
     if value is None:
         return value
+
     if isinstance(value, float) and value.is_integer():
         return int(value)
+
     return value
 
 
@@ -167,24 +178,37 @@ def formCleanup(value):
     '''
     Cleanup inputs from form
     '''
+
     if value is None:
         return None
+
     split = [ch for ch in value]
+
     try:
+
         if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
             return float(value)
+
     except BaseException:
         pass
+
     check = False
+
     for items in split:
+
         if items == '.' and check == False:
             check = True
+
         elif items == '.' and check:
             return None
+
     if check:
         return float(value)
+
     try:
+
         temp = int(value)
         return temp
+
     except BaseException:
         return None
