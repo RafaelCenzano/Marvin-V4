@@ -190,7 +190,7 @@ def formCleanup(value):
             return float(value)
 
     except BaseException:
-        continue
+        pass
 
     check = False
 
