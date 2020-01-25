@@ -16,7 +16,7 @@ class MusicProccessor:
 
     def download(self, videoLink):
         # New video name using shortest hashing method.
-        newVideoName = nameFile(video.title)
+        newVideoName = self.nameFile(video.title)
 
         # Paths for files
         tempPath = self.basePath.joinpath(
@@ -27,7 +27,7 @@ class MusicProccessor:
             'temp',
             newVideoName +
             '.mp4')
-        tempPath = self.basePath.joinpath(
+        finalPath = self.basePath.joinpath(
             'marvin', 'static', 'music', 'library', newVideoName + '.mp3')
 
         # Proccess and download videos
@@ -42,6 +42,8 @@ class MusicProccessor:
         os.remove(tempPath)
 
     def writeDataFile(self, link, bestlink, videoName):
+
+        # Create path to file
         filePath = self.basePath.joinpath(
             'marvin',
             'static',
@@ -52,6 +54,8 @@ class MusicProccessor:
             '.marvin')
 
     def readDataFile(self, videoName):
+
+        # Create path to file
         filePath = self.basePath.joinpath(
             'marvin',
             'static',
@@ -88,7 +92,7 @@ class PlaylistProcessor(MusicProccessor):
 
     def writePlaylistFile(self, playlistName):
 
-        # Clean playlist name
+        # Clean playlist name and path to file
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
@@ -100,7 +104,7 @@ class PlaylistProcessor(MusicProccessor):
 
     def readPlaylistFile(self, playlistName):
 
-        # Clean playlist name
+        # Clean playlist name and path to file
         playlistName = self.cleanName(playlistName)
         filePath = self.basePath.joinpath(
             'marvin',
@@ -111,6 +115,7 @@ class PlaylistProcessor(MusicProccessor):
             '.marvin')
 
     def cleanName(self, name):
+
         # Add marvin in front to make sure all file names start with something
         # consistent that won't mess with things
         cleanedName = 'marvin'
@@ -129,7 +134,4 @@ class PlaylistProcessor(MusicProccessor):
 
 
 if __name__ == '__main__':
-    testOBJ = MusicProccessor()
-    testOBJ.test()
-    testOBJ1 = PlaylistProcessor()
-    testOBJ1.test()
+    pass
