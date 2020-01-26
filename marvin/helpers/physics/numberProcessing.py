@@ -43,10 +43,8 @@ def count_sig_figs(value):
         if float(value).is_integer():
 
             removed = num_list.pop(decimalIndex)
-
-            s = ''
-
-            return count_sig_figs(s.join(num_list))
+            
+            sig_fig_count = len(num_list)
 
         else:
 
