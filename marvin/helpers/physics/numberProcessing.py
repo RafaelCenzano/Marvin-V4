@@ -164,10 +164,14 @@ def cleanValue(value):
 
 
 def scientificNotation(value, sigFigs):
+
     value = str(value)
+    point = '.'
+    if sigFigs == 1:
+        point = ''
 
     if float(value) >= 10000:
-        newValue = value[0] + '.' + value[1:sigFigs] + ' * 10^'
+        newValue = value[0] + point + value[1:sigFigs] + ' * 10^'
         newValue += str(len(value[1:]))
         return newValue
 
