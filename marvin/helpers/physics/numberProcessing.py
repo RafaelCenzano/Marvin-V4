@@ -8,11 +8,15 @@ def count_sig_figs(value):
     Count the sigfigs of a value
     '''
 
-    if float(value) == 0.0 or abs(float(value)) == 9.8:
-        return 90000
+    try:
+        if float(value) == 0.0 or abs(float(value)) == 9.8:
+            return 90000
+
+    except BaseException:
+        pass
 
     sig_fig_count = 0
-    num_list = list(value)
+    num_list = [ch for ch in value if ch != ',']
 
     if num_list[0] == '-':
         remove = num_list.pop(0)
@@ -167,7 +171,7 @@ def formCleanup(value):
     if value is None:
         return None
 
-    split = [ch for ch in value]
+    split = [ch for ch in value if ch != ',']
 
     try:
 
