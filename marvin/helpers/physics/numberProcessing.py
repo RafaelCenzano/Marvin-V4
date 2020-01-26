@@ -13,7 +13,7 @@ def count_sig_figs(value):
         return 90000
 
     sig_fig_count = 0
-    num_list = list(float_to_str(value))
+    num_list = list(float_to_str(abs(value)))
 
     decimalIndex = -1
 
