@@ -163,6 +163,17 @@ def cleanValue(value):
     return value
 
 
+def scientificNotation(value, sigFigs):
+    value = str(value)
+
+    if float(value) >= 10000:
+        newValue = value[0] + '.' + value[1:sigFigs] + ' * 10^'
+        newValue += str(len(value[1:]))
+        return newValue
+
+    return value
+
+
 def formCleanup(value):
     '''
     Cleanup inputs from form
