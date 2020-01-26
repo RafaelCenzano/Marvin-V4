@@ -33,11 +33,18 @@ def kinematics():
     if request.method == 'POST':
 
         count = 0
+        sigFigs = 90000
 
         if form.vi.data != '':
             try:
                 temp = float(form.vi.data)
                 count += 1
+
+                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vi.data)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             except BaseException:
                 form.vi.data = ''
                 flash(
@@ -48,6 +55,12 @@ def kinematics():
             try:
                 temp = float(form.vf.data)
                 count += 1
+
+                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vf.data)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             except BaseException:
                 form.vf.data = ''
                 flash(
@@ -60,6 +73,12 @@ def kinematics():
                 if abs(temp) != temp:
                     raise BaseException
                 count += 1
+
+                sigFigsNum = physics.numberProcessing.count_sig_figs(form.t.data)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             except BaseException:
                 form.t.data = ''
                 flash(
@@ -70,6 +89,12 @@ def kinematics():
             try:
                 temp = float(form.a.data)
                 count += 1
+
+                sigFigsNum = physics.numberProcessing.count_sig_figs(form.a.data)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             except BaseException:
                 form.a.data = ''
                 flash(
@@ -82,6 +107,12 @@ def kinematics():
                 if abs(temp) != temp:
                     raise BaseException
                 count += 1
+
+                sigFigsNum = physics.numberProcessing.count_sig_figs(form.d.data)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             except BaseException:
                 form.d.data = ''
                 flash(
@@ -89,38 +120,6 @@ def kinematics():
                     'warning')
 
         if count >= 3:
-
-            sigFigs = 90000
-
-            if initialVelocity is not None:
-                sigFigsNum = count_sig_figs(initialVelocity)
-
-                if sigFigsNum < sigFigs:
-                    sigFigs = sigFigsNum
-
-            if finalVelocity is not None:
-                sigFigsNum = count_sig_figs(finalVelocity)
-
-                if sigFigsNum < sigFigs:
-                    sigFigs = sigFigsNum
-
-            if time is not None:
-                sigFigsNum = count_sig_figs(time)
-
-                if sigFigsNum < sigFigs:
-                    sigFigs = sigFigsNum
-
-            if acceleration is not None:
-                sigFigsNum = count_sig_figs(acceleration)
-
-                if sigFigsNum < sigFigs:
-                    sigFigs = sigFigsNum
-
-            if deltaDistance is not None:
-                sigFigsNum = count_sig_figs(deltaDistance)
-
-                if sigFigsNum < sigFigs:
-                    sigFigs = sigFigsNum
 
             physicsdata = physics.kinematics.Kinematics(
                 physics.numberProcessing.formCleanup(form.vi.data),
@@ -189,8 +188,7 @@ def sigfigs():
             flash('Input must be a number, input number removed', 'warning')
 
     if check:
-        num = physics.numberProcessing.count_sig_figs(
-            physics.numberProcessing.formCleanup(form.num.data))
+        num = physics.numberProcessing.count_sig_figs(form.num.data)
 
         flash('Successfully counted!', 'success')
 
