@@ -42,27 +42,7 @@ def count_sig_figs(value):
 
     else:
 
-        testForZeros = num_list[decimalIndex + 1:]
-
-        zeros = True
-
-        for digits in testForZeros:
-
-            if digits != '0':
-
-                zeros = False
-
-        testForDigits = num_list[:decimalIndex + 1]
-
-        nonZeros = 0
-
-        for digits in testForDigits:
-
-            if digits != '0':
-
-                nonZeros += 1
-
-        if nonZeros and zeros:
+        if float(value).is_integer():
 
             removed = num_list.pop(decimalIndex)
 
@@ -86,17 +66,6 @@ def count_sig_figs(value):
                     sig_fig_count += 1
 
     return sig_fig_count
-
-
-def float_to_str(f):
-    ctx = decimal.Context()
-    ctx.prec = 100
-    """
-    Convert the given float to a string,
-    without resorting to scientific notation
-    """
-    d1 = ctx.create_decimal(repr(f))
-    return format(d1, 'f')
 
 
 def num_of_zeros(num):
