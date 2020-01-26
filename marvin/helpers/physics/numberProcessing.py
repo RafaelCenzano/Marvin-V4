@@ -114,7 +114,7 @@ def properRounding(value, sigFigs):
     Round values to proper sigfigs including floats or long integers
     '''
 
-    valueSigFigs = count_sig_figs(value)
+    valueSigFigs = count_sig_figs(str(value))
 
     # when num is int or float that ends in .0
     if isinstance(value, int) or value.is_integer():
