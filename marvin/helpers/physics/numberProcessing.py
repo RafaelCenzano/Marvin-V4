@@ -1,6 +1,17 @@
-'''
-Count significant figures fairly accurately
-'''
+import decimal
+
+
+def float_to_str(f):
+    '''
+    Convert the given float to a string,
+    without resorting to scientific notation
+    '''
+
+    ctx = decimal.Context()
+    ctx.prec = 50
+    d1 = ctx.create_decimal(repr(f))
+
+    return format(d1, 'f')
 
 
 def count_sig_figs(value):
@@ -165,14 +176,35 @@ def cleanValue(value):
 
 def scientificNotation(value, sigFigs):
 
-    value = str(value)
+    value = float_to_str(value)
+
     point = '.'
     if sigFigs == 1:
         point = ''
 
     if float(value) >= 10000:
+
         newValue = value[0] + point + value[1:sigFigs] + ' * 10^'
         newValue += str(len(value[1:]))
+        return newValue
+
+    elif float(value) <= 0.0001:
+
+        listValue = list(value)
+        popped = listValue.pop(1)
+
+        i = 0
+        number = 0
+
+        while number == 0:
+
+            if listValue[i] != '0':
+                number = i
+
+            i += 1
+
+        newValue = value[i] + point + value[i + 1:i + sigFigs] + ' * 10^-'
+        newValue += str(i - 1)
         return newValue
 
     return value
