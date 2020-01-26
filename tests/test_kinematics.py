@@ -2,13 +2,13 @@ from . import physics, assertEqual
 
 
 classObjecttoTest = physics.kinematics.Kinematics(
-    initialVelocity=3, acceleration=2, time=20)
+    initialVelocity=3, acceleration=2, time=20, sigFigs=1)
 classObjecttoTest.calculations()
 classObjecttoTestTwo = physics.kinematics.Kinematics(
-    acceleration=-1, deltaDistance=2, finalVelocity=0)
+    acceleration=-1, deltaDistance=2, finalVelocity=0, sigFigs=1)
 classObjecttoTestTwo.calculations()
 classObjecttoTestThree = physics.kinematics.Kinematics(
-    finalVelocity=135, acceleration=-41, initialVelocity=372)
+    finalVelocity=135, acceleration=-41, initialVelocity=372, sigFigs=2)
 classObjecttoTestThree.calculations()
 
 
