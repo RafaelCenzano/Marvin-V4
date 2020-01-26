@@ -17,7 +17,8 @@ class Kinematics:
         finalVelocity=None,
         time=None,
         acceleration=None,
-        deltaDistance=None
+        deltaDistance=None,
+        sigFigs=None
     ):
 
         self.initialVelocity = initialVelocity
@@ -25,28 +26,7 @@ class Kinematics:
         self.time = time
         self.acceleration = acceleration
         self.deltaDistance = deltaDistance
-
-        sigFigsList = []
-
-        if self.initialVelocity is not None:
-            sigFigsList.append(count_sig_figs(self.initialVelocity))
-        if self.finalVelocity is not None:
-            sigFigsList.append(count_sig_figs(self.finalVelocity))
-        if self.time is not None:
-            sigFigsList.append(count_sig_figs(self.time))
-        if self.acceleration is not None:
-            sigFigsList.append(count_sig_figs(self.acceleration))
-        if self.deltaDistance is not None:
-            sigFigsList.append(count_sig_figs(self.deltaDistance))
-
-        tempCount = sigFigsList[0]
-
-        for item in sigFigsList:
-            if item < tempCount:
-                tempCount = item
-
-        self.sigFigs = tempCount
-
+        self.sigFigs = sigFigs
         self.record = []
 
     def calculations(self):
