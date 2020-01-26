@@ -1,5 +1,3 @@
-import decimal
-
 '''
 Count significant figures fairly accurately
 '''
