@@ -50,7 +50,7 @@ def count_sig_figs(value):
 
             return count_sig_figs(s.join(num_list))
 
-        if not zeros:
+        else:
 
             nonZeroFound = False
 
