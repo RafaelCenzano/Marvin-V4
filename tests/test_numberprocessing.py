@@ -1,5 +1,29 @@
 from . import physics, assertEqual, assertTrue, assertFalse
 
+'''
+Test Scientific Notation conversion function
+'''
+
+
+def test_scientific_notation_one():
+    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+def test_scientific_notation_two():
+    assertEqual(physics.numberProcessing.scientificNotation(65420000, 4), '6.542 * 10^7')
+def test_scientific_notation_three():
+    assertEqual(physics.numberProcessing.scientificNotation(823000000, 4), '8.230 * 10^8')
+def test_scientific_notation_four():
+    assertEqual(physics.numberProcessing.scientificNotation(90000, 3), '9.00 * 10^4')
+'''
+def test_scientific_notation_five():
+    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+def test_scientific_notation_six():
+    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+def test_scientific_notation_seven():
+    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+def test_scientific_notation_eight():
+    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+'''
+
 
 '''
 Test Sig Fig Counter for numbers that should return 1, 2, 3, 4, and 9000(special case numbers)
