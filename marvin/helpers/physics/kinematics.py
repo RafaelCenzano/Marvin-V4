@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
+from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue, scientificNotation
 
 '''
 Kinematics
@@ -30,6 +30,10 @@ class Kinematics:
         self.record = []
 
     def calculations(self):
+        '''
+        Run through every calculation until everything is
+        calculated or until loop limit reached
+        '''
         count = 0
 
         while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False or checkValue(self.acceleration) == False):
@@ -46,11 +50,11 @@ class Kinematics:
             self.timeOne()
             count += 1
 
-        self.initialVelocity = cleanValue(self.initialVelocity)
-        self.finalVelocity = cleanValue(self.finalVelocity)
-        self.time = cleanValue(self.time)
-        self.acceleration = cleanValue(self.acceleration)
-        self.deltaDistance = cleanValue(self.deltaDistance)
+        self.initialVelocity = scientificNotation(cleanValue(self.initialVelocity))
+        self.finalVelocity = scientificNotation(cleanValue(self.finalVelocity))
+        self.time = scientificNotation(cleanValue(self.time))
+        self.acceleration = scientificNotation(cleanValue(self.acceleration))
+        self.deltaDistance = scientificNotation(cleanValue(self.deltaDistance))
 
     def finalVelocityOne(self):
         '''
