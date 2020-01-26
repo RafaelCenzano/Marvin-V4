@@ -13,15 +13,15 @@ def test_sig_fig_counter_for_one():
 
 
 def test_sig_fig_counter_for_two():
-    valuesToTest = ['22', '250',' 0.23', '0.0055', '51000',
-                    '-77', '-0.53', '-0.0034', '92', '0.0055', '4.5', '34',' -0.00034', '5.0', '1.0']
+    valuesToTest = ['22', '250','0.23', '0.0055', '51000',
+                    '-77', '-0.53', '-0.0034', '92', '0.0055', '4.5', '34','-0.00034', '5.0', '1.0']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 2)
 
 
 def test_sig_fig_counter_for_three():
     valuesToTest = ['265', '1250', '0.434', '0.0155', '512', '1.23', '0.701',
-                    '-826', '-93300', '-0.234', '0.903',' -0.000999', '50.2', '345', '34.0', '20.1', '4.00', '1.02', '80.0']
+                    '-826', '-93300', '-0.234', '0.903','-0.000999', '50.2', '345', '34.0', '20.1', '4.00', '1.02', '80.0']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 3)
 
