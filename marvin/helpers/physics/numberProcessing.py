@@ -4,6 +4,7 @@ import decimal
 Count significant figures fairly accurately
 '''
 
+
 def count_sig_figs(value):
     '''
     Count the sigfigs of a value
@@ -35,11 +36,11 @@ def count_sig_figs(value):
 
             elif numbers == '0' and nonZeroFound:
                 sig_fig_count += 1
-                
+
     else:
-        
+
         nonZeroFound = False
-        
+
         removed = num_list.pop(decimalIndex)
 
         for numbers in num_list:
@@ -52,6 +53,7 @@ def count_sig_figs(value):
                 sig_fig_count += 1
 
     return sig_fig_count
+
 
 def float_to_str(f):
     ctx = decimal.Context()
