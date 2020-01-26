@@ -10,7 +10,7 @@ def count_sig_figs(value):
     Count the sigfigs of a value
     '''
 
-    if int(value) == 0 or abs(float(value)) == 9.8:
+    if float(value) == 0.0 or abs(float(value)) == 9.8:
         return 90000
 
     sig_fig_count = 0
@@ -68,7 +68,7 @@ def count_sig_figs(value):
 
             s = ''
 
-            return count_sig_figs(s.join(removed))
+            return count_sig_figs(s.join(num_list))
 
         if not zeros:
 
