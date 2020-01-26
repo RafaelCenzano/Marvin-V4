@@ -10,11 +10,14 @@ def count_sig_figs(value):
     Count the sigfigs of a value
     '''
 
-    if value == 0 or abs(value) == 9.8:
+    if int(value) == 0 or abs(float(value)) == 9.8:
         return 90000
 
     sig_fig_count = 0
-    num_list = list(float_to_str(abs(value)))
+    num_list = list(value)
+
+    if num_list[0] == '-':
+        remove = num_list.pop(0)
 
     decimalIndex = -1
 
@@ -39,18 +42,48 @@ def count_sig_figs(value):
 
     else:
 
-        nonZeroFound = False
+        testForZeros = num_list[decimalIndex + 1:]
 
-        removed = num_list.pop(decimalIndex)
+        zeros = True
 
-        for numbers in num_list:
+        for digits in testForZeros:
 
-            if numbers != '0':
-                nonZeroFound = True
-                sig_fig_count += 1
+            if digits != '0':
 
-            elif numbers == '0' and nonZeroFound:
-                sig_fig_count += 1
+                zeros = False
+
+        testForDigits = num_list[:decimalIndex + 1]
+
+        nonZeros = 0
+
+        for digits in testForDigits:
+
+            if digits != '0':
+
+                nonZeros += 1
+
+        if nonZeros and zeros:
+
+            removed = num_list.pop(decimalIndex)
+
+            s = ''
+
+            return count_sig_figs(s.join(removed))
+
+        if not zeros:
+
+            nonZeroFound = False
+
+            removed = num_list.pop(decimalIndex)
+
+            for numbers in num_list:
+
+                if numbers != '0':
+                    nonZeroFound = True
+                    sig_fig_count += 1
+
+                elif numbers == '0' and nonZeroFound:
+                    sig_fig_count += 1
 
     return sig_fig_count
 
