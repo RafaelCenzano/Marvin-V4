@@ -90,12 +90,46 @@ def kinematics():
 
         if count >= 3:
 
+            sigFigs = 90000
+
+            if initialVelocity is not None:
+                sigFigsNum = count_sig_figs(initialVelocity)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
+            if finalVelocity is not None:
+                sigFigsNum = count_sig_figs(finalVelocity)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
+            if time is not None:
+                sigFigsNum = count_sig_figs(time)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
+            if acceleration is not None:
+                sigFigsNum = count_sig_figs(acceleration)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
+            if deltaDistance is not None:
+                sigFigsNum = count_sig_figs(deltaDistance)
+
+                if sigFigsNum < sigFigs:
+                    sigFigs = sigFigsNum
+
             physicsdata = physics.kinematics.Kinematics(
                 physics.numberProcessing.formCleanup(form.vi.data),
                 physics.numberProcessing.formCleanup(form.vf.data),
                 physics.numberProcessing.formCleanup(form.t.data),
                 physics.numberProcessing.formCleanup(form.a.data),
-                physics.numberProcessing.formCleanup(form.d.data))
+                physics.numberProcessing.formCleanup(form.d.data),
+                sigFigs)
+            
             physicsdata.calculations()
 
             if physicsdata.initialVelocity is None or physicsdata.finalVelocity is None or physicsdata.time is None or physicsdata.acceleration is None or physicsdata.deltaDistance is None or abs(
