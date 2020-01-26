@@ -1,82 +1,67 @@
+import decimal
+
 '''
 Count significant figures fairly accurately
 '''
 
-
 def count_sig_figs(value):
     '''
-    This fucntion will count the sigfigs of a value
+    Count the sigfigs of a value
     '''
 
     if value == 0 or abs(value) == 9.8:
         return 90000
 
     sig_fig_count = 0
-    num_list = list(str(value))
+    num_list = list(float_to_str(value))
 
-    for index in range(len(num_list)):
+    decimalIndex = -1
 
-        try:
+    try:
+        decimalIndex = num_list.index('.')
 
-            fig = int(num_list[index])
+    except ValueError:
+        pass
 
-            if fig != 0:
+    if decimalIndex == -1:
+
+        nonZeroFound = False
+
+        for numbers in num_list[::-1]:
+
+            if numbers != '0':
+                nonZeroFound = True
                 sig_fig_count += 1
 
-            elif checkZeroSig(index, num_list, sig_fig_count):
+            elif numbers == '0' and nonZeroFound:
+                sig_fig_count += 1
+                
+    else:
+        
+        nonZeroFound = False
+        
+        removed = num_list.pop(decimalIndex)
+
+        for numbers in num_list:
+
+            if numbers != '0':
+                nonZeroFound = True
                 sig_fig_count += 1
 
-        except BaseException:
-            continue
+            elif numbers == '0' and nonZeroFound:
+                sig_fig_count += 1
 
     return sig_fig_count
 
-
-def checkZeroSig(index, num_list, sig_fig_count):
-    '''
-    Checks for significance in a zero from a list
-    '''
-
-    try:
-
-        decimal = num_list.index('.')
-
-        if index > decimal and sig_fig_count > 0:
-            return True
-
-    except BaseException:
-
-        if index == 0 or index == len(num_list):
-            return False
-
-        new_index = index + 1
-
-        if num_list[new_index] == '.' and sig_fig_count > 0:
-            return True
-
-        elif num_list[new_index] == '.' and sig_fig_count == 0:
-            return False
-
-        elif num_list[new_index] != '.' and sig_fig_count > 0:
-            fig = int(num_list[new_index])
-
-            if fig != 0:
-                return True
-
-            else:
-                return checkZeroSig(new_index, num_list, sig_fig_count)
-
-        elif num_list[new_index] != '.' and sig_fig_count == 0:
-            fig = int(num_list[new_index])
-
-            if fig != 0:
-                return True
-
-            else:
-                return checkZeroSig(new_index, num_list, sig_fig_count)
-
-        else:
-            return False
+def float_to_str(f):
+    ctx = decimal.Context()
+    ctx.prec = 100
+    """
+    Convert the given float to a string,
+    without resorting to scientific notation
+    """
+    d1 = ctx.create_decimal(repr(f))
+    return format(d1, 'f')
 
 
 def num_of_zeros(num):
