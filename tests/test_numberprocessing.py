@@ -23,7 +23,12 @@ def test_scientific_notation_seven():
 def test_scientific_notation_eight():
     assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
 '''
-
+def test_scientific_notation_nine():
+    assertEqual(physics.numberProcessing.scientificNotation(5, 2), '5')
+def test_scientific_notation_ten():
+    assertEqual(physics.numberProcessing.scientificNotation(10000, 1), '1 * 10^4')
+def test_scientific_notation_eleven():
+    assertEqual(physics.numberProcessing.scientificNotation(9999, 2), '9999')
 
 '''
 Test Sig Fig Counter for numbers that should return 1, 2, 3, 4, and 9000(special case numbers)
