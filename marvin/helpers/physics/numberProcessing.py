@@ -176,7 +176,12 @@ def cleanValue(value):
 
 def scientificNotation(value, sigFigs):
 
-    value = float_to_str(value)
+    negative = ''
+
+    if abs(value) != value:
+        negative = '-'
+
+    value = float_to_str(abs(value))
 
     if value == '0':
         return value
@@ -187,7 +192,7 @@ def scientificNotation(value, sigFigs):
 
     if float(value) >= 10000:
 
-        newValue = value[0] + point + value[1:sigFigs] + ' * 10^'
+        newValue = negative + value[0] + point + value[1:sigFigs] + ' * 10^'
         newValue += str(len(value[1:]))
         return newValue
 
@@ -211,11 +216,11 @@ def scientificNotation(value, sigFigs):
 
             i += 1
 
-        newValue = value[i] + point + value[i + 1:i + sigFigs] + ' * 10^-'
+        newValue = negative + value[i] + point + value[i + 1:i + sigFigs] + ' * 10^-'
         newValue += str(i - 1)
         return newValue
 
-    return value
+    return negative + value
 
 
 def formCleanup(value):
