@@ -47,5 +47,33 @@
   </div>
 </div>
 </form>
+{% if physicsdata.calculated == True %}
+<div class="grid-container">
+  <div>
+    <p>{{ physicsdata.initialVelocity }} m/s</p>
+    <p>Initial Velocity</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.finalVelocity }} m/s</p>
+    <p>Final Velocity</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.acceleration }} m/s^2</p>
+    <p>Acceleration</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.time }} s</p>
+    <p>Time</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.sigFigs }}</p>
+    <p>Significant Figure{% if physicsdata.sigFigs > 1 %}s{% endif %}</p>
+  </div>
+  <div>
+    <p>{{ physicsdata.deltaDistance }} m</p>
+    <p>Delta Distance</p>
+  </div>
+</div>
+{% endif %}
 </div>
 {% endblock %}
