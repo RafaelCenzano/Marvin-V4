@@ -15,6 +15,22 @@ def index():
     return page
 
 
+'''
+Music
+'''
+
+
+@app.route('/music', methods=['GET'])
+@app.route('/music/', methods=['GET'])
+def music():
+    pass
+
+
+
+'''
+Calculators
+'''
+
 @app.route('/calculators', methods=['GET'])
 @app.route('/calculators/', methods=['GET'])
 def calculators():
