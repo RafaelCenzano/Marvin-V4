@@ -23,7 +23,7 @@ Music
 @app.route('/music', methods=['GET'])
 @app.route('/music/', methods=['GET'])
 def music():
-    pass
+    return 'Hi'
 
 
 
@@ -34,6 +34,15 @@ Calculators
 @app.route('/calculators', methods=['GET'])
 @app.route('/calculators/', methods=['GET'])
 def calculators():
+
+    page = make_response(render_template('calculators.html'))
+    page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/calculators/main', methods=['GET'])
+@app.route('/calculators/main/', methods=['GET'])
+def calculator():
 
     page = make_response(render_template('calculators.html'))
     page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
