@@ -1,82 +1,82 @@
-'''
-Count significant figures fairly accurately
-'''
+import decimal
+
+
+def float_to_str(f):
+    '''
+    Convert the given float to a string,
+    without resorting to scientific notation
+    '''
+
+    ctx = decimal.Context()
+    ctx.prec = 50
+    d1 = ctx.create_decimal(repr(f))
+
+    return format(d1, 'f')
 
 
 def count_sig_figs(value):
     '''
-    This fucntion will count the sigfigs of a value
-    '''
-
-    if value == 0 or abs(value) == 9.8:
-        return 90000
-
-    sig_fig_count = 0
-    num_list = list(str(value))
-
-    for index in range(len(num_list)):
-
-        try:
-
-            fig = int(num_list[index])
-
-            if fig != 0:
-                sig_fig_count += 1
-
-            elif checkZeroSig(index, num_list, sig_fig_count):
-                sig_fig_count += 1
-
-        except BaseException:
-            continue
-
-    return sig_fig_count
-
-
-def checkZeroSig(index, num_list, sig_fig_count):
-    '''
-    Checks for significance in a zero from a list
+    Count the sigfigs of a value
     '''
 
     try:
-
-        decimal = num_list.index('.')
-
-        if index > decimal and sig_fig_count > 0:
-            return True
+        if float(value) == 0.0 or abs(float(value)) == 9.8:
+            return 90000
 
     except BaseException:
+        pass
 
-        if index == 0 or index == len(num_list):
-            return False
+    sig_fig_count = 0
+    num_list = [ch for ch in value if ch != ',']
 
-        new_index = index + 1
+    if num_list[0] == '-':
+        remove = num_list.pop(0)
 
-        if num_list[new_index] == '.' and sig_fig_count > 0:
-            return True
+    decimalIndex = -1
 
-        elif num_list[new_index] == '.' and sig_fig_count == 0:
-            return False
+    try:
+        decimalIndex = num_list.index('.')
 
-        elif num_list[new_index] != '.' and sig_fig_count > 0:
-            fig = int(num_list[new_index])
+    except ValueError:
+        pass
 
-            if fig != 0:
-                return True
+    if decimalIndex == -1:
 
-            else:
-                return checkZeroSig(new_index, num_list, sig_fig_count)
+        nonZeroFound = False
 
-        elif num_list[new_index] != '.' and sig_fig_count == 0:
-            fig = int(num_list[new_index])
+        for numbers in num_list[::-1]:
 
-            if fig != 0:
-                return True
+            if numbers != '0':
+                nonZeroFound = True
+                sig_fig_count += 1
 
-            else:
-                return checkZeroSig(new_index, num_list, sig_fig_count)
+            elif numbers == '0' and nonZeroFound:
+                sig_fig_count += 1
+
+    else:
+
+        if float(value).is_integer():
+
+            removed = num_list.pop(decimalIndex)
+
+            sig_fig_count = len(num_list)
 
         else:
-            return False
+
+            nonZeroFound = False
+
+            removed = num_list.pop(decimalIndex)
+
+            for numbers in num_list:
+
+                if numbers != '0':
+                    nonZeroFound = True
+                    sig_fig_count += 1
+
+                elif numbers == '0' and nonZeroFound:
+                    sig_fig_count += 1
+
+    return sig_fig_count
 
 
 def num_of_zeros(num):
@@ -94,7 +94,7 @@ def properRounding(value, sigFigs):
     Round values to proper sigfigs including floats or long integers
     '''
 
-    valueSigFigs = count_sig_figs(value)
+    valueSigFigs = count_sig_figs(str(value))
 
     # when num is int or float that ends in .0
     if isinstance(value, int) or value.is_integer():
@@ -174,6 +174,58 @@ def cleanValue(value):
     return value
 
 
+def scientificNotation(value, sigFigs):
+
+    negative = ''
+
+    if abs(value) != value:
+        negative = '-'
+
+    value = float_to_str(abs(value))
+
+    if value == '0':
+        return value
+
+    point = '.'
+    if sigFigs == 1:
+        point = ''
+
+    if float(value) >= 10000:
+
+        newValue = negative + value[0] + point + value[1:sigFigs] + ' * 10^'
+        newValue += str(len(value[1:]))
+        return newValue
+
+    elif float(value) <= 0.0001:
+
+        listValue = list(value)
+
+        try:
+            popped = listValue.pop(listValue.index('.'))
+
+        except ValueError:
+            pass
+
+        i = 0
+        number = 0
+
+        while number == 0:
+
+            if listValue[i] != '0':
+                number = i
+
+            i += 1
+
+        while len(value[i] + value[i + 1:i + sigFigs]) < sigFigs:
+            value += '0'
+
+        newValue = negative + value[i] + point + value[i + 1:i + sigFigs] + ' * 10^-'
+        newValue += str(i - 1)
+        return newValue
+
+    return negative + value
+
+
 def formCleanup(value):
     '''
     Cleanup inputs from form
@@ -182,7 +234,7 @@ def formCleanup(value):
     if value is None:
         return None
 
-    split = [ch for ch in value]
+    split = [ch for ch in value if ch != ',']
 
     try:
 

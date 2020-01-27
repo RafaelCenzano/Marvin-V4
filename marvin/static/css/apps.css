@@ -17,11 +17,8 @@
 	font-size: 30px;
 	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
-	border: none;
 }
 
 .app-container .app:hover {
-	border: 4px;
-	border-color: rgb(160, 185, 160);
-	color: rgb(160, 185, 160);
+	color: rgb(49, 110, 43);
 }

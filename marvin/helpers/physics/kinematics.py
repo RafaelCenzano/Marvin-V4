@@ -1,6 +1,6 @@
 # Imports
 import math
-from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue
+from marvin.helpers.physics.numberProcessing import count_sig_figs, properRounding, checkValue, cleanValue, scientificNotation
 
 '''
 Kinematics
@@ -17,7 +17,8 @@ class Kinematics:
         finalVelocity=None,
         time=None,
         acceleration=None,
-        deltaDistance=None
+        deltaDistance=None,
+        sigFigs=None
     ):
 
         self.initialVelocity = initialVelocity
@@ -25,31 +26,14 @@ class Kinematics:
         self.time = time
         self.acceleration = acceleration
         self.deltaDistance = deltaDistance
-
-        sigFigsList = []
-
-        if self.initialVelocity is not None:
-            sigFigsList.append(count_sig_figs(self.initialVelocity))
-        if self.finalVelocity is not None:
-            sigFigsList.append(count_sig_figs(self.finalVelocity))
-        if self.time is not None:
-            sigFigsList.append(count_sig_figs(self.time))
-        if self.acceleration is not None:
-            sigFigsList.append(count_sig_figs(self.acceleration))
-        if self.deltaDistance is not None:
-            sigFigsList.append(count_sig_figs(self.deltaDistance))
-
-        tempCount = sigFigsList[0]
-
-        for item in sigFigsList:
-            if item < tempCount:
-                tempCount = item
-
-        self.sigFigs = tempCount
-
+        self.sigFigs = sigFigs
         self.record = []
 
     def calculations(self):
+        '''
+        Run through every calculation until everything is
+        calculated or until loop limit reached
+        '''
         count = 0
 
         while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False or checkValue(self.acceleration) == False):
@@ -66,11 +50,11 @@ class Kinematics:
             self.timeOne()
             count += 1
 
-        self.initialVelocity = cleanValue(self.initialVelocity)
-        self.finalVelocity = cleanValue(self.finalVelocity)
-        self.time = cleanValue(self.time)
-        self.acceleration = cleanValue(self.acceleration)
-        self.deltaDistance = cleanValue(self.deltaDistance)
+        self.initialVelocity = scientificNotation(cleanValue(self.initialVelocity), self.sigFigs)
+        self.finalVelocity = scientificNotation(cleanValue(self.finalVelocity), self.sigFigs)
+        self.time = scientificNotation(cleanValue(self.time), self.sigFigs)
+        self.acceleration = scientificNotation(cleanValue(self.acceleration), self.sigFigs)
+        self.deltaDistance = scientificNotation(cleanValue(self.deltaDistance), self.sigFigs)
 
     def finalVelocityOne(self):
         '''
