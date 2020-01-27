@@ -50,11 +50,11 @@ class Kinematics:
             self.timeOne()
             count += 1
 
-        self.initialVelocity = scientificNotation(cleanValue(self.initialVelocity))
-        self.finalVelocity = scientificNotation(cleanValue(self.finalVelocity))
-        self.time = scientificNotation(cleanValue(self.time))
-        self.acceleration = scientificNotation(cleanValue(self.acceleration))
-        self.deltaDistance = scientificNotation(cleanValue(self.deltaDistance))
+        self.initialVelocity = scientificNotation(cleanValue(self.initialVelocity), self.sigFigs)
+        self.finalVelocity = scientificNotation(cleanValue(self.finalVelocity), self.sigFigs)
+        self.time = scientificNotation(cleanValue(self.time), self.sigFigs)
+        self.acceleration = scientificNotation(cleanValue(self.acceleration), self.sigFigs)
+        self.deltaDistance = scientificNotation(cleanValue(self.deltaDistance), self.sigFigs)
 
     def finalVelocityOne(self):
         '''
