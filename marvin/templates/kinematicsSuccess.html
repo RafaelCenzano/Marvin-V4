@@ -35,62 +35,7 @@
     <p>{{ physicsdata.deltaDistance }} m</p>
     <p>Delta Distance</p>
   </div>
-  <div><a id="submit" onclick="showMath()">View the math</a></div>
   <div><a id="submit" href="{{ url_for('kinematics') }}">Run another calculation!</a></div>
 </div>
-<div id="mathstuff" hidden>
-  {% for equations in physicsdata.record %}
-    <br>
-    {% if equations == 1 %}
-      <div>Equation: Vf = Vi + (a * t)</div>
-      <div>Vf = {{ physicsdata.initialVelocity }} + ({{ physicsdata.acceleration }} * {{ physicsdata.time }})</div>
-      <div>Vf = {{ physicsdata.initialVelocity }} + ({{ physicsdata.acceleration * physicsdata.time }})</div>
-      <div>Vf = {{ physicsdata.finalVelocity }} 
-        {% if ((physicsdata.acceleration * physicsdata.time) + physicsdata.initialVelocity) != physicsdata.finalVelocity %}
-          ({{ (physicsdata.acceleration * physicsdata.time) + physicsdata.initialVelocity }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
-        {% endif %}
-    {% elif equations == 2 %}
-      <div>Original equation: Vf = Vi + (a * t)</div>
-      <div>Derived equation: Vi = Vf - (a * t)</div>
-      <div>Vi = {{ physicsdata.finalVelocity }} - ({{ physicsdata.acceleration }} * {{ physicsdata.time }})</div>
-      <div>Vi = {{ physicsdata.finalVelocity }} - ({{ physicsdata.acceleration * physicsdata.time }})</div>
-      <div>Vi = {{ physicsdata.initialVelocity }}
-        {% if ((physicsdata.acceleration * physicsdata.time) - physicsdata.finalVelocity) != physicsdata.initialVelocity %}
-          ({{ (physicsdata.acceleration * physicsdata.time) - physicsdata.finalVelocity }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
-        {% endif %}
-    {% elif equations == 3 %}
-      <div>Original equation: Vf = Vi + (a * t)</div>
-      <div>Derived equation: a = (Vf - Vi) / t</div>
-      <div>a = ({{ physicsdata.finalVelocity }} - {{ physicsdata.initialVelocity }}) / {{ physicsdata.time }})</div>
-      <div>a = ({{ physicsdata.finalVelocity - physicsdata.initialVelocity}}) / physicsdata.time }}</div>
-      <div>a = {{ physicsdata.acceleration }}
-        {% if ((physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.time) != physicsdata.acceleration %}
-          ({{ (physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.time }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
-        {% endif %}
-    {% elif equations == 4 %}
-      <div>Original equation: Vf = Vi + (a * t)</div>
-      <div>Derived equation: t = (Vf - Vi) / a</div>
-      <div>t = ({{ physicsdata.finalVelocity }} - {{ physicsdata.initialVelocity }}) / {{ physicsdata.acceleration }})</div>
-      <div>t = ({{ physicsdata.finalVelocity - physicsdata.initialVelocity}}) / physicsdata.acceleration }}</div>
-      <div>t = {{ physicsdata.time }}
-        {% if ((physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.acceleration) != physicsdata.time %}
-          ({{ (physicsdata.finalVelocity - physicsdata.initialVelocity) / physicsdata.acceleration }} rounded to contain {{ physicsdata.sigFigs }} significant figure{% if physicsdata.sigFigs > 1 %}s{% endif %})</div>
-        {% endif %}
-    {% endif %}
-  {% endfor %}
 </div>
-</div>
-{% endblock %}
-
-{% block trailing_js %}
-<script>
-function showMath() {
-  var x = document.getElementById("mathstuff");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
-</script>
 {% endblock %}
