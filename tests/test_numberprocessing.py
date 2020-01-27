@@ -6,35 +6,82 @@ Test Scientific Notation conversion function
 
 
 def test_scientific_notation_one():
-    assertEqual(physics.numberProcessing.scientificNotation(500000, 2), '5.0 * 10^5')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            500000, 2), '5.0 * 10^5')
+
+
 def test_scientific_notation_two():
-    assertEqual(physics.numberProcessing.scientificNotation(65420000, 4), '6.542 * 10^7')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            65420000, 4), '6.542 * 10^7')
+
+
 def test_scientific_notation_three():
-    assertEqual(physics.numberProcessing.scientificNotation(823000000, 4), '8.230 * 10^8')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            823000000, 4), '8.230 * 10^8')
+
+
 def test_scientific_notation_four():
-    assertEqual(physics.numberProcessing.scientificNotation(90000, 3), '9.00 * 10^4')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            90000, 3), '9.00 * 10^4')
+
 
 def test_scientific_notation_five():
-    assertEqual(physics.numberProcessing.scientificNotation(0.00002, 1), '2 * 10^-5')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            0.00002, 1), '2 * 10^-5')
+
+
 def test_scientific_notation_six():
-    assertEqual(physics.numberProcessing.scientificNotation(0.00000434, 2), '4.3 * 10^-6')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            0.00000434, 2), '4.3 * 10^-6')
+
+
 def test_scientific_notation_seven():
-    assertEqual(physics.numberProcessing.scientificNotation(0.000002342, 4), '2.342 * 10^-6')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            0.000002342, 4), '2.342 * 10^-6')
+
+
 def test_scientific_notation_eight():
-    assertEqual(physics.numberProcessing.scientificNotation(0.0000000343, 3), '3.43 * 10^-8')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            0.0000000343, 3), '3.43 * 10^-8')
+
 
 def test_scientific_notation_nine():
     assertEqual(physics.numberProcessing.scientificNotation(5, 2), '5')
+
+
 def test_scientific_notation_ten():
-    assertEqual(physics.numberProcessing.scientificNotation(10000, 1), '1 * 10^4')
+    assertEqual(
+        physics.numberProcessing.scientificNotation(
+            10000, 1), '1 * 10^4')
+
+
 def test_scientific_notation_eleven():
     assertEqual(physics.numberProcessing.scientificNotation(9999, 2), '9999')
+
+
 def test_scientific_notation_thirteen():
     assertEqual(physics.numberProcessing.scientificNotation(0.002, 2), '0.002')
+
+
 def test_scientific_notation_fourteen():
     assertEqual(physics.numberProcessing.scientificNotation(9999, 2), '9999')
+
+
 def test_scientific_notation_fifteen():
     assertEqual(physics.numberProcessing.scientificNotation(9999, 2), '9999')
+
+
+def test_scientific_notation_sixteen():
+    assertEqual(physics.numberProcessing.scientificNotation(0, 2), '0')
+
 
 '''
 Test Sig Fig Counter for numbers that should return 1, 2, 3, 4, and 9000(special case numbers)
@@ -42,28 +89,92 @@ Test Sig Fig Counter for numbers that should return 1, 2, 3, 4, and 9000(special
 
 
 def test_sig_fig_counter_for_one():
-    valuesToTest = ['20', '700', '0.7', '0.009', '1000', '5', '-2', '-0.03', '-0.2']
+    valuesToTest = [
+        '20',
+        '700',
+        '0.7',
+        '0.009',
+        '1000',
+        '5',
+        '-2',
+        '-0.03',
+        '-0.2']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 1)
 
 
 def test_sig_fig_counter_for_two():
-    valuesToTest = ['22', '250','0.23', '0.0055', '51000',
-                    '-77', '-0.53', '-0.0034', '92', '0.0055', '4.5', '34','-0.00034', '5.0', '1.0', '51,000']
+    valuesToTest = [
+        '22',
+        '250',
+        '0.23',
+        '0.0055',
+        '51000',
+        '-77',
+        '-0.53',
+        '-0.0034',
+        '92',
+        '0.0055',
+        '4.5',
+        '34',
+        '-0.00034',
+        '5.0',
+        '1.0',
+        '51,000']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 2)
 
 
 def test_sig_fig_counter_for_three():
-    valuesToTest = ['265', '1250', '0.434', '0.0155', '512', '1.23', '0.701',
-                    '-826', '-93300', '-0.234', '0.903','-0.000999', '50.2', '345', '34.0', '20.1', '4.00', '1.02', '80.0', '231,000']
+    valuesToTest = [
+        '265',
+        '1250',
+        '0.434',
+        '0.0155',
+        '512',
+        '1.23',
+        '0.701',
+        '-826',
+        '-93300',
+        '-0.234',
+        '0.903',
+        '-0.000999',
+        '50.2',
+        '345',
+        '34.0',
+        '20.1',
+        '4.00',
+        '1.02',
+        '80.0',
+        '231,000']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 3)
 
 
 def test_sig_fig_counter_for_four():
-    valuesToTest = ['1011', '4567', '56.71', '123.7', '1.348', '0.01234', '0.0004444', '-7729',
-                    '-2787000', '-0.8633', '-0.2703', '-0.002048', '700.3','200.2', '30.22', '932.0', '204.0', '23.00', '-2.000', '900.0', '923,200', '1,234,000']
+    valuesToTest = [
+        '1011',
+        '4567',
+        '56.71',
+        '123.7',
+        '1.348',
+        '0.01234',
+        '0.0004444',
+        '-7729',
+        '-2787000',
+        '-0.8633',
+        '-0.2703',
+        '-0.002048',
+        '700.3',
+        '200.2',
+        '30.22',
+        '932.0',
+        '204.0',
+        '23.00',
+        '-2.000',
+        '900.0',
+        '923,200',
+        '1,234,000']
     for value in valuesToTest:
         assertEqual(physics.numberProcessing.count_sig_figs(value), 4)
 
