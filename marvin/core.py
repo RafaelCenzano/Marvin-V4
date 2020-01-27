@@ -131,8 +131,7 @@ def kinematics():
             
             physicsdata.calculations()
 
-            if physicsdata.initialVelocity is None or physicsdata.finalVelocity is None or physicsdata.time is None or physicsdata.acceleration is None or physicsdata.deltaDistance is None or abs(
-                    physicsdata.deltaDistance) != physicsdata.deltaDistance or abs(physicsdata.time) != physicsdata.time:
+            if physicsdata.initialVelocity is None or physicsdata.finalVelocity is None or physicsdata.time is None or physicsdata.acceleration is None or physicsdata.deltaDistance is None or physicsdata.deltaDistance[0] == '-' or physicsdata.time[0] == '-':
                 flash(
                     'Error with computing, couldn\'t compute or value was negative when it shounldn\'t have been negative',
                     'error')
