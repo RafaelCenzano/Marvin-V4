@@ -216,6 +216,9 @@ def scientificNotation(value, sigFigs):
 
             i += 1
 
+        while len(value[i] + value[i + 1:i + sigFigs]) < sigFigs:
+            value += '0'
+
         newValue = negative + value[i] + point + value[i + 1:i + sigFigs] + ' * 10^-'
         newValue += str(i - 1)
         return newValue
