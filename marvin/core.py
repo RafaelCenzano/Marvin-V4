@@ -147,18 +147,20 @@ def kinematics():
 
             flash('Successfully calculated!', 'success')
 
-            page = make_response(
+    else:
+        physicsdata = physics.kinematics.KinematicsFake()
+
+        if 'page' in request.cookies:
+            page = request.cookies['page']
+            if page == 'kinematics':
+                flash('You need to input at least 3 givens', 'error')
+
+    page = make_response(
                 render_template(
-                    'kinematicsSuccess.html',
-                    physicsdata=physicsdata))
-            page.set_cookie(
-                'page', 'kinematics', max_age=60 * 60 * 24 * 365)
-            return page
-
-        flash('You need to input at least 3 givens', 'error')
-
-    page = make_response(render_template('kinematics.html', form=form))
-    page.set_cookie('page', 'kinematics', max_age=60 * 60 * 24 * 365)
+                    'kinematics.html',
+                    physicsdata=physicsdata, form=form))
+    page.set_cookie(
+        'page', 'kinematics', max_age=60 * 60 * 24 * 365)
     return page
 
 
