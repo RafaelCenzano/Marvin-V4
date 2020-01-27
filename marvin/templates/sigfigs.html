@@ -9,19 +9,21 @@
 {% block content %}
 <div class="body-wrapper">
 {% include "flash.html" %}
-<h1 class="center-align">Marvin | SigFigs</h1>
+<h1 class="center-align">Marvin | Sig Figs</h1>
 <form autocomplete="off" action="" method="POST">
-  <div class="grid-container">
-  <div>
+  <div class="center-align">
   <p>
     {{ form.num }}<br>
     {{ form.num.label }}
   </p>
-  </div>
-  <div>
   <p>{{ form.submit() }}</p>
   </div>
-</div>
 </form>
+{% if numCheck %}
+<div class="center-align general">
+  <p>{{ number }} has {{ num }} significant figure{% if num > 1 %}s{% endif %}</p>
+</div>
+{% endif %}
+<div class="center-align"><a id="submit" href="https://www.youtube.com/watch?v=GVRKRsegiCE" target="_blank">How do you count sigfigs?</a></div>
 </div>
 {% endblock %}

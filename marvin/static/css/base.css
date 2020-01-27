@@ -78,3 +78,26 @@ body {
 .closebtn:hover {
   color: black;
 }
+
+.generalButton {
+  background-color: rgb(48, 95, 171);
+  border: none;
+  color: rgb(117, 117, 117);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}

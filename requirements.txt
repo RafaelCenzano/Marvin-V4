@@ -38,4 +38,4 @@ wcwidth==0.1.8
 Werkzeug==0.16.0
 WTForms==2.2.1
 youtube-dl==2020.1.24
-zipp==2.0.1
+zipp==2.1.0
