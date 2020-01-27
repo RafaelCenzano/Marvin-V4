@@ -94,6 +94,18 @@ def test_scientific_notation_eighteen():
 def test_scientific_notation_nineteen():
     assertEqual(physics.numberProcessing.scientificNotation(-3092300, 1), '-3 * 10^6')
 
+def test_scientific_notation_twenty():
+    assertEqual(physics.numberProcessing.scientificNotation(0.0000001, 4), '1.000 * 10^-7')
+
+def test_scientific_notation_twenty_one():
+    assertEqual(physics.numberProcessing.scientificNotation(-0.0000001, 3), '-1.00 * 10^-7')
+
+def test_scientific_notation_twenty_two():
+    assertEqual(physics.numberProcessing.scientificNotation(-0.00000074, 3), '-7.40 * 10^-7')
+
+def test_scientific_notation_twenty_two():
+    assertEqual(physics.numberProcessing.scientificNotation(0.00000000070095, 7), '7.009500 * 10^-10')
+
 
 '''
 Test Sig Fig Counter for numbers that should return 1, 2, 3, 4, and 9000(special case numbers)
