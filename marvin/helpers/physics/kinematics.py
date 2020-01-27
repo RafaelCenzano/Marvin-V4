@@ -28,6 +28,7 @@ class Kinematics:
         self.deltaDistance = deltaDistance
         self.sigFigs = sigFigs
         self.record = []
+        self.calculated = False
 
     def calculations(self):
         '''
@@ -55,6 +56,7 @@ class Kinematics:
         self.time = scientificNotation(cleanValue(self.time), self.sigFigs)
         self.acceleration = scientificNotation(cleanValue(self.acceleration), self.sigFigs)
         self.deltaDistance = scientificNotation(cleanValue(self.deltaDistance), self.sigFigs)
+        self.calculated = True
 
     def finalVelocityOne(self):
         '''
@@ -249,3 +251,9 @@ class Kinematics:
             self.deltaDistance = properRounding(answer, self.sigFigs)
 
             self.record.append(9)
+
+
+class KinematicsFake():
+
+    def __init__(self):
+        self.calculated = False
