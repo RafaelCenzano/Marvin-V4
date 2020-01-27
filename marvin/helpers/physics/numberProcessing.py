@@ -58,7 +58,7 @@ def count_sig_figs(value):
         if float(value).is_integer():
 
             removed = num_list.pop(decimalIndex)
-            
+
             sig_fig_count = len(num_list)
 
         else:
@@ -178,6 +178,9 @@ def scientificNotation(value, sigFigs):
 
     value = float_to_str(value)
 
+    if value == '0':
+        return value
+
     point = '.'
     if sigFigs == 1:
         point = ''
@@ -191,7 +194,12 @@ def scientificNotation(value, sigFigs):
     elif float(value) <= 0.0001:
 
         listValue = list(value)
-        popped = listValue.pop(1)
+
+        try:
+            popped = listValue.pop(listValue.index('.'))
+
+        except ValueError:
+            pass
 
         i = 0
         number = 0
