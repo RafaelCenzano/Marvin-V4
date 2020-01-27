@@ -17,8 +17,14 @@
 	font-size: 30px;
 	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
+	text-decoration: none;
 }
 
 .app-container .app:hover {
 	color: rgb(49, 110, 43);
+}
+
+.description{
+	text-decoration: none;
+	font-size: 20px;
 }
