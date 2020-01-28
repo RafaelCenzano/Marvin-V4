@@ -29,3 +29,4 @@ class CalculatorForm(FlaskForm):
         csrf = False
     display = StringField('Calculator input')
     submit = SubmitField('=')
+    past = ''
