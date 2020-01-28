@@ -25,6 +25,6 @@ nav li a:hover {
   background-color: #111;
 }
 
-nav li .right {
+.right-nav {
   float: right;
 }
