@@ -3,13 +3,6 @@ from marvin.helpers import physics
 from flask import render_template, redirect, url_for, request, flash, make_response
 
 
-def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-
-
 '''
 Views
 '''
@@ -26,7 +19,11 @@ def index():
 @app.route('/shutdown', methods=['GET', 'POST'])
 def shutdown():
 
-    shutdown_server()
+    shutdownFunc = request.environ.get('werkzeug.server.shutdown')
+    if shutdownFunc is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    shutdownFunc()
+
     return render_template('shutdown.html')
 
     
@@ -38,7 +35,10 @@ Music
 @app.route('/music', methods=['GET'])
 @app.route('/music/', methods=['GET'])
 def music():
-    return 'Hi'
+
+    page = make_response(render_template('music.html'))
+    page.set_cookie('page', 'music', max_age=60 * 60 * 24 * 365)
+    return page
 
 
 
@@ -66,7 +66,7 @@ def calculator():
             form.display.data = repr(eval(form.display.data))
 
     page = make_response(render_template('calculator.html', form=form))
-    page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('page', 'calculator', max_age=60 * 60 * 24 * 365)
     return page
 
 
