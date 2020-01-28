@@ -25,8 +25,11 @@ def index():
 
 @app.route('/shutdown', methods=['GET', 'POST'])
 def shutdown():
+
     shutdown_server()
-    return 'Server shutting down...'
+    return render_template('shutdown.html')
+
+    
 '''
 Music
 '''
