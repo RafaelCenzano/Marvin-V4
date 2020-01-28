@@ -61,12 +61,22 @@ def calculator():
 
     form = forms.CalculatorForm()
 
-    if request.method == 'POST':
-        if form.display.data != '':
-            form.display.data = repr(eval(form.display.data))
+    past = ''
 
-    page = make_response(render_template('calculator.html', form=form))
+    if request.method == 'POST' and form.display.data != '':
+
+        answer = repr(eval(form.display.data))
+
+        if answer != form.display.data:
+            past = form.display.data + ' = ' + answer
+            form.display.data = answer
+        else:
+            past = request.cookies['past']
+
+
+    page = make_response(render_template('calculator.html', form=form, past=past))
     page.set_cookie('page', 'calculator', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('past', past, max_age=60 * 60 * 24 * 365)
     return page
 
 
