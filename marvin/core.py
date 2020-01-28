@@ -2,6 +2,14 @@ from marvin import app, forms
 from marvin.helpers import physics
 from flask import render_template, redirect, url_for, request, flash, make_response
 
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+
 '''
 Views
 '''
@@ -15,6 +23,10 @@ def index():
     return page
 
 
+@app.route('/shutdown', methods=['GET', 'POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 '''
 Music
 '''
