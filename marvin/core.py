@@ -1,6 +1,7 @@
 from marvin import app, forms
-from marvin.helpers import physics
+from marvin.helpers import physics, numberProcessing
 from flask import render_template, redirect, url_for, request, flash, make_response
+
 
 '''
 Views
@@ -15,12 +16,67 @@ def index():
     return page
 
 
+@app.route('/shutdown', methods=['GET', 'POST'])
+def shutdown():
+
+    shutdownFunc = request.environ.get('werkzeug.server.shutdown')
+    if shutdownFunc is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    shutdownFunc()
+
+    return render_template('shutdown.html')
+
+    
+'''
+Music
+'''
+
+
+@app.route('/music', methods=['GET'])
+@app.route('/music/', methods=['GET'])
+def music():
+
+    page = make_response(render_template('music.html'))
+    page.set_cookie('page', 'music', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+
+'''
+Calculators
+'''
+
 @app.route('/calculators', methods=['GET'])
 @app.route('/calculators/', methods=['GET'])
 def calculators():
 
     page = make_response(render_template('calculators.html'))
     page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
+    return page
+
+
+@app.route('/calculators/main', methods=['GET', 'POST'])
+@app.route('/calculators/main/', methods=['GET', 'POST'])
+def calculator():
+
+    form = forms.CalculatorForm()
+
+    past = ''
+
+    if request.method == 'POST' and form.display.data != '':
+
+        answer = repr(eval(form.display.data))
+
+        if answer != form.display.data:
+            past = form.display.data + ' = ' + answer
+            form.display.data = answer
+        else:
+            past = request.cookies['past']
+
+
+    page = make_response(render_template('calculator.html', form=form, past=past))
+    page.set_cookie('page', 'calculator', max_age=60 * 60 * 24 * 365)
+    page.set_cookie('past', past, max_age=60 * 60 * 24 * 365)
     return page
 
 
@@ -40,7 +96,7 @@ def kinematics():
                 temp = float(form.vi.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vi.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.vi.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -56,7 +112,7 @@ def kinematics():
                 temp = float(form.vf.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vf.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.vf.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -74,7 +130,7 @@ def kinematics():
                     raise BaseException
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.t.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.t.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -90,7 +146,7 @@ def kinematics():
                 temp = float(form.a.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.a.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.a.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -108,7 +164,7 @@ def kinematics():
                     raise BaseException
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.d.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.d.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -122,11 +178,11 @@ def kinematics():
         if count >= 3:
 
             physicsdata = physics.kinematics.Kinematics(
-                physics.numberProcessing.formCleanup(form.vi.data),
-                physics.numberProcessing.formCleanup(form.vf.data),
-                physics.numberProcessing.formCleanup(form.t.data),
-                physics.numberProcessing.formCleanup(form.a.data),
-                physics.numberProcessing.formCleanup(form.d.data),
+                numberProcessing.formCleanup(form.vi.data),
+                numberProcessing.formCleanup(form.vf.data),
+                numberProcessing.formCleanup(form.t.data),
+                numberProcessing.formCleanup(form.a.data),
+                numberProcessing.formCleanup(form.d.data),
                 sigFigs)
             
             physicsdata.calculations()
@@ -189,7 +245,7 @@ def sigfigs():
             flash('Input must be a number, input number removed', 'warning')
 
     if check:
-        num = physics.numberProcessing.count_sig_figs(form.num.data)
+        num = numberProcessing.count_sig_figs(form.num.data)
 
         flash('Successfully counted!', 'success')
 

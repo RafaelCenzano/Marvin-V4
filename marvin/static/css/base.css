@@ -80,9 +80,9 @@ body {
 }
 
 .generalButton {
-  background-color: rgb(48, 95, 171);
+  background-color: rgb(53, 111, 204);
   border: none;
-  color: rgb(117, 117, 117);
+  color: rgb(237, 237, 237);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -93,11 +93,11 @@ body {
 }
 
 .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: red;
-   color: white;
-   text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }
