@@ -14,12 +14,13 @@
    <table class="center">
       <tr>
          <td colspan="4">
+            <p>{{ past }}</p>
             <p>{{ form.display }}</p>
          </td>
       </tr>
       <tr>
          <td><input class="calculator" id="submit" type="button" name="backspace" value="&#x2190;" onclick="calculator.display.value = calculator.display.value.substring(0, calculator.display.value.length - 1)"></td>
-         <td><input class="calculator" id="submit" type="button" name="clear" value="AC" onclick="calculator.display.value = ''"></td>
+         <td><input class="calculator" id="submit" type="button" name="clear" value="C" onclick="calculator.display.value = ''"></td>
       </tr>
       <tr>
          <td><input class="calculator" id="submit" type="button" name="one"   value="1" onclick="calculator.display.value += '1'"></td>
