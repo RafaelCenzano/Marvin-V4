@@ -1,5 +1,5 @@
 from marvin import app, forms
-from marvin.helpers import physics
+from marvin.helpers import physics, numberProcessing
 from flask import render_template, redirect, url_for, request, flash, make_response
 
 
@@ -96,7 +96,7 @@ def kinematics():
                 temp = float(form.vi.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vi.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.vi.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -112,7 +112,7 @@ def kinematics():
                 temp = float(form.vf.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.vf.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.vf.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -130,7 +130,7 @@ def kinematics():
                     raise BaseException
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.t.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.t.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -146,7 +146,7 @@ def kinematics():
                 temp = float(form.a.data)
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.a.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.a.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -164,7 +164,7 @@ def kinematics():
                     raise BaseException
                 count += 1
 
-                sigFigsNum = physics.numberProcessing.count_sig_figs(form.d.data)
+                sigFigsNum = numberProcessing.count_sig_figs(form.d.data)
 
                 if sigFigsNum < sigFigs:
                     sigFigs = sigFigsNum
@@ -178,11 +178,11 @@ def kinematics():
         if count >= 3:
 
             physicsdata = physics.kinematics.Kinematics(
-                physics.numberProcessing.formCleanup(form.vi.data),
-                physics.numberProcessing.formCleanup(form.vf.data),
-                physics.numberProcessing.formCleanup(form.t.data),
-                physics.numberProcessing.formCleanup(form.a.data),
-                physics.numberProcessing.formCleanup(form.d.data),
+                numberProcessing.formCleanup(form.vi.data),
+                numberProcessing.formCleanup(form.vf.data),
+                numberProcessing.formCleanup(form.t.data),
+                numberProcessing.formCleanup(form.a.data),
+                numberProcessing.formCleanup(form.d.data),
                 sigFigs)
             
             physicsdata.calculations()
@@ -245,7 +245,7 @@ def sigfigs():
             flash('Input must be a number, input number removed', 'warning')
 
     if check:
-        num = physics.numberProcessing.count_sig_figs(form.num.data)
+        num = numberProcessing.count_sig_figs(form.num.data)
 
         flash('Successfully counted!', 'success')
 
