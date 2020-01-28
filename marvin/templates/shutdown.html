@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Shutdown{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+{% include "flash.html" %}
+<h1 class="center-align">Marvin shutting down<span id="wait">.</span></h1>
+</div>
+{% endblock %}
+
+{% block trailing_js %}
+<script>
+    window.dotsGoingUp = true;
+    var dots = window.setInterval( function() {
+        var wait = document.getElementById("wait");
+        if ( window.dotsGoingUp ) 
+            wait.innerHTML += ".";
+        else {
+            wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
+            if ( wait.innerHTML === "")
+                window.dotsGoingUp = true;
+        }
+        if ( wait.innerHTML.length > 9 )
+            window.dotsGoingUp = false;
+        }, 100);
+</script>
+{% endblock %}
