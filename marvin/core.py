@@ -40,11 +40,17 @@ def calculators():
     return page
 
 
-@app.route('/calculators/main', methods=['GET'])
-@app.route('/calculators/main/', methods=['GET'])
+@app.route('/calculators/main', methods=['GET', 'POST'])
+@app.route('/calculators/main/', methods=['GET', 'POST'])
 def calculator():
 
-    page = make_response(render_template('calculators.html'))
+    form = forms.CalculatorForm()
+
+    if request.method == 'POST':
+        if form.display.data != '':
+            form.display.data = repr(eval(form.display.data))
+
+    page = make_response(render_template('calculator.html', form=form))
     page.set_cookie('page', 'calculators', max_age=60 * 60 * 24 * 365)
     return page
 
