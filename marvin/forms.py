@@ -22,3 +22,10 @@ class SigFigForm(FlaskForm):
         csrf = False
     num = StringField('Number to count')
     submit = SubmitField('Count')
+
+
+class CalculatorForm(FlaskForm):
+    class Meta:
+        csrf = False
+    display = StringField('Calculator input')
+    submit = SubmitField('=')

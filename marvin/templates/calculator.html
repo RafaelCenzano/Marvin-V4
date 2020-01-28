@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Calculator{% endblock %}
+
+{% block head_css %}
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="body-wrapper">
+{% include "flash.html" %}
+<h1 class="center-align">Marvin | Calculator</h1>
+<form autocomplete="off" action="" method="POST" name="calculator">
+   <table class="center">
+      <tr>
+         <td colspan="4">
+            <p>{{ past }}</p>
+            <p>{{ form.display }}</p>
+         </td>
+      </tr>
+      <tr>
+         <td><input class="calculator" id="submit" type="button" name="backspace" value="&#x2190;" onclick="calculator.display.value = calculator.display.value.substring(0, calculator.display.value.length - 1)"></td>
+         <td><input class="calculator" id="submit" type="button" name="clear" value="C" onclick="calculator.display.value = ''"></td>
+      </tr>
+      <tr>
+         <td><input class="calculator" id="submit" type="button" name="one"   value="1" onclick="calculator.display.value += '1'"></td>
+         <td><input class="calculator" id="submit" type="button" name="two"   value="2" onclick="calculator.display.value += '2'"></td>
+         <td><input class="calculator" id="submit" type="button" name="three" value="3" onclick="calculator.display.value += '3'"></td>
+         <td><input class="calculator" id="submit" type="button" name="plus"  value="+" onclick="calculator.display.value += '+'"></td>
+      </tr>
+      <tr>
+         <td><input class="calculator" id="submit" type="button" name="four"  value="4" onclick="calculator.display.value += '4'"></td>
+         <td><input class="calculator" id="submit" type="button" name="five"  value="5" onclick="calculator.display.value += '5'"></td>
+         <td><input class="calculator" id="submit" type="button" name="six"   value="6" onclick="calculator.display.value += '6'"></td>
+         <td><input class="calculator" id="submit" type="button" name="minus" value="-" onclick="calculator.display.value += '-'"></td>
+      </tr>
+      <tr>
+         <td><input class="calculator" id="submit" type="button" name="seven" value="7" onclick="calculator.display.value += '7'"></td>
+         <td><input class="calculator" id="submit" type="button" name="eight" value="8" onclick="calculator.display.value += '8'"></td>
+         <td><input class="calculator" id="submit" type="button" name="nine"  value="9" onclick="calculator.display.value += '9'"></td>
+         <td><input class="calculator" id="submit" type="button" name="times" value="x" onclick="calculator.display.value += '*'"></td>
+      </tr>
+      <tr>
+         <td><input class="calculator" id="submit" type="button" name="clear" value="C" onclick="calculator.display.value = ''"></td>
+         <td><input class="calculator" id="submit" type="button" name="zero"  value="0" onclick="calculator.display.value += '0'"></td>
+         <td><input class="calculator" id="submit" type="submit" name="submit"value="="></td>
+         <td><input class="calculator" id="submit" type="button" name="div"   value="/" onclick="calculator.display.value += '/'"></td>
+      </tr>
+   </table>
+</form>
+{% endblock %}

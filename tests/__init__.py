@@ -14,6 +14,7 @@ sys.path.insert(
             '../marvin/helpers')))
 
 import physics
+from marvin.helpers import numberProcessing
 
 def assertEqual(value, equalTo):
     assert value == equalTo

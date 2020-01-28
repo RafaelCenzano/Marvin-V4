@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Calculators{% endblock %}
+{% block title %}Music{% endblock %}
 
 {% block head_css %}
 <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/apps.css') }}">
@@ -9,7 +9,7 @@
 {% block content %}
 <div class="body-wrapper">
 {% include "flash.html" %}
-<h1 class="center-align">Marvin | Calculators</h1>
+<h1 class="center-align">Marvin | Music</h1>
 <div class="app-container">
   <a href="{{ url_for('calculator') }}" class="app"><p>Main Scientific Calculator</p><p class="description">Normal calculator for all general calculations</p></a>
   <a href="{{ url_for('kinematics') }}" class="app"><p>Kinematics</p><p class="description">the branch of mechanics concerned with the motion of objects without reference to the forces which cause the motion.</p></a>
