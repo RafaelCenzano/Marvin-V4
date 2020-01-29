@@ -317,7 +317,7 @@ def calculatorSqrt(inputCalculation):
                 count = rootAt
                 while count < len(inputCalculation):
                     count += 1
-                    if not inputCalculation[count:count + 1].isnumeric():
+                    if not inputCalculation[count:count + 1].isnumeric() and inputCalculation[count:count + 1] != '.':
                         break
                 
                 i = rootAt
@@ -364,7 +364,7 @@ def calculatorPower(inputCalculation):
 
                     while count > 0:
                         count -= 1
-                        if not inputCalculation[count:count + 1].isnumeric():
+                        if not inputCalculation[count:count + 1].isnumeric() and inputCalculation[count:count + 1] != '.':
                             break
 
                     value1 = eval(inputCalculation[count:powerAt])
@@ -393,7 +393,7 @@ def calculatorPower(inputCalculation):
 
                     while count < len(inputCalculation) and notFound:
                         count += 1
-                        if not inputCalculation[count:count + 1].isnumeric():
+                        if not inputCalculation[count:count + 1].isnumeric() and inputCalculation[count:count + 1] != '.':
                             notFound = False
                     
                     value2 = eval(inputCalculation[powerAt + 1:count])
