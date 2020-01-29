@@ -1,4 +1,5 @@
 import decimal
+from math import *
 
 
 def float_to_str(f):
@@ -264,3 +265,167 @@ def formCleanup(value):
 
     except BaseException:
         return None
+
+
+def calculatorMain(inputCalculation):
+
+    π = pi
+
+    inputCalculation = calculatorCleaning(inputCalculation)
+
+    return repr(eval(inputCalculation))
+
+
+def calculatorCleaning(inputCalculation):
+    '''
+    Replace values to allow more input with the same output. Better for dealing with users and user input
+    '''
+
+    inputCalculation = inputCalculation.replace('2pi', 'tau')
+    inputCalculation = inputCalculation.replace('2π', 'tau')
+    inputCalculation = inputCalculation.replace('2*pi', 'tau')
+    inputCalculation = inputCalculation.replace('2*π', 'tau')
+
+    if inputCalculation == 'Error':
+        return 'Error'
+
+    return inputCalculation
+
+
+def calculatorSqrt(inputCalculation):
+    '''
+    Process sqrt function in user input
+    '''
+
+    if inputCalculation == 'Error':
+        return inputCalculation
+
+    try:
+
+        for digit in list(inputCalculation):
+        
+            if digit == '√':
+                
+                rootAt = inputCalculation.index('√')
+                cleaner = ''
+                
+                count = rootAt
+                while count < len(inputCalculation):
+                    count += 1
+                    if not inputCalculation[count:count + 1].isnumeric():
+                        break
+                
+                i = rootAt
+                while i >= 0:
+                    if inputCalculation[i:i + 1] == ')' or inputCalculation[i:i + 1].isnumeric():
+                        cleaner = '*'
+                        break
+                    elif inputCalculation[i:i + 1] == '+' or inputCalculation[i:i + 1] == '-' or inputCalculation[i:i + 1] == '/' or inputCalculation[i:i + 1] == '*' or inputCalculation[i:i + 1] == '(':
+                        break
+                    i -= 1
+                                
+                inputCalculation = inputCalculation[:rootAt] + cleaner + 'sqrt(' + inputCalculation[rootAt + 1: count] + ')' + inputCalculation[count:]
+
+    except BaseException:
+        return 'Error'
+
+    return inputCalculation
+
+
+def calculatorPower(inputCalculation):
+    '''
+    Proccess ^ into math.pow function
+    '''
+
+    if inputCalculation == 'Error':
+        return inputCalculation
+
+    try:
+
+        for digit in list(inputCalculation):
+
+            if digit == '^':
+            
+                powerAt = inputCalculation.index('^')
+                
+                value1 = 0
+                value2 = 0
+                start = 0
+                end = 0
+                
+                if inputCalculation[powerAt - 1:powerAt].isnumeric():
+                    
+                    count = powerAt
+
+                    while count > 0:
+                        count -= 1
+                        if not inputCalculation[count:count + 1].isnumeric():
+                            break
+
+                    value1 = eval(inputCalculation[count:powerAt])
+                    start = count
+
+                elif inputCalculation[powerAt - 1:powerAt] == ')':
+                    
+                    count = powerAt - 1
+                    notFound = True
+                    
+                    while count > 0 and notFound:
+                        count -= 1
+                        if inputCalculation[count:count + 1] == '(':
+                            notFound = False
+                    
+                    if notFound:
+                        raise BaseException
+
+                    value1 = eval(inputCalculation[count + 1:powerAt - 1])
+                    start = count
+                    
+                if inputCalculation[powerAt + 1:powerAt + 2].isnumeric():
+                    
+                    count = powerAt
+                    notFound = True
+
+                    while count < len(inputCalculation) and notFound:
+                        count += 1
+                        if not inputCalculation[count:count + 1].isnumeric():
+                            notFound = False
+                    
+                    value2 = eval(inputCalculation[powerAt + 1:count])
+                    end = count + 1
+
+                elif inputCalculation[powerAt + 1:powerAt + 2] == '(':
+                    
+                    count = powerAt + 1
+                    notFound = True
+                    
+                    while count < len(inputCalculation) and notFound:
+                        count += 1
+                        if inputCalculation[count:count + 1] == ')':
+                            notFound = False
+                    
+                    if notFound:
+                        error = True
+                    
+                    value2 = eval(inputCalculation[powerAt + 1:count - 1])
+                    end = count + 1
+                
+                try:
+                    value = repr(pow(value1, value2))
+                except ValueError:
+                    value = repr(pow(abs(value1), value2)) + 'i'
+
+                inputCalculation = inputCalculation[:start] + value + inputCalculation[end:]
+
+    except BaseException:
+        return 'Error'
+
+    return inputCalculation
+
+
+
+
+
+
+
+
