@@ -65,7 +65,7 @@ def calculator():
 
     if request.method == 'POST' and form.display.data != '':
 
-        answer = repr(eval(form.display.data))
+        answer = numberProcessing.calculatorMain(form.display.data)
 
         if answer != form.display.data:
             past = form.display.data + ' = ' + answer
