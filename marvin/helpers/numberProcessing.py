@@ -272,6 +272,11 @@ def calculatorMain(inputCalculation):
     π = pi
 
     inputCalculation = calculatorCleaning(inputCalculation)
+    inputCalculation = calculatorSqrt(inputCalculation)
+    inputCalculation = calculatorPower(inputCalculation)
+
+    if inputCalculation == 'Error':
+        return 'Error'
 
     return repr(eval(inputCalculation))
 
@@ -281,13 +286,13 @@ def calculatorCleaning(inputCalculation):
     Replace values to allow more input with the same output. Better for dealing with users and user input
     '''
 
+    if inputCalculation == 'Error':
+        return inputCalculation
+
     inputCalculation = inputCalculation.replace('2pi', 'tau')
     inputCalculation = inputCalculation.replace('2π', 'tau')
     inputCalculation = inputCalculation.replace('2*pi', 'tau')
-    inputCalculation = inputCalculation.replace('2*π', 'tau')
-
-    if inputCalculation == 'Error':
-        return 'Error'
+    inputCalculation = inputCalculation.replace('2*π', 'tau') 
 
     return inputCalculation
 
