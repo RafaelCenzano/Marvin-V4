@@ -278,7 +278,7 @@ def calculatorMain(inputCalculation):
     if inputCalculation == 'Error':
         return 'Error'
 
-    return repr(eval(inputCalculation))
+    return repr(cleanValue(eval(inputCalculation)))
 
 
 def calculatorCleaning(inputCalculation):
