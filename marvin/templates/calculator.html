@@ -19,6 +19,8 @@
          </td>
       </tr>
       <tr>
+         <td><input class="calculator" id="submit" type="button" name="√"     value="√" onclick="calculator.display.value += '√'"></td>
+         <td><input class="calculator" id="submit" type="button" name="^"     value="^" onclick="calculator.display.value += '^'"></td>
          <td><input class="calculator" id="submit" type="button" name="backspace" value="&#x2190;" onclick="calculator.display.value = calculator.display.value.substring(0, calculator.display.value.length - 1)"></td>
          <td><input class="calculator" id="submit" type="button" name="clear" value="C" onclick="calculator.display.value = ''"></td>
       </tr>
@@ -41,7 +43,7 @@
          <td><input class="calculator" id="submit" type="button" name="times" value="x" onclick="calculator.display.value += '*'"></td>
       </tr>
       <tr>
-         <td><input class="calculator" id="submit" type="button" name="clear" value="C" onclick="calculator.display.value = ''"></td>
+         <td><input class="calculator" id="submit" type="button" name="."     value="." onclick="calculator.display.value += '.'"></td>
          <td><input class="calculator" id="submit" type="button" name="zero"  value="0" onclick="calculator.display.value += '0'"></td>
          <td><input class="calculator" id="submit" type="submit" name="submit"value="="></td>
          <td><input class="calculator" id="submit" type="button" name="div"   value="/" onclick="calculator.display.value += '/'"></td>
