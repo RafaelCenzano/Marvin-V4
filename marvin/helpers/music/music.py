@@ -42,7 +42,7 @@ class MusicProccessor:
 
         os.remove(tempPath)
 
-    def writeDataFile(self, link, bestlink, videoName):
+    def writeDataFile(self, videoName, link='-', bestlink='-', title='-', author='-', origin='-', playlists=['-'], downloadedPath='-'):
         '''
         Write data files for music files
         '''
@@ -55,6 +55,17 @@ class MusicProccessor:
             'data',
             videoName +
             '.marvin')
+
+        with open(filePath, 'w') as f:
+            f.write(f'{videoName.rstrip()}\n')
+            f.write(f'{title.rstrip()}\n')
+            f.write(f'{author.rstrip()}\n')
+            f.write(f'{origin.rstrip()}\n')
+            f.write(f'{link.rstrip()}\n')
+            f.write(f'{bestlink.rstrip()}\n')
+            f.write(f'{downloadedPath.rstrip()}\n')
+            for items in playlists:
+                f.write(f'{items.rstrip()}\n')
 
     def readDataFile(self, videoName):
         '''
@@ -69,6 +80,19 @@ class MusicProccessor:
             'data',
             videoName +
             '.marvin')
+
+        with open(filePath, 'r') as f:
+            lines = f.readlines()
+
+        title = lines[1]
+        author = lines[2]
+        origin = lines[3]
+        link = lines[4]
+        bestlink = lines[5]
+        downloadedPath = lines[6]
+        playlists = []
+        for count in range(7, len(lines)):
+            playlists.append(lines[counts])
 
     def nameFile(self, videoName):
         '''
