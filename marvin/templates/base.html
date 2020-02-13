@@ -46,15 +46,11 @@
 </head>
 <body>
     {% include "navbar.html" %}
-
     {% block content %}
     {% endblock %}
-
     {% include "footer.html" %}
-
     {% block trailing_js %}
     {% endblock %}
-    
     <script>
     var close = document.getElementsByClassName("closebtn");
     var i;
