@@ -46,36 +46,8 @@ or with python manually
 python3 run.py
 ```
 
-## Running the tests
-
-Run tests
-
-```
-make test
-```
-
-or manually with pytest
-
-```
-pytest
-```
-
-#### What are the tests checking
-
-Checked tests have been passed.
-
-###### Physics tests
-
-- [X] Kinematic calculations
-- [X] Number Processing
-
-#### What happens when a test fails
-
-Report the failed test [here](https://github.com/Marvin-Virtual-Assistant/Marvin-V4/issues/new)!
-
-## Authors
-
-* [**Rafael Cenzano**](https://github.com/RafaelCenzano)
+<!-- DO NOT REMOVE - contributor_list:start -->
+<!-- DO NOT REMOVE - contributor_list:end -->
 
 ## License
 
