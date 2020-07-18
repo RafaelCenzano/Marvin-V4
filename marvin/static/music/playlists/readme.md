@@ -1,1 +1,0 @@
-Playlist folder for playlist data files
