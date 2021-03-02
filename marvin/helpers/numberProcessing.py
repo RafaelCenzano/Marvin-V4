@@ -248,7 +248,7 @@ def formCleanup(value):
 
     for items in split:
 
-        if items == '.' and check == False:
+        if items == '.' and check is False:
             check = True
 
         elif items == '.' and check:

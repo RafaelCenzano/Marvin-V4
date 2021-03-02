@@ -20,7 +20,7 @@ def assertEqual(value, equalTo):
     assert value == equalTo
 
 def assertTrue(value):
-    assert value == True
+    assert value is True
 
 def assertFalse(value):
-    assert value == False
+    assert value is False
