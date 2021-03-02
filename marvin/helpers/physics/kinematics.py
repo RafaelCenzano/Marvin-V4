@@ -37,7 +37,7 @@ class Kinematics:
         '''
         count = 0
 
-        while(checkValue(self.initialVelocity) == False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False or checkValue(self.acceleration) == False):
+        while(checkValue(self.initialVelocity) is False or checkValue(self.deltaDistance) == False or checkValue(self.finalVelocity) == False or checkValue(self.time) == False or checkValue(self.acceleration) == False):
             if count > 9:
                 break
             self.finalVelocityOne()
