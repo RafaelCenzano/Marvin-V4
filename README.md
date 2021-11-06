@@ -16,7 +16,7 @@ git clone https://github.com/Marvin-Virtual-Assistant/Marvin-V4.git
 cd Marvin-V4
 ```
 
-#### Requirements
+## Requirements
 
 [Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/)
 
@@ -31,6 +31,8 @@ or with pip manually
 ```
 pip3 install -r requirements.txt
 ```
+
+Fix for installing [pocketsphinx](https://github.com/bambocher/pocketsphinx-python/issues/28)
 
 ## Running the program
 
