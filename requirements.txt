@@ -6,7 +6,7 @@ chardet==3.0.4
 Click==7.0
 decorator==4.4.1
 docutils==0.16
-Flask==1.1.1
+Flask==2.2.5
 Flask-WTF==0.14.2
 idna==3.7
 imageio==2.6.1
