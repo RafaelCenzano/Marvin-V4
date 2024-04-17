@@ -29,7 +29,7 @@ pyparsing==2.4.6
 PyStarter==1.4.1
 pytest==5.3.5
 python-vlc==3.0.7110
-requests==2.22.0
+requests==2.31.0
 six==1.14.0
 soupsieve==1.9.5
 tqdm==4.42.1
