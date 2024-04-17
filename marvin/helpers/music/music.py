@@ -27,7 +27,8 @@ class PlaylistDownloader():
     def __init__(self):
         pass
 
-    def download(self, videoLinks):
+    @staticmethod
+    def download(videoLinks):
         for links in videoLinks:
             # New video name
             newVideoName = hashlib.sha512(video.title.encode('utf-8')).hexdigest()

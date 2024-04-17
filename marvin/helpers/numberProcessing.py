@@ -239,7 +239,7 @@ def formCleanup(value):
 
     try:
 
-        if split[len(split) - 2] == '.' and split[len(split) - 1] == '0':
+        if split[-2] == '.' and split[-1] == '0':
             return float(value)
 
     except BaseException:
@@ -249,7 +249,7 @@ def formCleanup(value):
 
     for items in split:
 
-        if items == '.' and check == False:
+        if items == '.' and check is False:
             check = True
 
         elif items == '.' and check:
