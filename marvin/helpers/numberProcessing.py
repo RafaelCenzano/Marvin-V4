@@ -1,4 +1,5 @@
 import decimal
+from math import *
 
 
 def float_to_str(f):
@@ -264,3 +265,77 @@ def formCleanup(value):
 
     except BaseException:
         return None
+
+
+def calculatorMain(inputCalculation):
+
+    π = pi
+
+    inputCalculation = calculatorCleaning(inputCalculation)
+    while True:
+        start, end = findParenthesis(inputCalculation)
+        if(start == -1 and end == -1):
+            break
+        inputCalculation = calculatorProcessing(inputCalculation, start, end)
+
+    if inputCalculation == 'Error':
+        return 'Error'
+
+    return repr(cleanValue(eval(inputCalculation)))
+
+def calculatorProcessing(inputCalculation, starting, ending):
+    
+    value = calculatorCalculation(inputCalculation[starting + 1: ending])
+    
+    newInputCalculation = inputCalculation[:starting] + value + inputCalculation[ending + 1:]
+    
+    return newInputCalculation
+
+def calculatorCalculation(inputCalculation):
+    
+    #inputCalculation = calculatorSqrt(inputCalculation)
+    
+    return repr(cleanValue(eval(inputCalculation)))
+
+def calculatorCleaning(inputCalculation):
+    '''
+    Replace values to allow more input with the same output. Better for dealing with users and user input
+    '''
+
+    if inputCalculation == 'Error':
+        return inputCalculation
+
+    inputCalculation = inputCalculation.replace('2pi', 'tau')
+    inputCalculation = inputCalculation.replace('2π', 'tau')
+    inputCalculation = inputCalculation.replace('2*pi', 'tau')
+    inputCalculation = inputCalculation.replace('2*π', 'tau')
+    inputCalculation = ''.join(inputCalculation.split())
+        
+    return inputCalculation
+
+def findParenthesis(inputCalculation):
+    starting = -1
+    ending = -1
+    
+    i = len(inputCalculation)
+    while i >= 0:
+        i -= 1
+        if inputCalculation[i: i + 1] == '(':
+            starting = i
+            break
+    
+    while i < len(inputCalculation):
+        if inputCalculation[i: i + 1] == ')':
+            ending = i
+            break
+        i += 1
+
+    return starting, ending
+
+
+
+
+
+
+
+
