@@ -35,7 +35,7 @@ soupsieve==1.9.5
 tqdm==4.66.3
 urllib3==1.26.19
 wcwidth==0.1.8
-Werkzeug==3.0.3
+Werkzeug==3.1.4
 WTForms==2.2.1
 youtube-dl==2020.1.24
 zipp==3.19.1
